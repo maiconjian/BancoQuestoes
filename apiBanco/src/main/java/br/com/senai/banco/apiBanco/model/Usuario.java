@@ -1,10 +1,16 @@
 package br.com.senai.banco.apiBanco.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +42,15 @@ public class Usuario {
 	
 	@Column(name="ATIVO")
 	private boolean ativo;
+	
+	@OneToMany()
+	@JoinTable(name = "USUARIO_PERFIL",joinColumns = @JoinColumn(name="ID_USUARIO"),
+	inverseJoinColumns = @JoinColumn(name="ID_PERFIL"))
+	private List<Perfil> perfis;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="ID_UNIDADE")
+	private Unidade unidade;
 
 	public long getId() {
 		return id;
@@ -100,6 +115,15 @@ public class Usuario {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+
+	public List<Perfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
+	}
+	
 	
 	
 	

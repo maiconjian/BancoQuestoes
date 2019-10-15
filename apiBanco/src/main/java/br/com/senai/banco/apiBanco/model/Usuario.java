@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="USUARIO")
@@ -22,16 +24,21 @@ public class Usuario {
 	@Column(name="ID")
 	private long id;
 	
+	@NotBlank(message = "Nome Obrigatorio")
 	@Column(name="NOME")
 	private String nome;
 	
+	@Email(message = "E-mail invalido")
+	@NotBlank(message = "E-mail Obrigatorio")
 	@Column(name="EMAIL")
 	private String email;
 	
 	@Column(name="LOGIN")
+	@NotBlank(message = "Login Obrigatorio")
 	private String login;
 	
 	@Column(name="SENHA")
+	//@NotBlank(message = "Senha Obrigatorio")
 	private String senha;
 	
 	@Column(name="CODIGO_ACESSO")
@@ -43,7 +50,7 @@ public class Usuario {
 	@Column(name="ATIVO")
 	private boolean ativo;
 	
-	@OneToMany()
+	@ManyToMany()
 	@JoinTable(name = "USUARIO_PERFIL",joinColumns = @JoinColumn(name="ID_USUARIO"),
 	inverseJoinColumns = @JoinColumn(name="ID_PERFIL"))
 	private List<Perfil> perfis;
@@ -122,6 +129,14 @@ public class Usuario {
 
 	public void setPerfis(List<Perfil> perfis) {
 		this.perfis = perfis;
+	}
+
+	public Unidade getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
 	}
 	
 	

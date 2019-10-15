@@ -8,7 +8,7 @@ public interface IGenericResource <T,F,Serializable>{
 	
 	public ResponseEntity<?> alterar(T entity);
 	
-	public ResponseEntity<?> buscarPorId(T entity);
+	public ResponseEntity<?> buscarPorId(long id);
 	
 	public ResponseEntity<?> pesquisar(F entity);
 

@@ -10,7 +10,7 @@ public interface IGenericService <T,F, Serializable> {
 	
 	public T alterar(T entity);
 	
-	public T buscarPorId(T entity);
+	public T buscarPorId(long id);
 	
 	public List<T> pesquisar(F filtro);
 }

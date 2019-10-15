@@ -33,43 +33,43 @@ public class UsuarioService implements IUsuarioService {
 
 	@Override
 	public Usuario alterar(Usuario entity) {
-//		Optional<Usuario> usuario = this.usuarioRepository.findById(entity.getId());
-//		Usuario usuarioSalvo = new Usuario();
-//
-//		if (usuario.isPresent()) {
-//			entity.getPermissoes().addAll(usuario.get().getPermissoes());
-//
-//			if (entity.getSenha().isEmpty()) {
-//				entity.setSenha(usuario.get().getSenha());
-//			} else {
-//				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//				entity.setSenha(encoder.encode(entity.getSenha()));
-//			}
-//			usuario = this.usuarioRepository.findByLogin(entity.getLogin());
-//
-//			if (!usuario.isPresent() || usuario.get().getId() == entity.getId()) {
-//				usuarioSalvo = this.usuarioRepository.save(entity);
-//				return usuarioSalvo;
-//			} else {
-//				throw new UsernameNotFoundException("Login ja cadastrado");
-//			}
-//
-//		}
-//
-//		return usuarioSalvo;
-		return null;
+		Optional<Usuario> usuario = this.usuarioRepository.findById(entity.getId());
+		Usuario usuarioSalvo = new Usuario();
+		
+		if (usuario.isPresent()) {
+			usuario = this.usuarioRepository.findByLogin(entity.getLogin());
+			if (!usuario.isPresent() || usuario.get().getId() == entity.getId()) {
+				entity.setSenha(usuario.get().getSenha());
+				usuarioSalvo = this.usuarioRepository.save(entity);
+				return usuarioSalvo;
+			} else {
+				//throw new UsernameNotFoundException("Login ja cadastrado");
+			}
+		}
+		return usuarioSalvo;	
 	}
 
 	@Override
-	public Usuario buscarPorId(Usuario entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario buscarPorId(long id) {	
+		return this.usuarioRepository.findById(id).get();
 	}
 
 	@Override
 	public List<Usuario> pesquisar(UsuarioFilter filtro) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.usuarioRepository.pesquisar(filtro);
+	}
+
+	@Override
+	public boolean alterarSenha(Usuario entity) {
+//		Optional<Usuario> usuario = this.usuarioRepository.findById(entity.getId());
+//		
+//		if(usuario.isPresent()) {
+//			return this.usuarioRepository.alterarSenha(entity.getSenha(), entity.getId());
+//		}
+		
+		return false;
+		
+		
 	}
 
 }

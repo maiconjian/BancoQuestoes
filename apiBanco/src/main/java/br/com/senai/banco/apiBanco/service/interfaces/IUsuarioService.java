@@ -8,4 +8,6 @@ import br.com.senai.banco.apiBanco.util.IGenericService;
 
 public interface IUsuarioService extends IGenericService<Usuario, UsuarioFilter, Serializable> {
 
+	
+	public boolean alterarSenha(Usuario entity);
 }

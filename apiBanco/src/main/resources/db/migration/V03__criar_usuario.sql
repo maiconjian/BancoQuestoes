@@ -1,16 +1,18 @@
-create table USUARIO
-(
-   ID                   int not null,
-   NOME                 varchar(50) not null,
-   EMAIL                varchar(50) not null,
-   LOGIN                varchar(20) not null,
-   SENHA                varchar(20) not null,
-   CODIGO_ACESSO        varchar(10),
-   SOLICITA_SENHA       tinyint ,
-   ATIVO                tinyint not null,
-   ID_UNIDADE       	int not null,
-   primary key (ID)
-);
+create table USUARIO (
+   ID                   int                  identity,
+   NOME                 varchar(50)          not null,
+   EMAIL                varchar(50)          not null,
+   LOGIN                varchar(20)          not null,
+   SENHA                varchar(255)         not null,
+   CODIGO_ACESSO        varchar(10)          null,
+   SOLICITA_SENHA       smallint             not null,
+   ATIVO                smallint             not null,
+   ID_UNIDADE           int                  not null,
+   constraint PK_USUARIO primary key nonclustered (ID)
+)
+go
 
-alter table USUARIO add constraint FK_REFERENCE_8 foreign key (ID_UNIDADE)
-      references UNIDADE (ID) on delete restrict on update restrict;
+alter table USUARIO
+   add constraint FK_USUARIO_REFERENCE_UNIDADE foreign key (ID_UNIDADE)
+      references UNIDADE (ID)
+go

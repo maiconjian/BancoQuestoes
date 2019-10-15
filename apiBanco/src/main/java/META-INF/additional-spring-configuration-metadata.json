@@ -1,0 +1,42 @@
+{"properties": [
+  {
+    "name": "apiBanco.mail.host",
+    "type": "java.lang.String",
+    "description": "A description for 'apiBanco.mail.host'"
+  },
+  {
+    "name": "apiBanco.mail.host",
+    "type": "java.lang.String",
+    "description": "A description for 'apiBanco.mail.host'"
+  },
+  {
+    "name": "apiBanco.mail.host",
+    "type": "java.lang.String",
+    "description": "A description for 'apiBanco.mail.host'"
+  },
+  {
+    "name": "apiBanco.mail.host",
+    "type": "java.lang.String",
+    "description": "A description for 'apiBanco.mail.host'"
+  },
+  {
+    "name": "apiBanco.mail.host",
+    "type": "java.lang.String",
+    "description": "A description for 'apiBanco.mail.host'"
+  },
+  {
+    "name": "apiBanco.mail.port",
+    "type": "java.lang.String",
+    "description": "A description for 'apiBanco.mail.port'"
+  },
+  {
+    "name": "apiBanco.mail.username",
+    "type": "java.lang.String",
+    "description": "A description for 'apiBanco.mail.username'"
+  },
+  {
+    "name": "apiBanco.mail.password",
+    "type": "java.lang.String",
+    "description": "A description for 'apiBanco.mail.password'"
+  }
+]}

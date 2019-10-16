@@ -2,6 +2,9 @@ package br.com.senai.banco.apiBanco.resource.interfaces;
 
 import java.io.Serializable;
 
+import org.springframework.http.ResponseEntity;
+
+import br.com.senai.banco.apiBanco.dto.LoginDto;
 import br.com.senai.banco.apiBanco.model.Usuario;
 import br.com.senai.banco.apiBanco.repository.filter.UsuarioFilter;
 import br.com.senai.banco.apiBanco.util.IGenericResource;
@@ -10,5 +13,8 @@ public interface IUsuarioResource  extends IGenericResource<Usuario, UsuarioFilt
 
 	
 	
-	public boolean alterarSenha(Usuario entity);
+	public void alterarSenha(Usuario entity);
+	
+	
+	public ResponseEntity<?> autenticar(LoginDto login) throws Exception;
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.senai.banco.apiBanco.dto.LoginDto;
 import br.com.senai.banco.apiBanco.model.Usuario;
 import br.com.senai.banco.apiBanco.repository.filter.UsuarioFilter;
 import br.com.senai.banco.apiBanco.resource.interfaces.IUsuarioResource;
@@ -29,7 +30,7 @@ public class UsuarioResource implements IUsuarioResource {
 	
 	@Override
 	@PostMapping("/incluir")
-	public ResponseEntity<?> incluir(@RequestBody @Valid Usuario entity) {
+	public ResponseEntity<?> incluir(@RequestBody @Valid Usuario entity) throws Exception {
 		Usuario usuario = this.usuarioService.incluir(entity); 
 		return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
 	}
@@ -57,9 +58,16 @@ public class UsuarioResource implements IUsuarioResource {
 
 	@Override
 	@PostMapping("alterarsenha")
-	public boolean alterarSenha(@RequestBody Usuario entity) {
-//		return this.usuarioService.alterarSenha(entity);
-		return false;
+	public void alterarSenha(@RequestBody Usuario entity) {
+		 this.usuarioService.alterarSenha(entity);
+	
+	}
+
+	@Override
+	@PostMapping("/autenticar")
+	public ResponseEntity<?> autenticar(@RequestBody LoginDto login) throws Exception {
+		Usuario usuario = this.usuarioService.autenticarUsuario(login);
+		return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
 	}
 
 }

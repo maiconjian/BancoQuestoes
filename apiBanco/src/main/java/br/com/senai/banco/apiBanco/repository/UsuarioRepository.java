@@ -16,8 +16,14 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> ,Usuari
 	
 	Optional<Usuario> findByLogin(String login);
 	
-//	@Modifying
-//	@Transactional
-//	@Query(value="UPDATE USUARIO SET SENHA = ?1 WHERE ID = ?2")
-//	public boolean alterarSenha(String senha,long id);
+	@Modifying
+	@Transactional
+	@Query(value="UPDATE USUARIO SET SENHA = ?1 WHERE ID = ?2",nativeQuery = true)
+	public void alterarSenha(String senha,long id);
+	
+	
+	@Modifying
+	@Transactional
+	@Query(value="UPDATE USUARIO SET CODIGO_ACESSO = ?1 WHERE ID = ?2",nativeQuery = true)
+	public void salvaCodigoAcesso(String codigo,long idUsuario);
 }

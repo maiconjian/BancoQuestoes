@@ -96,7 +96,7 @@ public class UsuarioService implements IUsuarioService {
 	}
 
 	@Override
-	public Usuario autenticarUsuario(LoginDto login) throws Exception {
+	public long autenticarUsuario(LoginDto login) throws Exception {
 		Optional<Usuario> usuario = this.usuarioRepository.findByLogin(login.getLogin());
 		if(usuario.isPresent()) {
 			if(encoder.matches(login.getSenha(), usuario.get().getSenha())) {
@@ -105,14 +105,28 @@ public class UsuarioService implements IUsuarioService {
 				List<Usuario> destinatarios = new ArrayList<>();
 				destinatarios.add(usuario.get());
 				
-				mailer.enviarNovaSenha(codigo, destinatarios, "Senha de Acesso", "mail/codigo-acesso");
+				mailer.enviarNovaSenha(codigo, destinatarios, "Código de Acesso", "mail/codigo-acesso");
 				
 				this.usuarioRepository.salvaCodigoAcesso(encoder.encode(codigo), usuario.get().getId());
-				return usuario.get();
+				return usuario.get().getId();
 			}
 			
 		}
-		return null;
+		return 0;
+	}
+
+	@Override
+	public Usuario verificaCodigo(long idUsuario, String codigo) {
+		Optional<Usuario> usuario = this.usuarioRepository.findById(idUsuario);
+		
+		if(usuario.isPresent()) {
+			if(encoder.matches(codigo, usuario.get().getCodigoAcesso())) {
+				return usuario.get();
+			}
+		}
+		
+		return usuario.get();
+		
 	}
 	
 	

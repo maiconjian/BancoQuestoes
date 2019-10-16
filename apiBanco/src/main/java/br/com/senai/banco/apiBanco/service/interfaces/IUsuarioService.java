@@ -16,6 +16,9 @@ public interface IUsuarioService extends IGenericService<Usuario, UsuarioFilter,
 	public void gerarEnviarSenhaAleatoria(Usuario usuario) throws Exception;
 	
 	
-	public Usuario autenticarUsuario(LoginDto login) throws Exception;
+	public long autenticarUsuario(LoginDto login) throws Exception;
+	
+	
+	public Usuario verificaCodigo(long idUsuario,String codigo);
 	
 }

@@ -16,5 +16,7 @@ public interface IUsuarioResource  extends IGenericResource<Usuario, UsuarioFilt
 	public void alterarSenha(Usuario entity);
 	
 	
-	public ResponseEntity<?> autenticar(LoginDto login) throws Exception;
+	public long autenticar(LoginDto login) throws Exception;
+	
+	public ResponseEntity<?> verificaCodigo(long idUsuario,String codigo);
 }

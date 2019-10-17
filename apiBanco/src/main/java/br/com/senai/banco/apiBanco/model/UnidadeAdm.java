@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PERFIL")
-public class Perfil {
+@Table(name="UNIDADE_ADM")
+public class UnidadeAdm {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,12 @@ public class Perfil {
 	
 	@Column(name="NOME")
 	private String nome;
+	
+	@Column(name="UF")
+	private String uf;
+	
+	@Column(name="CIDADE")
+	private String cidade;
 	
 	@Column(name="ATIVO")
 	private boolean ativo;
@@ -36,6 +42,22 @@ public class Perfil {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
 	public boolean isAtivo() {

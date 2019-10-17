@@ -8,8 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="UNIDADE")
-public class Unidade {
+@Table(name="CURSO")
+public class Curso {
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +20,14 @@ public class Unidade {
 	@Column(name="NOME")
 	private String nome;
 	
-	@Column(name="UF")
-	private String uf;
+	@Column(name="NIVEL")
+	private String nivel;
 	
-	@Column(name="CIDADE")
-	private String cidade;
+	@Column(name="FASES")
+	private int numeroFases;
+	
+	@Column(name="ATIVO")
+	private boolean ativo;
 
 	public long getId() {
 		return id;
@@ -41,23 +45,31 @@ public class Unidade {
 		this.nome = nome;
 	}
 
-	public String getUf() {
-		return uf;
+	public String getNivel() {
+		return nivel;
 	}
 
-	public void setUf(String uf) {
-		this.uf = uf;
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public int getNumeroFases() {
+		return numeroFases;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setNumeroFases(int numeroFases) {
+		this.numeroFases = numeroFases;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 	
 	
 	
-
+	
 }

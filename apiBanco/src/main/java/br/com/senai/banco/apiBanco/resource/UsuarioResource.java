@@ -63,19 +63,37 @@ public class UsuarioResource implements IUsuarioResource {
 	
 	}
 
+//	@Override
+//	@PostMapping("/autenticar")
+//	public long autenticar(@RequestBody LoginDto login) throws Exception {
+//		return this.usuarioService.autenticarUsuario(login);
+//	}
+	
+
+//	@Override
+//	@GetMapping("verificacodigo/{idUsuario}/{codigo}")
+//	public ResponseEntity<?> verificaCodigo(@PathVariable("idUsuario")long idUsuario,@PathVariable("codigo")String codigo) {
+//		Usuario usuario = this.usuarioService.verificaCodigo(idUsuario, codigo);
+//		return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
+//	}
+	
 	@Override
 	@PostMapping("/autenticar")
-	public long autenticar(@RequestBody LoginDto login) throws Exception {
+	public byte[] autenticar(@RequestBody LoginDto login) throws Exception {
 		return this.usuarioService.autenticarUsuario(login);
 	}
 
-
-
 	@Override
-	@GetMapping("verificacodigo/{idUsuario}/{codigo}")
-	public ResponseEntity<?> verificaCodigo(@PathVariable("idUsuario")long idUsuario,@PathVariable("codigo")String codigo) {
-		Usuario usuario = this.usuarioService.verificaCodigo(idUsuario, codigo);
+	@GetMapping("/verificarcodigo//{login}/{codigo}")
+	public ResponseEntity<?> verificaCodigo(@PathVariable("login")String login,@PathVariable("codigo")String codigo) {
+		Usuario usuario = this.usuarioService.verificaCodigo(login, codigo);
 		return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
+	
 
 }

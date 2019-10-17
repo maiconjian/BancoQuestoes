@@ -56,8 +56,18 @@ public class Usuario {
 	private List<Perfil> perfis;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name="ID_UNIDADE")
-	private Unidade unidade;
+	@JoinColumn(name="ID_UNIDADE_ADM")
+	private UnidadeAdm unidade;
+	
+	@ManyToMany()
+	@JoinTable(name = "USUARIO_CURSO",joinColumns = @JoinColumn(name="ID_USUARIO"),
+	inverseJoinColumns = @JoinColumn(name="ID_CURSO"))
+	private List<Curso> cursos;
+	
+	@ManyToMany()
+	@JoinTable(name = "USUARIO_UNIDADE_CURRICULAR",joinColumns = @JoinColumn(name="ID_USUARIO"),
+	inverseJoinColumns = @JoinColumn(name="ID_UNIDADE_CURRICULAR"))
+	private List<UnidadeCurricular> unidadesCurricular;
 
 	public long getId() {
 		return id;
@@ -131,12 +141,28 @@ public class Usuario {
 		this.perfis = perfis;
 	}
 
-	public Unidade getUnidade() {
+	public UnidadeAdm getUnidade() {
 		return unidade;
 	}
 
-	public void setUnidade(Unidade unidade) {
+	public void setUnidade(UnidadeAdm unidade) {
 		this.unidade = unidade;
+	}
+
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public List<UnidadeCurricular> getUnidadesCurricular() {
+		return unidadesCurricular;
+	}
+
+	public void setUnidadesCurricular(List<UnidadeCurricular> unidadesCurricular) {
+		this.unidadesCurricular = unidadesCurricular;
 	}
 	
 	

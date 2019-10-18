@@ -84,7 +84,7 @@ public class UsuarioResource implements IUsuarioResource {
 	}
 
 	@Override
-	@GetMapping("/verificarcodigo//{login}/{codigo}")
+	@GetMapping("/verificarcodigo/{login}/{codigo}")
 	public ResponseEntity<?> verificaCodigo(@PathVariable("login")String login,@PathVariable("codigo")String codigo) {
 		Usuario usuario = this.usuarioService.verificaCodigo(login, codigo);
 		return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);

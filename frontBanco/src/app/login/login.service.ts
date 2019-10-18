@@ -26,5 +26,12 @@ export class LoginService {
     .catch(error =>console.log(error));
   }
 
+  verificarCodigo(login:any,codigo:any):Promise<any>{
+    return this.http.get(`${this.urlPadrao.getURL()}/usuario//verificarcodigo/${login}/${codigo}`,{headers})
+    .toPromise()
+    .then(response=>response)
+    .catch(error =>console.log(error));
+  }
+
  
 }

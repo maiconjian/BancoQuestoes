@@ -1,14 +1,50 @@
+<div class="ui-g">
+    <div class="ui-g-5 menu">
+        <form>
+            <div class="ui-g-12 input">
+                <span class="ui-float-label">
+                    <input name="login" id="float-input" pInputText type="text" size="30px" [(ngModel)]="dados.login">
+                    <label for="float-input">Login</label>
+                </span>
 
-<h1>asdasd</h1>
-<input name="login" type="text" placeholder="login" [(ngModel)]="dados.login" >
-<input name="senha" type="text" placeholder="senha" [(ngModel)]="dados.senha">
+            </div>
+            <div class="ui-g-12 input">
+                <span class="ui-float-label">
+                    <input name="senha" id="float-input" type="password" pInputText size="30px" [(ngModel)]="dados.senha">
+                    <label for="float-input">Senha</label>
+                </span>
+            </div>
+            <div class="ui-g-12 button">
+                <button pButton type="button" label="Entrar" (click)="button()"></button>
+
+            </div>
+        </form>
+    </div>
 
 
-<button type="button" (click)="button()"></button>
+
+    
+    <p-dialog [(visible)]="displayQRCode" [style]="{width: '300px'}" [positionTop]="1"  [responsive]="true" [modal]="true"
+        [draggable]="false">
+        <div class="ui-g-12" style="margin-left: 25px;">
+            <img src="{{imageurl}}" alt="">
+        </div>
+
+        <div class="ui-g-12"style="margin-left: 5px;">
+            <span class="ui-float-label">
+                <input name="codigo" id="float-input" pInputText type="text" size="30px" [(ngModel)]="codigoQR">
+                <label for="float-input">Código de Acesso</label>
+            </span>
+        </div>
+
+        <div class="ui-g-12" style="margin-left: 15px;">
+            <button pButton type="button" label="Confirmar" (click)="confirmCodigoAcesso()"
+                style="margin-right: 10px;"></button>
+            <button pButton type="button" label="Cancelar" (click)="displayQRCode =!displayQRCode"></button>
+        </div>
+
+    </p-dialog>
 
 
 
-
-
-<img src="{{imageurl}}" alt="">
-
+</div>

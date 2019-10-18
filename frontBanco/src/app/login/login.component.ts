@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   dados:Login;
 
   imageurl:any;
+  displayQRCode:boolean;
+  codigoQR:any;
 
 
   constructor(
@@ -22,14 +24,24 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.dados =new Login();
+    this.displayQRCode = false;
   }
 
   button(){
+    this.displayQRCode=true;
     this.autenticar(this.dados);
     console.log(this.dados);
   }
 
+  confirmCodigoAcesso(){
+    this.loginService.verificarCodigo(this.dados.login,this.codigoQR)
+    .then(response=>{
+      console.log(response);
+      this.displayQRCode=false;
+    })
+  }
 
+ 
   autenticar(dadosLogin:any){
     this.loginService.autenticar(dadosLogin)
     .then(response=>{

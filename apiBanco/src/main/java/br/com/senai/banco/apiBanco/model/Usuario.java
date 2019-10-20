@@ -33,6 +33,9 @@ public class Usuario {
 	@Column(name="EMAIL")
 	private String email;
 	
+	@Column(name="MATRICULA")
+	private int matricula;
+	
 	@Column(name="LOGIN")
 	@NotBlank(message = "Login Obrigatorio")
 	private String login;

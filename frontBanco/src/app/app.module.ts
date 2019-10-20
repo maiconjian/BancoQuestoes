@@ -13,13 +13,21 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
+import {MegaMenuModule} from 'primeng/megamenu';
+import {TableModule} from 'primeng/table';
+
 import { UsuarioComponent } from './usuario/usuario.component';
+import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    MenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +38,9 @@ import { UsuarioComponent } from './usuario/usuario.component';
     InputTextModule,
     ButtonModule,
     DialogModule,
-    PasswordModule
+    PasswordModule,
+    MegaMenuModule,
+    TableModule
   ],
   providers: [
     UrlPadraoService

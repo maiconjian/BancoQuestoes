@@ -1,1 +1,58 @@
-<p>usuario works!</p>
+<app-menu></app-menu>
+
+<div class="ui-g">
+    <div class="ui-g-3">
+        <form>
+            <div class="ui-g-12 ui-fluid">
+                <input pInputText type="text" placeholder="Nome">
+            </div>
+
+            <div class="ui-g-12 ui-fluid">
+                <input pInputText type="text" placeholder="Email">
+            </div>
+
+            <div class="ui-g-12 ui-fluid">
+                <input pInputText type="text" placeholder="Perfil">
+            </div>
+
+            <div class="ui-g-12 ui-fluid">
+                <input pInputText type="text" placeholder="Situacão">
+            </div>
+
+
+            <div class="ui-g-12 ui-fluid">
+                <button pButton type="submit" label='Pesquisar'></button>
+            </div>
+
+            <div class="ui-g-6  ui-fluid">
+                <button pButton type="button" label="Limpar Filtro"></button>
+            </div>
+
+            <div class="ui-g-6  ui-fluid">
+                <button pButton type="button" label="Novo"></button>
+            </div>
+        </form>
+    </div>
+
+    <div class="ui-g-9" id="tabela">
+        <p-table [value]="cars">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>CPF</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-car>
+                <tr>
+                    <td>{{car.vin}}</td>
+                    <td>{{car.year}}</td>
+                    <td>{{car.brand}}</td>
+                    <td>{{car.color}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+
+</div>

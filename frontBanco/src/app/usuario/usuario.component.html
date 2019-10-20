@@ -2,53 +2,66 @@
 
 <div class="ui-g">
     <div class="ui-g-3">
-        <form>
+        <form autocomplete="off" (ngSubmit)="pesquisar()">
             <div class="ui-g-12 ui-fluid">
-                <input pInputText type="text" placeholder="Nome">
+                <span class="ui-float-label">
+                    <input name="nomeFiltro" pInputText type="text" [(ngModel)]="filtro.nome">
+                    <label class="espaco-reservado" for="float-label">Nome</label>
+                </span>
+
             </div>
 
             <div class="ui-g-12 ui-fluid">
-                <input pInputText type="text" placeholder="Email">
+                <span class="ui-float-label">
+                    <input name="emailFiltro" pInputText type="text" [(ngModel)]="filtro.email">
+                    <label class="espaco-reservado" for="float-label">E-mail</label>
+                </span>
+
             </div>
 
             <div class="ui-g-12 ui-fluid">
-                <input pInputText type="text" placeholder="Perfil">
+                <span class="ui-float-label">
+                    <p-dropdown  [options]="listaSituacao" [showClear]="false" name="situacao" 
+                        [autoWidth]="false"
+                        [filter]="false" emptyFilterMessage="Nenhum registro!"
+                        resetFilterOnHide="true" placeholder="Situação" [(ngModel)]="filtro.ativo"></p-dropdown>
+                    <label class="espaco-reservado" for="float-label" [hidden]="filtro.ativo !=null  ? false:true">Situação</label>
+                </span>
+
             </div>
 
             <div class="ui-g-12 ui-fluid">
-                <input pInputText type="text" placeholder="Situacão">
-            </div>
-
-
-            <div class="ui-g-12 ui-fluid">
-                <button pButton type="submit" label='Pesquisar'></button>
+                <button  class="btn-pesquisa" pButton type="submit" label='Pesquisar'></button>
             </div>
 
             <div class="ui-g-6  ui-fluid">
-                <button pButton type="button" label="Limpar Filtro"></button>
+                <button class="btn-pesquisa" pButton type="button" label="Limpar Filtro" (click)="limparFiltro()"></button>
             </div>
 
             <div class="ui-g-6  ui-fluid">
-                <button pButton type="button" label="Novo"></button>
+                <button  class="btn-pesquisa" pButton type="button" label="Novo"></button>
             </div>
         </form>
     </div>
 
     <div class="ui-g-9" id="tabela">
-        <p-table [value]="cars">
+        <p-table [value]="listaUsuario">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>CPF</th>
+                    <th class="cabecalho-nome">Nome</th>
+                    <th class="cabecalho-email">E-mail</th>
+                    <th class="cabecalho-login">Login</th>
+                    <th class="cabecalho-opcoes">Opções</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-car>
+            <ng-template pTemplate="body" let-usuario>
                 <tr>
-                    <td>{{car.vin}}</td>
-                    <td>{{car.year}}</td>
-                    <td>{{car.brand}}</td>
-                    <td>{{car.color}}</td>
+                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.login}}</td>
+                    <td class="tb-coluna-opcoes">
+                        <button class="btn-tabela" pButton type="button"  icon="fa fa-edit" pTooltip="Editar" tooltipPosition="top"></button>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>

@@ -1,7 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 
+th {
+  background-color: green !important;
+  color: white !important;
+  text-align: center !important; 
+  padding: 0 !important; 
+  margin: 0 !important;
+}
+td {
+  padding: 0 5px !important; 
+  margin: 0 5px !important;
+}
+.tb-coluna-opcoes  {
+  text-align: center !important; 
+  padding: 0 !important; 
+  margin: 0 !important; 
+}
 
+.btn-tabela {
+  margin: 7px !important;  
+}
+
+
+.espaco-reservado {
+  color: #3d3d3d !important;
+}
+.ui-float-label{
+  margin-top: 8px !important; 
+}
 
 button {
     width: 95px;
-  }
+    background-color: green !important;
+    border: none !important;
+    border-radius: 100px !important;
+}

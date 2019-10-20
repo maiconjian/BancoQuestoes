@@ -15,10 +15,15 @@ import {DialogModule} from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
 import {MegaMenuModule} from 'primeng/megamenu';
 import {TableModule} from 'primeng/table';
+import {DropdownModule} from 'primeng/dropdown';
+import {TooltipModule} from 'primeng/tooltip';
 
 import { UsuarioComponent } from './usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
+import { UnidadeComponent } from './unidade/unidade.component';
+import { CursoComponent } from './curso/curso.component';
+import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricular.component';
 
 
 @NgModule({
@@ -27,7 +32,10 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     UsuarioComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    UnidadeComponent,
+    CursoComponent,
+    UnidadeCurricularComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +48,9 @@ import { HomeComponent } from './home/home.component';
     DialogModule,
     PasswordModule,
     MegaMenuModule,
-    TableModule
+    TableModule,
+    DropdownModule,
+    TooltipModule
   ],
   providers: [
     UrlPadraoService

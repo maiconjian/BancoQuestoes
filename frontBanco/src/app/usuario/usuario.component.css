@@ -1,3 +1,24 @@
 #tabela{
-    padding-top: 1em;
+    padding-top: 1.5em;
+}
+
+.cabecalho-nome{
+    width: 20em;
+}
+
+.cabecalho-email{
+    width: 20em;
+}
+.cabecalho-login{
+    width: 10em;
+}
+
+.cabecalho-opcoes{
+    width: 7em;
+}
+
+
+dropdown-label
+{
+    color: red !important;
 }

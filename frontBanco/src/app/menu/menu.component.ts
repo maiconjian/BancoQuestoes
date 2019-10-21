@@ -15,20 +15,30 @@ export class MenuComponent implements OnInit {
     ngOnInit() {
         this.items = [
             {
-                label: 'Configuração', icon: "fa fa-wrench",
+                label: 'Edit',
+                icon: 'pi pi-fw pi-pencil',
                 items: [
-                    [
-                        {
-                            items: [
-                                { label: 'Usuario', routerLink: '/usuario' },
-                                { label: 'Perfil'},
-                                { label: 'Logout' }
-                            ]
-                        },
-
-                    ],
+                    {label: 'Delete', icon: 'pi pi-fw pi-trash'},
+                    {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
                 ]
-            },
+            }
+        ];
+        // this.items = [
+        //     {
+        //         label: 'Configuração', icon: "fa fa-wrench",
+        //         items: [
+        //             [
+        //                 {
+        //                     items: [
+        //                         { label: 'Usuario', routerLink: '/usuario' },
+        //                         { label: 'Perfil'},
+        //                         { label: 'Logout' }
+        //                     ]
+        //                 },
+
+        //             ],
+        //         ]
+        //     },
     //         {
     //             label: 'Sports', icon: 'fa fa-fw fa-soccer-ball-o',
     //             items: [
@@ -65,7 +75,7 @@ export class MenuComponent implements OnInit {
     //                 ]
     //             ]
     //         }
-        ];
+    
     }
 }
 

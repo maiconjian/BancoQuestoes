@@ -38,4 +38,29 @@ export class UsuarioService {
       .catch(error => console.log(error))
 
   }
+
+
+  listarPerfis():Promise<any>{
+    return this.http.get(`${this.url.getURL()}/perfil/listar`,{headers})
+    .toPromise()
+    .then(response=>response);
+  }
+
+  listarCursos():Promise<any>{
+    return this.http.get(`${this.url.getURL()}/curso/listar`,{headers})
+    .toPromise()
+    .then(response=>response);
+  }
+
+  listarUnidade():Promise<any>{
+    return this.http.get(`${this.url.getURL()}/unidadeadm/listar`,{headers})
+    .toPromise()
+    .then(response=>response);
+  }
+
+  listarUnidadeCurricular():Promise<any>{
+    return this.http.get(`${this.url.getURL()}/unidadecurricular/listar`,{headers})
+    .toPromise()
+    .then(response=>response);
+  }
 }

@@ -10,7 +10,7 @@ export class Usuario extends GenericModel{
 	email:string;
 	login:string;
 	senha:string;
-	pcodigoAcesso:string;
+	codigoAcesso:string;
     solicitaSenha:boolean;
     perfis:Perfil[];
     cursos:Curso[];

@@ -5,10 +5,10 @@
         <form autocomplete="off" (ngSubmit)="pesquisar()">
             <div class="ui-g-12 ui-fluid">
                 <span class="ui-float-label">
-                    <input name="nomeFiltro" pInputText type="text" [(ngModel)]="filtro.nome">
+                    <input class="inputForm" name="nomeFiltro" pInputText type="text" [(ngModel)]="filtro.nome">
                     <label class="espaco-reservado" for="float-label">Nome</label>
                 </span>
-
+ 
             </div>
 
             <div class="ui-g-12 ui-fluid">
@@ -21,25 +21,26 @@
 
             <div class="ui-g-12 ui-fluid">
                 <span class="ui-float-label">
-                    <p-dropdown  [options]="listaSituacao" [showClear]="false" name="situacao" 
-                        [autoWidth]="false"
-                        [filter]="false" emptyFilterMessage="Nenhum registro!"
-                        resetFilterOnHide="true" placeholder="Situação" [(ngModel)]="filtro.ativo"></p-dropdown>
-                    <label class="espaco-reservado" for="float-label" [hidden]="filtro.ativo !=null  ? false:true">Situação</label>
+                    <p-dropdown [options]="listaSituacao" [showClear]="false" name="situacao" [autoWidth]="false"
+                        [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                        placeholder="Situação" [(ngModel)]="filtro.ativo"></p-dropdown>
+                    <label class="espaco-reservado" for="float-label"
+                        [hidden]="filtro.ativo !=null  ? false:true">Situação</label>
                 </span>
 
             </div>
 
             <div class="ui-g-12 ui-fluid">
-                <button  class="btn-pesquisa" pButton type="submit" label='Pesquisar'></button>
+                <button class="btn-pesquisa" pButton type="submit" label='Pesquisar'></button>
             </div>
 
             <div class="ui-g-6  ui-fluid">
-                <button class="btn-pesquisa" pButton type="button" label="Limpar Filtro" (click)="limparFiltro()"></button>
+                <button class="btn-pesquisa" pButton type="button" label="Limpar Filtro"
+                    (click)="limparFiltro()"></button>
             </div>
 
             <div class="ui-g-6  ui-fluid">
-                <button  class="btn-pesquisa" pButton type="button" label="Novo"></button>
+                <button class="btn-pesquisa" pButton type="button" label="Novo" (click)="getNovo()"></button>
             </div>
         </form>
     </div>
@@ -60,12 +61,82 @@
                     <td>{{usuario.email}}</td>
                     <td>{{usuario.login}}</td>
                     <td class="tb-coluna-opcoes">
-                        <button class="btn-tabela" pButton type="button"  icon="fa fa-edit" pTooltip="Editar" tooltipPosition="top"></button>
+                        <button class="btn-tabela" pButton type="button" icon="fa fa-edit" pTooltip="Editar"
+                            tooltipPosition="top"></button>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
 
     </div>
+
+    <div class="ui-g-12">
+        <p-dialog [(visible)]="modalCad" [positionTop]="1" [responsive]="true" [modal]="true" [draggable]="false"
+            [style]="{width: '800px'}">
+            <form>
+                <div class="ui-g-6 ui-fluid">
+                    <span class="ui-float-label">
+                        <input name="nome" pInputText type="text">
+                        <label class="espaco-reservado" for="float-label">Nome</label>
+                    </span>
+                </div>
+
+                <div class="ui-g-6 ui-fluid">
+                    <span class="ui-float-label">
+                        <input name="email" pInputText type="text">
+                        <label class="espaco-reservado" for="float-label">E-mail</label>
+                    </span>
+                </div>
+
+                <div class="ui-g-6 ui-fluid">
+                    <span class="ui-float-label">
+                        <input name="login" pInputText type="text">
+                        <label class="espaco-reservado" for="float-label">Login</label>
+                    </span>
+                </div>
+
+                <div class="ui-g-6 ui-sm-2 ui-fluid">
+                    <span class="ui-float-label">
+                        <p-multiSelect [options]="listaPerfis" [panelStyle]="{minWidth:'12em'}" name="perfis"
+                            defaultLabel="Perfis" emptyFilterMessage="Nenhum Perfil selecionado!"
+                            selectedItemsLabel="{0} Selecionados" [baseZIndex]="150" appendTo="body"
+                            [(ngModel)]="listaPerfisSelecionados" [maxSelectedLabels]="1"></p-multiSelect>
+                        <label for="float-label" >Perfis</label>
+                    </span>
+
+                </div>
+
+                <div class="ui-g-6 ui-sm-2 ui-fluid">
+                    <span class="ui-float-label">
+                        <p-multiSelect [options]="listaCursos" [panelStyle]="{minWidth:'12em'}" name="Cursos"
+                            defaultLabel="Selecione" emptyFilterMessage="Nenhum Perfil selecionado!"
+                            selectedItemsLabel="{0} Selecionados" [baseZIndex]="150" appendTo="body"
+                            [(ngModel)]="listaCursosSelecionados" [maxSelectedLabels]="1"></p-multiSelect>
+                        <label for="float-label" [hidden]="">Cursos</label>
+                    </span>
+
+                </div>
+
+
+                <div class="ui-g-6 ui-sm-2 ui-fluid">
+                    <span class="ui-float-label">
+                        <p-multiSelect [options]="listaUnidadesCurriculares" [panelStyle]="{minWidth:'12em'}" name="modulo"
+                            defaultLabel="Selecione" emptyFilterMessage="Nenhum Perfil selecionado!"
+                            selectedItemsLabel="{0} Selecionados" [baseZIndex]="150" appendTo="body"
+                            [(ngModel)]="listaUnidadesCurricularSelecionados" [maxSelectedLabels]="1"></p-multiSelect>
+                        <label for="float-label" [hidden]="">Unidade Curricular</label>
+                    </span>
+
+                </div>
+
+
+
+            </form>
+
+
+
+        </p-dialog>
+    </div>
+
 
 </div>

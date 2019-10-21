@@ -13,10 +13,11 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
-import {MegaMenuModule} from 'primeng/megamenu';
+import {MenubarModule} from 'primeng/menubar';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 import { UsuarioComponent } from './usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
@@ -47,10 +48,11 @@ import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricu
     ButtonModule,
     DialogModule,
     PasswordModule,
-    MegaMenuModule,
+    MenubarModule,
     TableModule,
     DropdownModule,
-    TooltipModule
+    TooltipModule,
+    MultiSelectModule
   ],
   providers: [
     UrlPadraoService

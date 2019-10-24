@@ -70,8 +70,8 @@ export class UsuarioComponent implements OnInit {
 
   getEditar(usuario:any){
     this.getNovaInstancia();
-    this.carregarUnidadesCurricular();
-    console.log(usuario);
+   
+    console.log(this.usuario);
     this.usuario.id = usuario.id;
     this.usuario.matricula=usuario.matricula;
     this.usuario.nome = usuario.nome;
@@ -79,8 +79,11 @@ export class UsuarioComponent implements OnInit {
     this.usuario.senha=usuario.senha;
     this.usuario.email=usuario.email;
     this.usuario.ativo=usuario.ativo;
-    this.usuario.unidade = usuario.unidade;
-    this.listaUnidadesCurricularSelecionados=usuario.unidadesCurricular;
+    this.unidade = usuario.unidade;
+    this.usuario.unidade = this.unidade;
+    this.curso.id =1;
+    this.carregarUnidadesCurricular();
+    this.listaUnidadesCurricularSelecionados = usuario.unidadesCurricular;
     this.listaPerfisSelecionados=usuario.perfis;
     this.getGerenciaModal();
   }

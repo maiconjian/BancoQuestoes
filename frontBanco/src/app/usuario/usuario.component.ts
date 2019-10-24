@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UsuarioService } from './usuario.service';
 import { UsuarioFiltro } from '../negocio/filtro/usuario-filtro';
 import { ApoioService } from '../util/apoio.service';
@@ -26,10 +26,10 @@ export class UsuarioComponent implements OnInit {
   listaPerfis:any[];
   listaCursos:any[];
   listaUnidadesCurriculares:any[];
+  listaUnidades:any[];
 
 
   listaPerfisSelecionados:any[];
-  listaCursosSelecionados:any[];
   listaUnidadesCurricularSelecionados:any[];
 
   modalCad:boolean;
@@ -46,7 +46,7 @@ export class UsuarioComponent implements OnInit {
     this.listaSituacao = this.apoioService.comboSituacao();
     this.listaPerfis = this.apoioService.carregarComboPerfil();
     this.listaCursos=this.apoioService.carregarComboCursos();
-    this.listaUnidadesCurriculares = this.apoioService.carregarComboUnidadedesCurricular();
+    this.listaUnidades = this.apoioService.carregarUnidade();
     this.modalCad=false;
 
   }
@@ -66,7 +66,37 @@ export class UsuarioComponent implements OnInit {
   getNovo(){
     this.getNovaInstancia();
     this.getGerenciaModal();
-    
+  }
+
+  getEditar(usuario:any){
+    this.getNovaInstancia();
+    this.carregarUnidadesCurricular();
+    console.log(usuario);
+    this.usuario.id = usuario.id;
+    this.usuario.matricula=usuario.matricula;
+    this.usuario.nome = usuario.nome;
+    this.usuario.login=usuario.login;
+    this.usuario.senha=usuario.senha;
+    this.usuario.email=usuario.email;
+    this.usuario.ativo=usuario.ativo;
+    this.usuario.unidade = usuario.unidade;
+    this.listaUnidadesCurricularSelecionados=usuario.unidadesCurricular;
+    this.listaPerfisSelecionados=usuario.perfis;
+    this.getGerenciaModal();
+  }
+
+  merge(){
+    if(this.usuario.id == null){
+      this.usuario.unidade = this.unidade;
+      this.usuario.perfis = this.listaPerfisSelecionados;
+      this.usuario.unidadesCurricular = this.listaUnidadesCurricularSelecionados;
+      this.usuarioService.incluir(this.usuario)
+      .then(response=>{
+        console.log("Sucesso!!!");
+        this.getGerenciaModal();
+      });
+      
+    }
   }
 
   getGerenciaModal(){
@@ -78,11 +108,13 @@ export class UsuarioComponent implements OnInit {
   }
   getNovaInstancia(){
     this.usuario = new Usuario();
+    this.usuario.ativo = true;
     this.curso = new Curso();
     this.unidade=new Unidade();
     this.unidadeCurricular=new UnidadeCurricular();
   }
 
- 
-
+  carregarUnidadesCurricular(){
+    this.listaUnidadesCurriculares = this.apoioService.carregarComboUnidadedesCurricular(this.curso.id);
+  }
 }

@@ -18,7 +18,7 @@ export class UnidadeService {
   ) { }
 
   listar():Promise<any>{
-    return this.http.get(`${this.url.getURL()}/listar`,{headers})
+    return this.http.get(`${this.url.getURL()}/unidadeadm/listar`,{headers})
     .toPromise()
     .then(response=>response);
   }

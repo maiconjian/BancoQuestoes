@@ -10,6 +10,7 @@ import br.com.senai.banco.apiBanco.model.UnidadeCurricular;
 public interface UnidadeCurricularRepository extends CrudRepository<UnidadeCurricular, Long> {
 
 	
-	@Query("SELECT unidadeCurricular FROM UnidadeCurricular unidadeCurricular WHERE unidadeCurricular.ativo = 1")
-	List<UnidadeCurricular> listarUnidadeCurricular();
+	@Query("SELECT unidadeCurricular FROM UnidadeCurricular unidadeCurricular "
+			+ "WHERE unidadeCurricular.curso.id =?1 AND unidadeCurricular.ativo = 1")
+	List<UnidadeCurricular> listarUnidadeCurricular(long idCurso);
 }

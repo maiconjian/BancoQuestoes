@@ -17,8 +17,8 @@ export class UnidadeCurricularService {
     private http:HttpClient
   ) { }
 
-  listar():Promise<any>{
-    return this.http.get(`${this.url.getURL()}/listar`,{headers})
+  listar(id:any):Promise<any>{
+    return this.http.get(`${this.url.getURL()}/unidadecurricular/listar/${id}`,{headers})
     .toPromise()
     .then(response=>response);
   }

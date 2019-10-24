@@ -3,13 +3,36 @@ body{
   background-color: #E6E8FA;
 }
 
-th {
+.ui-table table{
+  box-shadow: 0 0 1em black !important;
+}
+
+.ui-table table *{
+  text-align: center;
+  font-size: 14px;
+  border: none !important;
+  border-bottom: 1px solid grey !important;
+}
+
+
+
+.ui-table table th{
+  color: white !important;
+  background-color: green!important;
+}
+
+.ui-table table td{
+  padding: 0px !important;
+}
+
+/* th {
   background-color: green !important;
   color: white !important;
   text-align: center !important; 
   padding: 0 !important; 
   margin: 0 !important;
-}
+  
+} */
 td {
   padding: 0 5px !important; 
   margin: 0 5px !important;

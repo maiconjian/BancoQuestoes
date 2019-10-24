@@ -9,5 +9,5 @@ import br.com.senai.banco.apiBanco.util.IGenericResource;
 
 public interface IUnidadeCurricularResouce extends IGenericResource<UnidadeCurricular, UnidadeCurricular, Serializable>{
 
-	public ResponseEntity<?> listar();
+	public ResponseEntity<?> listar(long idCurso);
 }

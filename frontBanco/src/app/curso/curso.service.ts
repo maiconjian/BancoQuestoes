@@ -18,7 +18,7 @@ export class CursoService {
   ) { }
 
   listar():Promise<any>{
-    return this.http.get(`${this.url.getURL()}/listar`,{headers})
+    return this.http.get(`${this.url.getURL()}/curso/listar`,{headers})
     .toPromise()
     .then(response=>response);
   }

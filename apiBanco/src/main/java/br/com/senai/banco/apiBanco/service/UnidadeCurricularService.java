@@ -41,8 +41,8 @@ public class UnidadeCurricularService implements IUnidadeCurricularService{
 	}
 
 	@Override
-	public List<UnidadeCurricular> listarUnidadeCurricular() {
-		return this.unidadeCurricularRepo.listarUnidadeCurricular();
+	public List<UnidadeCurricular> listarUnidadeCurricular(long idCurso) {
+		return this.unidadeCurricularRepo.listarUnidadeCurricular(idCurso);
 	}
 
 }

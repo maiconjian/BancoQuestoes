@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UrlPadraoService } from './url-padrao.service';
 import { UsuarioService } from '../usuario/usuario.service';
+import { CursoService } from '../curso/curso.service';
+import { UnidadeService } from '../unidade/unidade.service';
+import { UnidadeCurricularService } from '../unidade-curricular/unidade-curricular.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,11 @@ import { UsuarioService } from '../usuario/usuario.service';
 export class ApoioService {
 
   constructor(
-    private usuarioService:UsuarioService
+    private usuarioService:UsuarioService,
+    private cursoService:CursoService,
+    private unidadeService:UnidadeService,
+    private unidadeCurricularService:UnidadeCurricularService,
+
   ) { }
 
 
@@ -46,12 +53,12 @@ export class ApoioService {
 
   carregarUnidade(){
     let lista:any[]=[];
-    this.usuarioService.listarUnidade()
+    this.unidadeService.listar()
     .then(response => {
       for (let i = 0; i < response.length; i++) {
         lista.push({
           label:response[i].nome,
-          value:response[i]
+          value:response[i].id
         })
         
       }
@@ -62,12 +69,12 @@ export class ApoioService {
 
   carregarComboCursos(){
     let lista:any[]=[];
-    this.usuarioService.listarCursos()
+    this.cursoService.listar()
     .then(response => {
       for (let i = 0; i < response.length; i++) {
         lista.push({
           label:response[i].nome,
-          value:response[i]
+          value:response[i].id
         })
         
       }
@@ -75,9 +82,9 @@ export class ApoioService {
     })
     return lista;
   }
-  carregarComboUnidadedesCurricular(){
+  carregarComboUnidadedesCurricular(id:any){
     let lista:any[]=[];
-    this.usuarioService.listarUnidadeCurricular()
+    this.unidadeCurricularService.listar(id)
     .then(response => {
       for (let i = 0; i < response.length; i++) {
         lista.push({

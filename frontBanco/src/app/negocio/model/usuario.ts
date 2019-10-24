@@ -6,6 +6,7 @@ import { Unidade } from './unidade';
 
 export class Usuario extends GenericModel{
 
+    matricula:number;
 	nome:string;
 	email:string;
 	login:string;
@@ -13,7 +14,6 @@ export class Usuario extends GenericModel{
 	codigoAcesso:string;
     solicitaSenha:boolean;
     perfis:Perfil[];
-    cursos:Curso[];
     unidadesCurricular:UnidadeCurricular[];
     unidade:Unidade;
     

@@ -41,6 +41,9 @@ public class Usuario {
 	//@NotBlank(message = "Senha Obrigatorio")
 	private String senha;
 	
+	@Column(name="MATRICULA")
+	private int matricula;
+	
 	@Column(name="CODIGO_ACESSO")
 	private String codigoAcesso;
 	
@@ -58,11 +61,6 @@ public class Usuario {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="ID_UNIDADE_ADM")
 	private UnidadeAdm unidade;
-	
-	@ManyToMany()
-	@JoinTable(name = "USUARIO_CURSO",joinColumns = @JoinColumn(name="ID_USUARIO"),
-	inverseJoinColumns = @JoinColumn(name="ID_CURSO"))
-	private List<Curso> cursos;
 	
 	@ManyToMany()
 	@JoinTable(name = "USUARIO_UNIDADE_CURRICULAR",joinColumns = @JoinColumn(name="ID_USUARIO"),
@@ -149,20 +147,20 @@ public class Usuario {
 		this.unidade = unidade;
 	}
 
-	public List<Curso> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
-	}
-
 	public List<UnidadeCurricular> getUnidadesCurricular() {
 		return unidadesCurricular;
 	}
 
 	public void setUnidadesCurricular(List<UnidadeCurricular> unidadesCurricular) {
 		this.unidadesCurricular = unidadesCurricular;
+	}
+
+	public int getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(int matricula) {
+		this.matricula = matricula;
 	}
 	
 	

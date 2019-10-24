@@ -8,7 +8,7 @@
                     <input class="inputForm" name="nomeFiltro" pInputText type="text" [(ngModel)]="filtro.nome">
                     <label class="espaco-reservado" for="float-label">Nome</label>
                 </span>
- 
+
             </div>
 
             <div class="ui-g-12 ui-fluid">
@@ -49,20 +49,22 @@
         <p-table [value]="listaUsuario">
             <ng-template pTemplate="header">
                 <tr>
+                    <th class="cabecalho-login">Matricula</th>
                     <th class="cabecalho-nome">Nome</th>
                     <th class="cabecalho-email">E-mail</th>
-                    <th class="cabecalho-login">Login</th>
-                    <th class="cabecalho-opcoes">Opções</th>
+                    
+                    <th class="cabecalho-opcoes"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-usuario>
                 <tr>
+                    <td>{{usuario.matricula}}</td>
                     <td>{{usuario.nome}}</td>
                     <td>{{usuario.email}}</td>
-                    <td>{{usuario.login}}</td>
+                   
                     <td class="tb-coluna-opcoes">
                         <button class="btn-tabela" pButton type="button" icon="fa fa-edit" pTooltip="Editar"
-                            tooltipPosition="top"></button>
+                            tooltipPosition="top" (click)="getEditar(usuario)"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -76,24 +78,44 @@
             <form>
                 <div class="ui-g-6 ui-fluid">
                     <span class="ui-float-label">
-                        <input name="nome" pInputText type="text">
-                        <label class="espaco-reservado" for="float-label">Nome</label>
+                        <input name="matricula" pInputText type="text" [(ngModel)]="usuario.matricula">
+                        <label class="espaco-reservado" for="float-label">Matricula</label>
                     </span>
                 </div>
 
                 <div class="ui-g-6 ui-fluid">
                     <span class="ui-float-label">
-                        <input name="email" pInputText type="text">
+                        <input name="email" pInputText type="text"  [(ngModel)]="usuario.email">
                         <label class="espaco-reservado" for="float-label">E-mail</label>
                     </span>
                 </div>
 
                 <div class="ui-g-6 ui-fluid">
                     <span class="ui-float-label">
-                        <input name="login" pInputText type="text">
+                        <input name="nome" pInputText type="text"  [(ngModel)]="usuario.nome">
+                        <label class="espaco-reservado" for="float-label">Nome</label>
+                    </span>
+                </div>
+
+
+
+                <div class="ui-g-6 ui-fluid">
+                    <span class="ui-float-label">
+                        <input name="login" pInputText type="text"  [(ngModel)]="usuario.login">
                         <label class="espaco-reservado" for="float-label">Login</label>
                     </span>
                 </div>
+
+                <div class="ui-g-6 ui-fluid">
+                    <span class="ui-float-label">
+                        <p-dropdown [options]="listaUnidades" [showClear]="false" name="unidades" [autoWidth]="false"
+                            [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                            placeholder="Unidade" [(ngModel)]="unidade.id"></p-dropdown>
+                        <label class="espaco-reservado" for="float-label"
+                            [hidden]="unidade.id ? false:true">Unidade</label>
+                    </span>
+                </div>
+
 
                 <div class="ui-g-6 ui-sm-2 ui-fluid">
                     <span class="ui-float-label">
@@ -101,40 +123,38 @@
                             defaultLabel="Perfis" emptyFilterMessage="Nenhum Perfil selecionado!"
                             selectedItemsLabel="{0} Selecionados" [baseZIndex]="150" appendTo="body"
                             [(ngModel)]="listaPerfisSelecionados" [maxSelectedLabels]="1"></p-multiSelect>
-                        <label for="float-label" >Perfis</label>
+                        <label for="float-label">Perfis</label>
                     </span>
 
                 </div>
-
+                
                 <div class="ui-g-6 ui-sm-2 ui-fluid">
                     <span class="ui-float-label">
-                        <p-multiSelect [options]="listaCursos" [panelStyle]="{minWidth:'12em'}" name="Cursos"
-                            defaultLabel="Selecione" emptyFilterMessage="Nenhum Perfil selecionado!"
-                            selectedItemsLabel="{0} Selecionados" [baseZIndex]="150" appendTo="body"
-                            [(ngModel)]="listaCursosSelecionados" [maxSelectedLabels]="1"></p-multiSelect>
-                        <label for="float-label" [hidden]="">Cursos</label>
+                            <p-dropdown [options]="listaCursos" [showClear]="false" name="unidades" [autoWidth]="false"
+                            [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                            placeholder="Curso" [(ngModel)]="curso.id" appendTo="body" (onChange)="carregarUnidadesCurricular()"></p-dropdown>
+                        <label class="espaco-reservado" for="float-label"
+                            [hidden]="unidade.id ? false:true">Curso</label>
                     </span>
-
                 </div>
 
 
                 <div class="ui-g-6 ui-sm-2 ui-fluid">
                     <span class="ui-float-label">
-                        <p-multiSelect [options]="listaUnidadesCurriculares" [panelStyle]="{minWidth:'12em'}" name="modulo"
-                            defaultLabel="Selecione" emptyFilterMessage="Nenhum Perfil selecionado!"
+                        <p-multiSelect [options]="listaUnidadesCurriculares" [panelStyle]="{minWidth:'12em'}"
+                            name="modulo" defaultLabel="Selecione" emptyFilterMessage="Nenhum Perfil selecionado!"
                             selectedItemsLabel="{0} Selecionados" [baseZIndex]="150" appendTo="body"
                             [(ngModel)]="listaUnidadesCurricularSelecionados" [maxSelectedLabels]="1"></p-multiSelect>
                         <label for="float-label" [hidden]="">Unidade Curricular</label>
                     </span>
-
                 </div>
 
-
-
+                
             </form>
-
-
-
+            <div class="ui-g-12">
+                    <button pButton type="button" label="Salvar" (click)="merge()" style="margin-right: 5px;"></button>
+                    <button pButton type="button" label="Cancelar" (click)="modalCad = !modalCad"></button>
+            </div>
         </p-dialog>
     </div>
 

@@ -39,6 +39,13 @@ export class UsuarioService {
 
   }
 
+  incluir(usuario:any):Promise<any>{
+    return this.http.post(`${this.url.getURL()}/usuario/incluir`,usuario,{headers})
+    .toPromise()
+    .then(response=>response)
+    .catch(error =>console.log(error));
+  }
+
 
   listarPerfis():Promise<any>{
     return this.http.get(`${this.url.getURL()}/perfil/listar`,{headers})
@@ -46,21 +53,4 @@ export class UsuarioService {
     .then(response=>response);
   }
 
-  listarCursos():Promise<any>{
-    return this.http.get(`${this.url.getURL()}/curso/listar`,{headers})
-    .toPromise()
-    .then(response=>response);
-  }
-
-  listarUnidade():Promise<any>{
-    return this.http.get(`${this.url.getURL()}/unidadeadm/listar`,{headers})
-    .toPromise()
-    .then(response=>response);
-  }
-
-  listarUnidadeCurricular():Promise<any>{
-    return this.http.get(`${this.url.getURL()}/unidadecurricular/listar`,{headers})
-    .toPromise()
-    .then(response=>response);
-  }
 }

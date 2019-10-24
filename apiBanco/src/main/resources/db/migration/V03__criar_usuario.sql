@@ -8,6 +8,7 @@ create table USUARIO (
    SOLICITA_SENHA       smallint             not null,
    ATIVO                smallint             not null,
    ID_UNIDADE_ADM           int                  not null,
+   MATRICULA            int                  not null,
    constraint PK_USUARIO primary key nonclustered (ID)
 )
 go

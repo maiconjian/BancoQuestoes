@@ -11,6 +11,6 @@ public interface UnidadeCurricularRepository extends CrudRepository<UnidadeCurri
 
 	
 	@Query("SELECT unidadeCurricular FROM UnidadeCurricular unidadeCurricular "
-			+ "WHERE unidadeCurricular.curso.id =?1 AND unidadeCurricular.ativo = 1")
-	List<UnidadeCurricular> listarUnidadeCurricular(long idCurso);
+			+ "WHERE  unidadeCurricular.ativo = 1")
+	List<UnidadeCurricular> listarUnidadeCurricular();
 }

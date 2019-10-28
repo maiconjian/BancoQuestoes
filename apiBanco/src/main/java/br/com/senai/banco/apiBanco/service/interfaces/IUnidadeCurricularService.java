@@ -9,5 +9,5 @@ import br.com.senai.banco.apiBanco.util.IGenericService;
 
 public interface IUnidadeCurricularService extends IGenericService<UnidadeCurricular_, UnidadeCurricular, Serializable>{
 
-	List<UnidadeCurricular> listarUnidadeCurricular(long idCurso);
+	List<UnidadeCurricular> listarUnidadeCurricular();
 }

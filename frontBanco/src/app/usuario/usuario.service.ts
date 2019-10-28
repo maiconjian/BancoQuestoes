@@ -46,6 +46,13 @@ export class UsuarioService {
     .catch(error =>console.log(error));
   }
 
+  alterar(usuario:any):Promise<any>{
+    return this.http.put(`${this.url.getURL()}/usuario/alterar`,usuario,{headers})
+    .toPromise()
+    .then(response=>response)
+    .catch(error =>console.log(error));
+  }
+
 
   listarPerfis():Promise<any>{
     return this.http.get(`${this.url.getURL()}/perfil/listar`,{headers})

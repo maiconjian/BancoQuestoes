@@ -18,6 +18,8 @@ import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
 import {MultiSelectModule} from 'primeng/multiselect';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 import { UsuarioComponent } from './usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
@@ -25,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { UnidadeComponent } from './unidade/unidade.component';
 import { CursoComponent } from './curso/curso.component';
 import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricular.component';
+import { MensagemComponent } from './mensagem/mensagem.component';
 
 
 @NgModule({
@@ -36,7 +39,8 @@ import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricu
     HomeComponent,
     UnidadeComponent,
     CursoComponent,
-    UnidadeCurricularComponent
+    UnidadeCurricularComponent,
+    MensagemComponent
   ],
   imports: [
     BrowserModule,
@@ -52,10 +56,13 @@ import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricu
     TableModule,
     DropdownModule,
     TooltipModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ToastModule
   ],
   providers: [
-    UrlPadraoService
+    UrlPadraoService,
+    MessageService,
+    MensagemComponent,
   ],
   bootstrap: [AppComponent]
 })

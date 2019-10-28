@@ -7,6 +7,7 @@ import { Curso } from '../negocio/model/curso';
 import { Unidade } from '../negocio/model/unidade';
 import { UnidadeCurricular } from '../negocio/model/unidade-curricular';
 import { Perfil } from '../negocio/model/perfil';
+import { MensagemComponent } from '../mensagem/mensagem.component';
 
 @Component({
   selector: 'app-usuario',
@@ -33,10 +34,12 @@ export class UsuarioComponent implements OnInit {
   listaUnidadesCurricularSelecionados:any[];
 
   modalCad:boolean;
+  msgPrincipalAtivo:boolean;
 
   constructor(
     private apoioService:ApoioService,
-    private usuarioService:UsuarioService
+    private usuarioService:UsuarioService,
+    private mensagemComponent:MensagemComponent
   ) { }
 
   ngOnInit() {
@@ -47,7 +50,9 @@ export class UsuarioComponent implements OnInit {
     this.listaPerfis = this.apoioService.carregarComboPerfil();
     this.listaCursos=this.apoioService.carregarComboCursos();
     this.listaUnidades = this.apoioService.carregarUnidade();
+    this.listaUnidadesCurriculares = this.apoioService.carregarComboUnidadedesCurricular();
     this.modalCad=false;
+    this.msgPrincipalAtivo=true;
 
   }
 
@@ -71,7 +76,7 @@ export class UsuarioComponent implements OnInit {
   getEditar(usuario:any){
     this.getNovaInstancia();
    
-    console.log(this.usuario);
+    console.log(usuario);
     this.usuario.id = usuario.id;
     this.usuario.matricula=usuario.matricula;
     this.usuario.nome = usuario.nome;
@@ -82,23 +87,61 @@ export class UsuarioComponent implements OnInit {
     this.unidade = usuario.unidade;
     this.usuario.unidade = this.unidade;
     this.curso.id =1;
-    this.carregarUnidadesCurricular();
+   // this.carregarUnidadesCurricular();
     this.listaUnidadesCurricularSelecionados = usuario.unidadesCurricular;
     this.listaPerfisSelecionados=usuario.perfis;
+    console.log(usuario);
     this.getGerenciaModal();
   }
 
   merge(){
+    this.usuario.unidade = this.unidade;
+    this.usuario.perfis = this.listaPerfisSelecionados;
+    this.usuario.unidadesCurricular = this.listaUnidadesCurricularSelecionados;
     if(this.usuario.id == null){
-      this.usuario.unidade = this.unidade;
-      this.usuario.perfis = this.listaPerfisSelecionados;
-      this.usuario.unidadesCurricular = this.listaUnidadesCurricularSelecionados;
       this.usuarioService.incluir(this.usuario)
       .then(response=>{
-        console.log("Sucesso!!!");
+        this.mensagemComponent.showSuccess('Cadastro Realizado com Sucesso!');
+        this.pesquisar();
         this.getGerenciaModal();
       });
-      
+    }else{
+      this.usuarioService.alterar(this.usuario)
+      .then(ressponse=>{
+        this.mensagemComponent.showSuccess('Alteração realizada com Sucesso!');
+        this.pesquisar();
+        this.getGerenciaModal();
+      })
+    }
+  }
+
+  getGerenciarSituacaoUsuario(usuario:any){
+    this.getNovaInstancia();
+    this.usuario = usuario;
+    if(this.usuario.ativo){
+      this.usuario.ativo = false;
+      this.mensagemComponent.showConfirm('Deseja Desativar esse Usuario?','');
+    }else{
+      this.usuario.ativo = true;
+      this.mensagemComponent.showConfirm('Deseja Ativar esse Usuario?','');
+    }
+  }
+
+  setOpcao(event: any) {
+    if (event == 1) {
+      this.usuarioService.alterar(this.usuario)
+      .then(response=>{
+        if(response.ativo){
+          this.mensagemComponent.showSuccess('Usuario Ativado com Sucesso!!');
+         
+        }else{
+          this.mensagemComponent.showSuccess('Usuario Desativado com Sucesso!!');
+        }
+        this.pesquisar();
+      })
+    } else if (event == 0) {
+      this.getNovaInstancia();
+      this.mensagemComponent.showWarn('Ação Cancelada! ');
     }
   }
 
@@ -115,9 +158,22 @@ export class UsuarioComponent implements OnInit {
     this.curso = new Curso();
     this.unidade=new Unidade();
     this.unidadeCurricular=new UnidadeCurricular();
+    this.listaPerfisSelecionados=[];
+    this.listaUnidadesCurricularSelecionados=[];
+  }
+  getToolTipSituacao(ativo: boolean) {
+    if (ativo) {
+      return 'Desativar';
+    } else {
+      return 'Ativar';
+    }
   }
 
-  carregarUnidadesCurricular(){
-    this.listaUnidadesCurriculares = this.apoioService.carregarComboUnidadedesCurricular(this.curso.id);
+  getIconSituacao(ativo: boolean) {
+    if (ativo) {
+      return 'fas fa-times';
+    } else {
+      return 'fas fa-check';
+    }
   }
 }

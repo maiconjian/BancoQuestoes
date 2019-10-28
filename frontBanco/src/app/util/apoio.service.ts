@@ -82,10 +82,11 @@ export class ApoioService {
     })
     return lista;
   }
-  carregarComboUnidadedesCurricular(id:any){
+  carregarComboUnidadedesCurricular(){
     let lista:any[]=[];
-    this.unidadeCurricularService.listar(id)
+    this.unidadeCurricularService.listar()
     .then(response => {
+      console.log(response);
       for (let i = 0; i < response.length; i++) {
         lista.push({
           label:response[i].nome,

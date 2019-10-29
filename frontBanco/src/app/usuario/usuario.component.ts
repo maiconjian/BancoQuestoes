@@ -119,24 +119,26 @@ export class UsuarioComponent implements OnInit {
     this.getNovaInstancia();
     this.usuario = usuario;
     if(this.usuario.ativo){
-      this.usuario.ativo = false;
       this.mensagemComponent.showConfirm('Deseja Desativar esse Usuario?','');
     }else{
-      this.usuario.ativo = true;
       this.mensagemComponent.showConfirm('Deseja Ativar esse Usuario?','');
     }
   }
 
   setOpcao(event: any) {
     if (event == 1) {
+      let msg:string;
+      if(this.usuario.ativo){
+        this.usuario.ativo = false;
+         msg = 'Usuario Desativado com Sucesso!!';
+      }else{
+        this.usuario.ativo = true;
+        msg ='Usuario Ativado com Sucesso!!';
+      }
+
       this.usuarioService.alterar(this.usuario)
       .then(response=>{
-        if(response.ativo){
-          this.mensagemComponent.showSuccess('Usuario Ativado com Sucesso!!');
-         
-        }else{
-          this.mensagemComponent.showSuccess('Usuario Desativado com Sucesso!!');
-        }
+        this.mensagemComponent.showSuccess(msg);
         this.pesquisar();
       })
     } else if (event == 0) {

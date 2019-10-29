@@ -176,7 +176,7 @@ public class UsuarioService implements IUsuarioService {
 			}
 		}
 
-		return usuario.get();
+		return null;
 	}
 
 }

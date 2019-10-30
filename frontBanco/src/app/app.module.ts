@@ -9,6 +9,7 @@ import { UrlPadraoService } from './util/url-padrao.service';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
@@ -30,6 +31,8 @@ import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricu
 import { MensagemComponent } from './mensagem/mensagem.component';
 
 
+import { HasPermissionDirective } from './util/HasPermissionDirective';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,8 @@ import { MensagemComponent } from './mensagem/mensagem.component';
     UnidadeComponent,
     CursoComponent,
     UnidadeCurricularComponent,
-    MensagemComponent
+    MensagemComponent,
+    HasPermissionDirective
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,7 @@ import { MensagemComponent } from './mensagem/mensagem.component';
     TooltipModule,
     MultiSelectModule,
     ToastModule
+   
   ],
   providers: [
     UrlPadraoService,

@@ -36,12 +36,15 @@ export class UsuarioComponent implements OnInit {
   modalCad:boolean;
   msgPrincipalAtivo:boolean;
 
+  
+
   constructor(
     private apoioService:ApoioService,
     private usuarioService:UsuarioService,
     private mensagemComponent:MensagemComponent
   ) { }
 
+  
   ngOnInit() {
     this.filtro = new UsuarioFiltro;
     this.getNovaInstancia();

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { UrlPadraoService } from '../util/url-padrao.service';
+import { BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 const headers = new HttpHeaders();
     headers.append("Accept", 'application/json');
@@ -12,6 +14,8 @@ const headers = new HttpHeaders();
 
 
 export class LoginService {
+  private currentUserSubject = new BehaviorSubject<any>({});
+  public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
   constructor(
     private http:HttpClient,
@@ -33,5 +37,8 @@ export class LoginService {
     .catch(error =>console.log(error));
   }
 
- 
+  setUser(user) {
+    console.log('new user', user);
+    this.currentUserSubject.next(user);
+  }
 }

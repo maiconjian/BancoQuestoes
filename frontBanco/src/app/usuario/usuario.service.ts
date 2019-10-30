@@ -12,7 +12,7 @@ headers.append("Content-Type", 'application/json');
   providedIn: 'root'
 })
 export class UsuarioService {
-
+ 
   constructor(
     private http: HttpClient,
     private url: UrlPadraoService
@@ -59,5 +59,8 @@ export class UsuarioService {
     .toPromise()
     .then(response=>response);
   }
+
+
+
 
 }

@@ -75,7 +75,6 @@ export class LoginComponent implements OnInit {
       username: response.nome,
       permissions: perfis
     }
-    console.log(user);
     this.loginService.setUser(user);
   }
 

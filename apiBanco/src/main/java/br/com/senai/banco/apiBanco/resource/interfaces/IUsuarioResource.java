@@ -19,4 +19,6 @@ public interface IUsuarioResource  extends IGenericResource<Usuario, UsuarioFilt
 	public byte[] autenticar(LoginDto login) throws Exception;
 	
 	public ResponseEntity<?> verificaCodigo(String login,String codigo);
+	
+	
 }

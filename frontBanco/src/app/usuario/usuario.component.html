@@ -2,8 +2,8 @@
 
 <div class="ui-g">
     <app-mensagem [hidden]="!msgPrincipalAtivo" (opcao)="setOpcao($event)"></app-mensagem>
-    <div  class="ui-g-3">
-        <form autocomplete="off" (ngSubmit)="pesquisar()">
+    <div  class="ui-g-3 ">
+        <form class="pesquisa" autocomplete="off" (ngSubmit)="pesquisar()">
             <div class="ui-g-12 ui-fluid">
                 <span class="ui-float-label">
                     <input class="inputForm" name="nomeFiltro" pInputText type="text" [(ngModel)]="filtro.nome">

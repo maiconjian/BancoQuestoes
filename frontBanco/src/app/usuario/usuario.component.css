@@ -1,6 +1,13 @@
 #tabela{
-    padding-top: 1.5em;
+    padding-top: 2.4em;
     
+}
+
+.pesquisa{
+    border-right: 1px solid black;
+    height: 100%;
+    padding-top: 15px;
+
 }
 
 

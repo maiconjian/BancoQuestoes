@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     this.dados = new Login();
     this.displayQRCode = false;
     this.msgPrincipalAtivo=true;
+    localStorage.clear();
   }
 
   button() {
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('usuarioLogado', JSON.stringify(response));
         
           this.displayQRCode = false;
-          this.router.navigateByUrl('/usuario')
+          this.router.navigateByUrl('/home')
           
           this.adicionarPermissoes(response);
         }else{

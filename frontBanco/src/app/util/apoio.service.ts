@@ -5,6 +5,7 @@ import { UsuarioService } from '../usuario/usuario.service';
 import { CursoService } from '../curso/curso.service';
 import { UnidadeService } from '../unidade/unidade.service';
 import { UnidadeCurricularService } from '../unidade-curricular/unidade-curricular.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { UnidadeCurricularService } from '../unidade-curricular/unidade-curricul
 export class ApoioService {
 
   constructor(
+    private router:Router,
     private usuarioService:UsuarioService,
     private cursoService:CursoService,
     private unidadeService:UnidadeService,
@@ -98,4 +100,11 @@ export class ApoioService {
     })
     return lista;
   }
+
+  bloquearAcessoNaoAutorizado(){
+    if(localStorage.getItem('usuarioLogado') == null){
+      this.router.navigateByUrl('/login')
+    }
+  }
+
 }

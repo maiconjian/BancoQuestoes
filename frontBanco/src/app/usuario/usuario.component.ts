@@ -46,6 +46,7 @@ export class UsuarioComponent implements OnInit {
 
   
   ngOnInit() {
+    //this.apoioService.bloquearAcessoNaoAutorizado();
     this.filtro = new UsuarioFiltro;
     this.getNovaInstancia();
     this.filtro.ativo=true;

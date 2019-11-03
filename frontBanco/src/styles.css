@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-  background-color: white;
+  background-color:white;
 }
 
 .ui-table table{
-  box-shadow: 0 0 1em black !important;
+  box-shadow: 0 0 0.5em black !important;
 }
 
 .ui-table table *{
@@ -18,7 +18,7 @@ body{
 
 .ui-table table th{
   color: white !important;
-  background-color: green!important;
+  background-color: rgba(0, 107, 51) !important;
 }
 
 .ui-table table td{
@@ -57,7 +57,7 @@ td {
 
 button {
     width: 95px;
-    background-color: green !important;
+    background-color:  rgba(0, 107, 51) !important;
     border: none !important;
     border-radius: 100px !important;
 }

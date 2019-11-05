@@ -3,17 +3,14 @@ package br.com.senai.banco.apiBanco.service;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.catalina.mapper.Mapper;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,9 +18,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.senai.banco.apiBanco.dto.QuestaoDto;
 import br.com.senai.banco.apiBanco.model.Questao;
 import br.com.senai.banco.apiBanco.repository.QuestaoRepository;
+import br.com.senai.banco.apiBanco.repository.filter.QuestaoFilter;
 import br.com.senai.banco.apiBanco.service.interfaces.IQuestaoService;
-
-import org.apache.commons.io.IOUtils;
 
 @Service
 public class QuestaoService implements IQuestaoService {
@@ -33,24 +29,22 @@ public class QuestaoService implements IQuestaoService {
 	
 	@Override
 	public Questao incluir(Questao entity) throws Exception {
-		return this.questaoRepo.save(entity);
+		return null;
 	}
 	
 	@Override
-	public Questao incluir(@RequestParam(value = "file",required = false,defaultValue = "testeee")MultipartFile enunciadoImg,@RequestParam(value = "file", required = true)MultipartFile suporteImg, String entity) throws IOException {
+	public Questao incluir(MultipartFile enunciadoImg,MultipartFile suporteImg, String entity) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		Questao questao=null;
 		questao = mapper.readValue(entity, Questao.class);
-		if(!enunciadoImg.isEmpty()) {
+		if(enunciadoImg != null) {
 			String caminho = "C:\\Users\\maicon\\Pictures\\repositorioFotos\\"+enunciadoImg.getOriginalFilename();
 			File file = new File(caminho);
 			enunciadoImg.transferTo(file);
 			questao.setEnunciado(caminho);
-		}else {
-			
 		}
 		
-		if(!suporteImg.isEmpty()) {
+		if(suporteImg != null) {
 			String caminho = "C:\\Users\\maicon\\Pictures\\repositorioFotos\\"+suporteImg.getOriginalFilename();
 			File file = new File(caminho);
 			suporteImg.transferTo(file);
@@ -98,9 +92,8 @@ public class QuestaoService implements IQuestaoService {
 	}
 
 	@Override
-	public List<Questao> pesquisar(Questao filtro) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Questao> pesquisar(QuestaoFilter filtro) {
+		return this.questaoRepo.pesquisar(filtro);
 	}
 
 	

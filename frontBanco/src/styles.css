@@ -3,6 +3,19 @@ body{
   background-color:white;
 }
 
+/* dropdow color insert  */
+.ui-state-highlight{
+  background-color: rgba(0, 107, 51) !important;
+}
+
+.ui-chkbox-box{
+  background-color: rgba(0, 107, 51) !important;
+  border:none !important;
+}
+.ui-multiselect-list{
+  border:1px solid  rgba(0, 107, 51) !important;
+}
+/* table css  */
 .ui-table table{
   box-shadow: 0 0 0.5em black !important;
 }
@@ -14,12 +27,11 @@ body{
   border-bottom: 1px solid grey !important;
 }
 
-
-
 .ui-table table th{
   color: white !important;
   background-color: rgba(0, 107, 51) !important;
 }
+
 
 .ui-table table td{
   padding: 0px !important;
@@ -45,8 +57,9 @@ td {
 
 .btn-tabela {
   margin: 7px !important;  
+  border: none !important;
 }
-
+/* =================================== */
 
 .espaco-reservado {
   color: #3d3d3d !important;

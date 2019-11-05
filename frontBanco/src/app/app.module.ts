@@ -32,6 +32,7 @@ import { MensagemComponent } from './mensagem/mensagem.component';
 
 
 import { HasPermissionDirective } from './util/HasPermissionDirective';
+import { CadastrarQuestaoComponent } from './cadastrar-questao/cadastrar-questao.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HasPermissionDirective } from './util/HasPermissionDirective';
     CursoComponent,
     UnidadeCurricularComponent,
     MensagemComponent,
-    HasPermissionDirective
+    HasPermissionDirective,
+    CadastrarQuestaoComponent
   ],
   imports: [
     BrowserModule,

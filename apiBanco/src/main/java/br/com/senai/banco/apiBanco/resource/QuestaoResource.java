@@ -1,9 +1,7 @@
 package br.com.senai.banco.apiBanco.resource;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import javax.websocket.server.PathParam;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,14 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.senai.banco.apiBanco.dto.QuestaoDto;
 import br.com.senai.banco.apiBanco.model.Questao;
+import br.com.senai.banco.apiBanco.repository.filter.QuestaoFilter;
 import br.com.senai.banco.apiBanco.resource.interfaces.IQuestaoResource;
 import br.com.senai.banco.apiBanco.service.QuestaoService;
 
@@ -65,9 +62,10 @@ public class QuestaoResource implements IQuestaoResource {
 	}
 
 	@Override
-	public ResponseEntity<?> pesquisar(Questao entity) {
-		// TODO Auto-generated method stub
-		return null;
+	@GetMapping("/pesquisar")
+	public ResponseEntity<?> pesquisar(QuestaoFilter entity) {
+		List<Questao> lista = this.questaoService.pesquisar(entity);
+		return new ResponseEntity<List<Questao>>(lista,HttpStatus.OK);
 	}
 
 

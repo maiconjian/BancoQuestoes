@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import br.com.senai.banco.apiBanco.model.Usuario;
-import br.com.senai.banco.apiBanco.repository.impl.UsuarioRepositoryQuery;
+import br.com.senai.banco.apiBanco.repository.impl.usuario.UsuarioRepositoryQuery;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> ,UsuarioRepositoryQuery{
 

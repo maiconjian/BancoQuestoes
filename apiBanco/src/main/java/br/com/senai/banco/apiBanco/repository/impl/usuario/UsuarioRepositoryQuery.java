@@ -1,4 +1,4 @@
-package br.com.senai.banco.apiBanco.repository.impl;
+package br.com.senai.banco.apiBanco.repository.impl.usuario;
 
 import java.util.List;
 

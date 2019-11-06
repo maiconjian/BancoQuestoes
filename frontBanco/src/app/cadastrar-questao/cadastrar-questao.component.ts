@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApoioService } from '../util/apoio.service';
 import { MensagemComponent } from '../mensagem/mensagem.component';
 import { Questao } from '../negocio/model/questao';
+import { Alterntiva } from '../negocio/model/alternativa';
 
 @Component({
   selector: 'app-cadastrar-questao',
@@ -11,9 +12,19 @@ import { Questao } from '../negocio/model/questao';
 export class CadastrarQuestaoComponent implements OnInit {
 
   questao: Questao;
+  alternativaA: Alterntiva;
+  alternativaB: Alterntiva;
+  alternativaC: Alterntiva;
+  alternativaD: Alterntiva;
+  alternativaE: Alterntiva;
 
   previwEnunciadoFile: any;
-  previwSuporteFile:any;
+  previwSuporteFile: any;
+  tituloComponent:string;
+
+  listaAlternativaBlock: any[];
+  listaDificuldade:any[];
+  listaCapacidade:any[];
 
   constructor(
     private apoioService: ApoioService,
@@ -22,6 +33,16 @@ export class CadastrarQuestaoComponent implements OnInit {
 
   ngOnInit() {
     this.getIniciarInstancia();
+    this.listaDificuldade = this.apoioService.carregarComboDificuldade();
+    this.listaCapacidade=this.apoioService.carregarComboCapacidade();
+    this.listaAlternativaBlock = [
+      { label: "alternativaA", value: false },
+      { label: "alternativaB", value: false },
+      { label: "alternativaC", value: false },
+      { label: "alternativaD", value: false },
+      { label: "alternativaE", value: false }
+    ]
+
   }
 
   onSelectEnunciado(event) {
@@ -88,6 +109,36 @@ export class CadastrarQuestaoComponent implements OnInit {
 
   getIniciarInstancia() {
     this.questao = new Questao();
+    this.alternativaA = new Alterntiva();
+    this.alternativaB = new Alterntiva();
+    this.alternativaC = new Alterntiva();
+    this.alternativaD = new Alterntiva();
+    this.alternativaE = new Alterntiva();
+  }
+
+
+  configBotaoAlternativa(alternativa: any) {
+    if (alternativa.correta == true) {
+      for (let i = 0; i < this.listaAlternativaBlock.length; i++) {
+        if (alternativa.name != this.listaAlternativaBlock[i].label) {
+          this.listaAlternativaBlock[i].value = true;
+        }
+      }
+    } else if (alternativa.correta == false) {
+      for (let i = 0; i < this.listaAlternativaBlock.length; i++) {
+        if (alternativa.name != this.listaAlternativaBlock[i].label) {
+          this.listaAlternativaBlock[i].value = false;
+        }
+      }
+    }
+  }
+
+  getTooltipAlternativa(alternativa:any){
+    if(alternativa.correta ==true){
+      return 'Correta!';
+    }else{
+      return 'Incorreta!';
+    }
   }
 
 }

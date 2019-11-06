@@ -4,10 +4,28 @@
     /* border: 1px solid red; */
   }
 
+.identificacao{
+  position: fixed;
+  margin-top: 8em;
+  margin-left: -2%;
+  padding: 50px;
+  border: 1px solid black;
+  border-radius: 20px ;
+  box-shadow: 0 0 0.3em black !important;
+}  
+
+.div-questao{
+  margin-left: 30%;
+  
+}
+
 .celula-cadastro{
+  float: right !important;
   margin-top: 1em;
   /* background-color: rgb(240,255,240); */
   border: 1px solid black;
+  border-radius: 20px;
+  box-shadow: 0 0 0.3em black !important;
 }
 
 .img{

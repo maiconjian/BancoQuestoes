@@ -22,6 +22,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import { ToastModule } from 'primeng/toast';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UsuarioComponent } from './usuario/usuario.component';
@@ -68,7 +69,8 @@ import { HasPermissionDirective } from './util/HasPermissionDirective';
     MultiSelectModule,
     ToastModule,
     InputTextareaModule,
-    FileUploadModule
+    FileUploadModule,
+    InputSwitchModule
    
   ],
   providers: [

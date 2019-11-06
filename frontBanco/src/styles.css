@@ -4,6 +4,10 @@ body{
   background-color: rgb(245,245,245);
 }
 
+.ui-inputswitch-slider{
+  background-color: rgba(0, 107, 51) !important;
+}
+
 /* dropdow color insert  */
 .ui-state-highlight{
   background-color: rgba(0, 107, 51) !important;

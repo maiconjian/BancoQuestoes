@@ -101,6 +101,36 @@ export class ApoioService {
     return lista;
   }
 
+  carregarComboDificuldade(){
+    let lista:any[]=[];
+    lista.push(
+      {label:'Muito Fácil',value:'Muito Facil'},
+      {label:'Fácil',value:'Facil'},
+      {label:'Médio',value:'Medio'},
+      {label:'Difícil',value:'Dificil'},
+      {label:'Muito Difícil',value:'Muito Dificil'},
+    )
+    return lista;
+  }
+
+  carregarComboCapacidade(){
+    let lista:any[]=[];
+    lista.push(
+      {label:'C1',value:'C1'},
+      {label:'C2',value:'C2'},
+      {label:'C3',value:'C3'},
+      {label:'C4',value:'C4'},
+      {label:'C5',value:'C5'},
+      {label:'C6',value:'C6'},
+      {label:'C7',value:'C7'},
+      {label:'C8',value:'C8'},
+      {label:'C9',value:'C9'},
+      {label:'C10',value:'C10'},
+    );
+    return lista;
+  }
+
+
   bloquearAcessoNaoAutorizado(){
     if(localStorage.getItem('usuarioLogado') == null){
       this.router.navigateByUrl('/login')

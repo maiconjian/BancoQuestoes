@@ -1,1 +1,86 @@
 <app-menu></app-menu>
+
+<div class="ui-g container">
+
+    <div class="ui-g-12" style="margin: 2em 0 0 0;">
+        <h1 style="text-align: center !important;">Cadastro Questão</h1>
+    </div>
+
+    <div class="ui-g-3">
+        <div class="ui-g-12 ui-fluid">
+            <span class="ui-float-label">
+                <input class="inputForm" name="conhecimento" pInputText type="text">
+                <label class="espaco-reservado" for="float-label">Conhecimento</label>
+            </span>
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+            <span class="ui-float-label">
+                <p-dropdown [options]="options" [showClear]="false" name="capacidade" [autoWidth]="false"
+                    [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                    placeholder="Capacidade" [(ngModel)]="value"></p-dropdown>
+                <label class="espaco-reservado" for="float-label" [hidden]="value  ? false:true">Capacidade</label>
+            </span>
+
+        </div>
+        <div class="ui-g-12 ui-fluid">
+            <span class="ui-float-label">
+                <p-dropdown [options]="options" [showClear]="false" name="dificuldade" [autoWidth]="false"
+                    [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                    placeholder="Dificuldade" [(ngModel)]="value"></p-dropdown>
+                <label class="espaco-reservado" for="float-label" [hidden]="value  ? false:true">Dificuldade</label>
+            </span>
+
+        </div>
+    </div>
+
+
+
+    <div class="ui-g-9">
+        <div class="ui-g-12 celula-cadastro">
+            <div class="ui-g-1 ">
+                <h5>Enunciado</h5>
+            </div>
+            <div class="ui-g-12 ui-fluid">
+                <div class="ui-g-12 img" *ngIf="previwEnunciadoFile">
+                    <img [src]="previwEnunciadoFile" height="250" />
+                </div>
+                <textarea class="textArea" pInputTextarea [(ngModel)]="questao.enunciado"
+                    [hidden]="getFotoEnunciado()"></textarea>
+            </div>
+            <div class="ui-g-12">
+                <input name="inputEnunciadpFile" #inputEnunciadpFile type="file" (change)="onSelectEnunciado($event)">
+                <button pButton type="button" label="Texto" (click)="getTextAreaEnunciado(inputEnunciadpFile)"
+                    style="float: right;" [hidden]="!getFotoEnunciado()"></button>
+            </div>
+        </div>
+
+        <div class="ui-g-12 celula-cadastro">
+            <div class="ui-g-1 ">
+                <h5>Suporte</h5>
+            </div>
+            <div class="ui-g-12 ui-fluid">
+                <div class="ui-g-12 img" *ngIf="previwSuporteFile">
+                    <img [src]="previwSuporteFile" height="250" />
+                </div>
+                <textarea class="textArea" pInputTextarea [(ngModel)]="questao.suporte"
+                    [hidden]="getFotoSuporte()"></textarea>
+            </div>
+            <div class="ui-g-12">
+                <input name="inputSuporteFile" #inputSuporteFile type="file" (change)="onSelectSuporte($event)">
+                <button pButton type="button" label="Texto" (click)="getTextAreaSuporte(inputSuporteFile)"
+                    style="float: right;" [hidden]="!getFotoSuporte()"></button>
+            </div>
+        </div>
+
+        <div class="ui-g-12 celula-cadastro">
+            <div class="ui-g-1 ">
+                <h5>Comando</h5>
+            </div>
+            <div class="ui-g-12 ui-fluid">
+                <textarea class="textArea" pInputTextarea [(ngModel)]="questao.comando"></textarea>
+            </div>
+        </div>
+    </div>
+
+</div>

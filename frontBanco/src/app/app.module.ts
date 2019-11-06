@@ -20,8 +20,10 @@ import {DropdownModule} from 'primeng/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
 import {MultiSelectModule} from 'primeng/multiselect';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/components/common/messageservice';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {FileUploadModule} from 'primeng/fileupload';
 
+import { MessageService } from 'primeng/components/common/messageservice';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
@@ -29,10 +31,11 @@ import { UnidadeComponent } from './unidade/unidade.component';
 import { CursoComponent } from './curso/curso.component';
 import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricular.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
-
-
-import { HasPermissionDirective } from './util/HasPermissionDirective';
 import { CadastrarQuestaoComponent } from './cadastrar-questao/cadastrar-questao.component';
+import { HasPermissionDirective } from './util/HasPermissionDirective';
+
+
+
 
 @NgModule({
   declarations: [
@@ -63,7 +66,9 @@ import { CadastrarQuestaoComponent } from './cadastrar-questao/cadastrar-questao
     DropdownModule,
     TooltipModule,
     MultiSelectModule,
-    ToastModule
+    ToastModule,
+    InputTextareaModule,
+    FileUploadModule
    
   ],
   providers: [

@@ -32,7 +32,7 @@ import { UnidadeComponent } from './unidade/unidade.component';
 import { CursoComponent } from './curso/curso.component';
 import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricular.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
-import { CadastrarQuestaoComponent } from './cadastrar-questao/cadastrar-questao.component';
+import { CadastrarQuestaoComponent } from "./cadastrar-questao/cadastrar-questao.component";
 import { HasPermissionDirective } from './util/HasPermissionDirective';
 
 

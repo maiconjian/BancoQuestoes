@@ -16,6 +16,7 @@ export class Usuario extends GenericModel{
     perfis:Perfil[];
     unidadesCurricular:UnidadeCurricular[];
     unidade:Unidade;
+    ativo:boolean;
     
 
 	

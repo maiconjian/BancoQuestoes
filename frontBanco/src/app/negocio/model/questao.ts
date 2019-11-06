@@ -1,5 +1,5 @@
 import { GenericModel } from './generic-model';
-import { Alterntiva } from './alternativa';
+import { Alternativa } from './alternativa';
 import { UnidadeCurricular } from './unidade-curricular';
 import { Usuario } from './usuario';
 
@@ -11,11 +11,11 @@ export class Questao extends GenericModel {
     enunciado: string;
     suporte: string;
     comando: string;
-    alternativaA: Alterntiva;
-    alternativaB: Alterntiva;
-    alternativaC: Alterntiva;
-    alternativaD: Alterntiva;
-    alternativaE: Alterntiva;
+    alternativaA: Alternativa;
+    alternativaB: Alternativa;
+    alternativaC: Alternativa;
+    alternativaD: Alternativa;
+    alternativaE: Alternativa;
     publicado: boolean;
     unidadeCurricular: UnidadeCurricular;
     autor: Usuario;

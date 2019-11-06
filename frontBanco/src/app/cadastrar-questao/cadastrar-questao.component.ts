@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ApoioService } from '../util/apoio.service';
 import { MensagemComponent } from '../mensagem/mensagem.component';
 import { Questao } from '../negocio/model/questao';
-import { Alterntiva } from '../negocio/model/alternativa';
+import { Alternativa } from '../negocio/model/alternativa';
+import { CadastrarQuestaoService } from './cadastrar-questao.service';
+import { Usuario } from '../negocio/model/usuario';
+import { UnidadeCurricular } from '../negocio/model/unidade-curricular';
 
 @Component({
   selector: 'app-cadastrar-questao',
@@ -12,11 +15,13 @@ import { Alterntiva } from '../negocio/model/alternativa';
 export class CadastrarQuestaoComponent implements OnInit {
 
   questao: Questao;
-  alternativaA: Alterntiva;
-  alternativaB: Alterntiva;
-  alternativaC: Alterntiva;
-  alternativaD: Alterntiva;
-  alternativaE: Alterntiva;
+  alternativaA: Alternativa;
+  alternativaB: Alternativa;
+  alternativaC: Alternativa;
+  alternativaD: Alternativa;
+  alternativaE: Alternativa;
+  autor:Usuario;
+  unidadeCurricular:UnidadeCurricular;
 
   previwEnunciadoFile: any;
   previwSuporteFile: any;
@@ -26,13 +31,17 @@ export class CadastrarQuestaoComponent implements OnInit {
   listaDificuldade:any[];
   listaCapacidade:any[];
 
+  
+
   constructor(
     private apoioService: ApoioService,
-    private mensagemComponent: MensagemComponent
+    private mensagemComponent: MensagemComponent,
+    private questaoService:CadastrarQuestaoService
   ) { }
 
   ngOnInit() {
     this.getIniciarInstancia();
+    this.questao = new Questao;
     this.listaDificuldade = this.apoioService.carregarComboDificuldade();
     this.listaCapacidade=this.apoioService.carregarComboCapacidade();
     this.listaAlternativaBlock = [
@@ -44,6 +53,35 @@ export class CadastrarQuestaoComponent implements OnInit {
     ]
 
   }
+
+  merge(){   
+    this.questao.alternativaA=this.alternativaA;
+    this.questao.alternativaB=this.alternativaB;
+    this.questao.alternativaC=this.alternativaC;
+    this.questao.alternativaD=this.alternativaD;
+    this.questao.alternativaE=this.alternativaE;
+    this.questao.publicado=true;
+    this.autor.id = 1;
+    this.questao.autor= this.autor;
+    this.unidadeCurricular.id = 1;
+    this.questao.unidadeCurricular=this.unidadeCurricular;
+    console.log(this.questao);
+      this.questaoService.incluir(this.previwEnunciadoFile,this.previwSuporteFile,JSON.stringify(this.questao))
+      .then(response=>{
+        console.log(response);
+      })
+      .catch(error =>console.log(error));
+    
+  }
+
+
+
+
+
+
+
+
+
 
   onSelectEnunciado(event) {
     this.previewEnunciado(event.target.files[0]);
@@ -109,11 +147,18 @@ export class CadastrarQuestaoComponent implements OnInit {
 
   getIniciarInstancia() {
     this.questao = new Questao();
-    this.alternativaA = new Alterntiva();
-    this.alternativaB = new Alterntiva();
-    this.alternativaC = new Alterntiva();
-    this.alternativaD = new Alterntiva();
-    this.alternativaE = new Alterntiva();
+    this.autor = new Usuario();
+    this.unidadeCurricular = new UnidadeCurricular();
+    this.alternativaA = new Alternativa();
+    this.alternativaA.correta=false;
+    this.alternativaB = new Alternativa();
+    this.alternativaB.correta=false;
+    this.alternativaC = new Alternativa();
+    this.alternativaC.correta=false;
+    this.alternativaD = new Alternativa();
+    this.alternativaD.correta=false;
+    this.alternativaE = new Alternativa();
+    this.alternativaE.correta=false;
   }
 
 

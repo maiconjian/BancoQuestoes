@@ -1,6 +1,6 @@
 import { GenericModel } from './generic-model';
 
-export class Alterntiva extends GenericModel{
+export class Alternativa extends GenericModel{
     descricao:string;
     correta:boolean;
 }

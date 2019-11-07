@@ -21,15 +21,19 @@ export class CadastrarQuestaoComponent implements OnInit {
   alternativaD: Alternativa;
   alternativaE: Alternativa;
   autor:Usuario;
+  usuario:any;
   unidadeCurricular:UnidadeCurricular;
 
   previwEnunciadoFile: any;
   previwSuporteFile: any;
+  enunciadoImge:any;
+  suporteImg:any;
   tituloComponent:string;
 
   listaAlternativaBlock: any[];
   listaDificuldade:any[];
   listaCapacidade:any[];
+  listaUnidadesCurricular:any[];
 
   
 
@@ -40,7 +44,9 @@ export class CadastrarQuestaoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getIniciarInstancia();
+   this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+   this.getIniciarInstancia();
+   this.listaUnidadesCurricular=this.carregarComboUnidadeCurricular();
     this.questao = new Questao;
     this.listaDificuldade = this.apoioService.carregarComboDificuldade();
     this.listaCapacidade=this.apoioService.carregarComboCapacidade();
@@ -61,36 +67,27 @@ export class CadastrarQuestaoComponent implements OnInit {
     this.questao.alternativaD=this.alternativaD;
     this.questao.alternativaE=this.alternativaE;
     this.questao.publicado=true;
-    this.autor.id = 1;
+    this.autor.id = this.usuario.id;
     this.questao.autor= this.autor;
-    this.unidadeCurricular.id = 1;
     this.questao.unidadeCurricular=this.unidadeCurricular;
-    console.log(this.questao);
-      this.questaoService.incluir(this.previwEnunciadoFile,this.previwSuporteFile,JSON.stringify(this.questao))
+      this.questaoService.incluir(this.enunciadoImge,this.suporteImg,JSON.stringify(this.questao))
       .then(response=>{
-        console.log(response);
+        this.mensagemComponent.showSuccess('Questão enviada para Analise!!')
+        this.resetCadastro();
       })
       .catch(error =>console.log(error));
     
   }
 
 
-
-
-
-
-
-
-
-
   onSelectEnunciado(event) {
     this.previewEnunciado(event.target.files[0]);
-    console.log(event);
+    this.questao.enunciado='';
   }
 
   onSelectSuporte(event) {
     this.previewSuporte(event.target.files[0]);
-    console.log(event);
+    this.questao.suporte= '';
   }
 
   previewEnunciado(foto: any) {
@@ -98,10 +95,12 @@ export class CadastrarQuestaoComponent implements OnInit {
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
+    this.enunciadoImge = foto;
     var reader = new FileReader();
     reader.readAsDataURL(foto);
     reader.onload = (_event) => {
-      this.previwEnunciadoFile = reader.result;
+
+      this.previwEnunciadoFile = reader.result;  
     }
   }
 
@@ -110,6 +109,7 @@ export class CadastrarQuestaoComponent implements OnInit {
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
+    this.suporteImg=foto;
     var reader = new FileReader();
     reader.readAsDataURL(foto);
     reader.onload = (_event) => {
@@ -120,11 +120,13 @@ export class CadastrarQuestaoComponent implements OnInit {
 
   getTextAreaEnunciado(inputFile: any) {
     this.previwEnunciadoFile = null;
+    this.enunciadoImge = null;
     inputFile.value = "";
   }
 
   getTextAreaSuporte(inputFile: any) {
     this.previwSuporteFile = null;
+    this.suporteImg=null;
     inputFile.value = "";
   }
 
@@ -163,13 +165,13 @@ export class CadastrarQuestaoComponent implements OnInit {
 
 
   configBotaoAlternativa(alternativa: any) {
-    if (alternativa.correta == true) {
+    if (alternativa.checked == true) {
       for (let i = 0; i < this.listaAlternativaBlock.length; i++) {
-        if (alternativa.name != this.listaAlternativaBlock[i].label) {
+        if (alternativa.name.substring(0,12) != this.listaAlternativaBlock[i].label) {
           this.listaAlternativaBlock[i].value = true;
         }
       }
-    } else if (alternativa.correta == false) {
+    } else if (alternativa.checked == false) {
       for (let i = 0; i < this.listaAlternativaBlock.length; i++) {
         if (alternativa.name != this.listaAlternativaBlock[i].label) {
           this.listaAlternativaBlock[i].value = false;
@@ -179,11 +181,32 @@ export class CadastrarQuestaoComponent implements OnInit {
   }
 
   getTooltipAlternativa(alternativa:any){
-    if(alternativa.correta ==true){
+   
+    if(alternativa.checked ==true){
       return 'Correta!';
     }else{
       return 'Incorreta!';
     }
+  }
+
+  carregarComboUnidadeCurricular(){
+    let lista:any[]=[];
+    for (let i = 0; i < this.usuario.unidadesCurricular.length; i++) {
+      lista.push(
+        {label:this.usuario.unidadesCurricular[i].nome,value:this.usuario.unidadesCurricular[i].id}
+      );
+    }
+    return lista;
+  }
+
+
+  resetCadastro(){
+    this.getIniciarInstancia();
+    this.previewEnunciado = null;
+    this.previewSuporte=null;
+    this.previwEnunciadoFile=null;
+    this.previwSuporteFile=null;
+
   }
 
 }

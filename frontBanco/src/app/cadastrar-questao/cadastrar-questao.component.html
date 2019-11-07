@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 
 <div class="ui-g container">
-
+    <app-mensagem ></app-mensagem>
     <div class="ui-g-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
         <h1 style="text-align: center !important;">Cadastro Questão</h1>
     </div>
@@ -15,6 +15,16 @@
                 <span class="ui-float-label">
                     <input class="inputForm" name="conhecimento" pInputText type="text" [(ngModel)]="questao.objetoConhecimento">
                     <label class="espaco-reservado" for="float-label">Conhecimento</label>
+                </span>
+            </div>
+
+            <div class="ui-g-12 ui-fluid">
+                <span class="ui-float-label">
+                    <p-dropdown [options]="listaUnidadesCurricular" [showClear]="false" name="unidadesCurricular" [autoWidth]="false"
+                        [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                        placeholder="Unidade Curricular" [(ngModel)]="unidadeCurricular.id"></p-dropdown>
+                    <label class="espaco-reservado" for="float-label"
+                        [hidden]="unidadeCurricular.id  ? false:true">Unidade Curricular</label>
                 </span>
             </div>
 

@@ -1,5 +1,5 @@
 .container{
-    width: 1170px;
+    width: 1270px;
     margin: 0 auto;
     /* border: 1px solid red; */
   }
@@ -7,15 +7,15 @@
 .identificacao{
   position: fixed;
   margin-top: 8em;
-  margin-left: -2%;
-  padding: 50px;
+  margin-left: -3%;
+  padding: 43px ;
   border: 1px solid black;
   border-radius: 20px ;
   box-shadow: 0 0 0.3em black !important;
 }  
 
 .div-questao{
-  margin-left: 30%;
+  margin-left: 31%;
   
 }
 

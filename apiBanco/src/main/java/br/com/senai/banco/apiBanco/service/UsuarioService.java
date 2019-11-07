@@ -159,7 +159,7 @@ public class UsuarioService implements IUsuarioService {
 				System.out.println(codigo);
 
 				this.usuarioRepository.salvaCodigoAcesso(encoder.encode(codigo), usuario.get().getId());
-				return getQRCodeImage(codigo, 200,200);
+				return getQRCodeImage(codigo, 250,250);
 			}
 
 		}

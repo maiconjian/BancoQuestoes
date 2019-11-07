@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   msgPrincipalAtivo:boolean;
   codigoQR: any;
 
+  isLogin:boolean;
+
   
 
   
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.displayQRCode = false;
     this.msgPrincipalAtivo=true;
     localStorage.clear();
+    this.isLogin=false;
   }
 
   button() {
@@ -89,6 +92,7 @@ export class LoginComponent implements OnInit {
           let base64String = btoa(STRING_CHAR);
           this.imageurl = 'data:image/jpg;base64,' + base64String;
           this.displayQRCode = true;
+          this.isLogin=true;
         }else{
           this.mensagemComponent.showError('Login ou senha Inválidos!')
         }
@@ -98,6 +102,9 @@ export class LoginComponent implements OnInit {
   cancelar(){
     this.dados = new Login();
     this.displayQRCode = false;
+    this.isLogin=false;
   }
+
+ 
 
 }

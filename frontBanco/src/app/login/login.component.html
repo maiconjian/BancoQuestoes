@@ -8,20 +8,44 @@
             <div class="ui-g-12">
                 <h1 style="text-align: center; padding-bottom: 5%;">Banco de Questões</h1>
             </div>
-            <div class="ui-g-12 input" style="margin-bottom: 2%;">
-                <input class="inputForm" name="login" pInputText type="text" size="30px" placeholder="Login"
-                    [(ngModel)]="dados.login">
+            <div class="ui-g-12" [hidden]="isLogin">
+                <div class="ui-g-12 input" style="margin-bottom: 2%;">
+                    <input class="inputForm" name="login" pInputText type="text" size="30px" placeholder="Login"
+                        [(ngModel)]="dados.login">
+                </div>
+                <div class="ui-g-12 input">
+                    <input class="inputForm" name="senha" type="password" pInputText size="30px" placeholder="Senha"
+                        [(ngModel)]="dados.senha">
+                </div>
+                <div class="ui-g-12 ">
+                    <button class="btn" pButton type="submit" label="Entrar"></button>
+                </div>
             </div>
-            <div class="ui-g-12 input">
-                <input class="inputForm" name="senha" type="password" pInputText size="30px" placeholder="Senha"
-                    [(ngModel)]="dados.senha">
+
+            <div class="ui-g-12" [hidden]="!isLogin" style="text-align: center; margin-bottom: -3%;">
+                <div class="ui-g-6 imgCode">
+                    <img src="{{imageurl}}" alt="">
+                </div>
+
+                <div class="ui-g-5 inputCode">
+                    <input name="codigo" id="float-input" pInputText type="text" size="30px" 
+                    [(ngModel)]="codigoQR" style="margin-bottom: 20px; text-align: center;">
+                    <button pButton type="button" label="Confirmar" (click)="confirmCodigoAcesso()"
+                    style="margin-right: 10px;"></button>
+                <button pButton type="button" label="Cancelar" (click)="cancelar()"></button>
+                </div>
+
+                <div class="ui-g-6">
+                   
+                </div>
+
+
             </div>
-            <div class="ui-g-12 ">
-                <button class="btn" pButton type="submit" label="Entrar" ></button>
-            </div>
+
+
         </form>
     </div>
-    <div class="ui-g-12">
+    <!-- <div class="ui-g-12">
         <p-dialog [(visible)]="displayQRCode" [style]="{width: '300px'}" [responsive]="true"
             [modal]="true"  [closable]="false">
             <form autocomplete="off">
@@ -41,7 +65,7 @@
             </form>
             
         </p-dialog>
-    </div>
+    </div> -->
 
 
 

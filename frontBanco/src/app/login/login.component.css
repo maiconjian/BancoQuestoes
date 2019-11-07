@@ -31,4 +31,15 @@
     
     border-radius: 50px;
 }
+.inputCode{
+    margin-top: 6%;
+    /* border: 1px solid grey; */
+}
+.imgCode{
+   margin-top: -5%;
+   margin-left: 5%;
+   border: 1px solid grey;
+  
+   
+}
 

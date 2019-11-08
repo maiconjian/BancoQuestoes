@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { HomeComponent } from './home/home.component';
 import { CadastrarQuestaoComponent } from "./cadastrar-questao/cadastrar-questao.component";
+import { PesquisarQuestaoComponent } from './pesquisar-questao/pesquisar-questao.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path:'home',component:HomeComponent},
   {path:'usuario',component:UsuarioComponent},
-  {path:'cadastrarQuetao',component:CadastrarQuestaoComponent}
+  {path:'cadastrarQuetao',component:CadastrarQuestaoComponent},
+  {path:'pesquisarQuestao',component:PesquisarQuestaoComponent}
   
 
 ];

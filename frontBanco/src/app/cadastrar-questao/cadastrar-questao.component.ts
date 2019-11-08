@@ -35,8 +35,6 @@ export class CadastrarQuestaoComponent implements OnInit {
   listaCapacidade:any[];
   listaUnidadesCurricular:any[];
 
-  
-
   constructor(
     private apoioService: ApoioService,
     private mensagemComponent: MensagemComponent,
@@ -46,7 +44,8 @@ export class CadastrarQuestaoComponent implements OnInit {
   ngOnInit() {
    this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
    this.getIniciarInstancia();
-   this.listaUnidadesCurricular=this.carregarComboUnidadeCurricular();
+   console.log(this.alternativaA.correta);
+   this.listaUnidadesCurricular=this.apoioService.carregarComboUnidadeCurricular();
     this.questao = new Questao;
     this.listaDificuldade = this.apoioService.carregarComboDificuldade();
     this.listaCapacidade=this.apoioService.carregarComboCapacidade();
@@ -59,7 +58,6 @@ export class CadastrarQuestaoComponent implements OnInit {
     ]
 
   }
-
   merge(){   
     this.questao.alternativaA=this.alternativaA;
     this.questao.alternativaB=this.alternativaB;
@@ -70,24 +68,25 @@ export class CadastrarQuestaoComponent implements OnInit {
     this.autor.id = this.usuario.id;
     this.questao.autor= this.autor;
     this.questao.unidadeCurricular=this.unidadeCurricular;
+    console.log(this.questao);
+    if(!this.getBlockCadastrar()){
       this.questaoService.incluir(this.enunciadoImge,this.suporteImg,JSON.stringify(this.questao))
       .then(response=>{
         this.mensagemComponent.showSuccess('Questão enviada para Analise!!')
         this.resetCadastro();
       })
       .catch(error =>console.log(error));
-    
+    }else{
+      this.mensagemComponent.showWarn('Todos os campos são obrigatorios!');
+    }
+ 
   }
-
-
   onSelectEnunciado(event) {
     this.previewEnunciado(event.target.files[0]);
-    this.questao.enunciado='';
   }
 
   onSelectSuporte(event) {
     this.previewSuporte(event.target.files[0]);
-    this.questao.suporte= '';
   }
 
   previewEnunciado(foto: any) {
@@ -96,6 +95,8 @@ export class CadastrarQuestaoComponent implements OnInit {
       return;
     }
     this.enunciadoImge = foto;
+    this.questao.enunciado = this.enunciadoImge.name;
+    console.log(this.questao.enunciado);
     var reader = new FileReader();
     reader.readAsDataURL(foto);
     reader.onload = (_event) => {
@@ -110,6 +111,7 @@ export class CadastrarQuestaoComponent implements OnInit {
       return;
     }
     this.suporteImg=foto;
+    this.questao.suporte = this.suporteImg.name;
     var reader = new FileReader();
     reader.readAsDataURL(foto);
     reader.onload = (_event) => {
@@ -121,12 +123,14 @@ export class CadastrarQuestaoComponent implements OnInit {
   getTextAreaEnunciado(inputFile: any) {
     this.previwEnunciadoFile = null;
     this.enunciadoImge = null;
+    this.questao.enunciado='';
     inputFile.value = "";
   }
 
   getTextAreaSuporte(inputFile: any) {
     this.previwSuporteFile = null;
     this.suporteImg=null;
+    this.questao.suporte='';
     inputFile.value = "";
   }
 
@@ -161,6 +165,13 @@ export class CadastrarQuestaoComponent implements OnInit {
     this.alternativaD.correta=false;
     this.alternativaE = new Alternativa();
     this.alternativaE.correta=false;
+    this.listaAlternativaBlock = [
+      { label: "alternativaA", value: false },
+      { label: "alternativaB", value: false },
+      { label: "alternativaC", value: false },
+      { label: "alternativaD", value: false },
+      { label: "alternativaE", value: false }
+    ]
   }
 
 
@@ -189,24 +200,40 @@ export class CadastrarQuestaoComponent implements OnInit {
     }
   }
 
-  carregarComboUnidadeCurricular(){
-    let lista:any[]=[];
-    for (let i = 0; i < this.usuario.unidadesCurricular.length; i++) {
-      lista.push(
-        {label:this.usuario.unidadesCurricular[i].nome,value:this.usuario.unidadesCurricular[i].id}
-      );
-    }
-    return lista;
-  }
+ 
 
 
   resetCadastro(){
-    this.getIniciarInstancia();
-    this.previewEnunciado = null;
-    this.previewSuporte=null;
-    this.previwEnunciadoFile=null;
-    this.previwSuporteFile=null;
-
+    // this.getIniciarInstancia();
+    // this.previewEnunciado = null;
+    // this.previewSuporte=null;
+    // this.previwEnunciadoFile=null;
+    // this.previwSuporteFile=null;
+    //this.ngOnInit();
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+   
+    console.log(this.usuario);
   }
 
+  getBlockCadastrar(){
+    if(this.questao.capacidade == '' || this.questao.capacidade == null|| this.questao.objetoConhecimento==''||
+    this.questao.objetoConhecimento==null||this.questao.dificuldade==''||this.questao.dificuldade==null||
+    this.questao.enunciado==''||this.questao.enunciado==null||this.questao.suporte==''|| this.questao.suporte==null|| 
+    this.questao.comando ==''||this.questao.comando==null||
+    this.alternativaA.descricao==null||this.alternativaA.descricao==''||
+    this.alternativaB.descricao==null|| this.alternativaB.descricao==''||
+    this.alternativaC.descricao==null|| this.alternativaC.descricao==''||
+    this.alternativaD.descricao==null||this.alternativaD.descricao==''||
+    this.alternativaE.descricao==null||this.alternativaE.descricao==''||
+    this.questao.alternativaA.correta == false && this.questao.alternativaB.correta == false &&
+    this.questao.alternativaC.correta == false && this.questao.alternativaD.correta == false &&
+    this.questao.alternativaE.correta == false||
+    this.unidadeCurricular==null){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

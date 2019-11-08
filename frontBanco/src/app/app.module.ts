@@ -34,6 +34,7 @@ import { UnidadeCurricularComponent } from './unidade-curricular/unidade-curricu
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { CadastrarQuestaoComponent } from "./cadastrar-questao/cadastrar-questao.component";
 import { HasPermissionDirective } from './util/HasPermissionDirective';
+import { PesquisarQuestaoComponent } from './pesquisar-questao/pesquisar-questao.component';
 
 
 
@@ -50,7 +51,8 @@ import { HasPermissionDirective } from './util/HasPermissionDirective';
     UnidadeCurricularComponent,
     MensagemComponent,
     HasPermissionDirective,
-    CadastrarQuestaoComponent
+    CadastrarQuestaoComponent,
+    PesquisarQuestaoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,15 @@
 <div class="ui-g">
     <app-mensagem [hidden]="!msgPrincipalAtivo" (opcao)="setOpcao($event)"></app-mensagem>
     <div class="ui-g-6 ui-sm-12 menu">
-        <form autocomplete="off" (ngSubmit)="button()">
-            <div class="ui-g-12">
-                <img src="../../assets/img/login/senai-logo.png" alt="" style="padding-left: 28%; ">
-            </div>
-            <div class="ui-g-12">
-                <h1 style="text-align: center; padding-bottom: 5%;">Banco de Questões</h1>
-            </div>
-            <div class="ui-g-12" [hidden]="isLogin">
+
+        <div class="ui-g-12">
+            <img src="../../assets/img/login/senai-logo.png" alt="" style="padding-left: 28%; ">
+        </div>
+        <div class="ui-g-12">
+            <h1 style="text-align: center; padding-bottom: 5%;">Banco de Questões</h1>
+        </div>
+        <div class="ui-g-12" [hidden]="isLogin">
+            <form autocomplete="off" (ngSubmit)="button()">
                 <div class="ui-g-12 input" style="margin-bottom: 2%;">
                     <input class="inputForm" name="login" pInputText type="text" size="30px" placeholder="Login"
                         [(ngModel)]="dados.login">
@@ -20,30 +21,27 @@
                 <div class="ui-g-12 ">
                     <button class="btn" pButton type="submit" label="Entrar"></button>
                 </div>
+            </form>
+        </div>
+
+        <div class="ui-g-12" [hidden]="!isLogin" style="text-align: center; margin-bottom: -3%;">
+            <div class="ui-g-6 imgCode">
+                <img src="{{imageurl}}" alt="">
             </div>
 
-            <div class="ui-g-12" [hidden]="!isLogin" style="text-align: center; margin-bottom: -3%;">
-                <div class="ui-g-6 imgCode">
-                    <img src="{{imageurl}}" alt="">
-                </div>
-
+            <form autocomplete="off" (ngSubmit)="confirmCodigoAcesso()">
                 <div class="ui-g-5 inputCode">
-                    <input name="codigo" id="float-input" pInputText type="text" size="30px" 
-                    [(ngModel)]="codigoQR" style="margin-bottom: 20px; text-align: center;">
-                    <button pButton type="button" label="Confirmar" (click)="confirmCodigoAcesso()"
-                    style="margin-right: 10px;"></button>
-                <button pButton type="button" label="Cancelar" (click)="cancelar()"></button>
+                    <input name="codigo" id="float-input" pInputText type="text" size="30px" [(ngModel)]="codigoQR"
+                        style="margin-bottom: 20px; text-align: center;">
+                    <button pButton type="submit" label="Confirmar"
+                        style="margin-right: 10px;"></button>
+                    <button pButton type="button" label="Cancelar" (click)="cancelar()"></button>
                 </div>
-
-                <div class="ui-g-6">
-                   
-                </div>
+            </form>
+        </div>
 
 
-            </div>
 
-
-        </form>
     </div>
     <!-- <div class="ui-g-12">
         <p-dialog [(visible)]="displayQRCode" [style]="{width: '300px'}" [responsive]="true"

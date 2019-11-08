@@ -131,6 +131,18 @@ export class ApoioService {
   }
 
 
+  carregarComboUnidadeCurricular(){
+    let usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    let lista:any[]=[];
+    for (let i = 0; i < usuario.unidadesCurricular.length; i++) {
+      lista.push(
+        {label:usuario.unidadesCurricular[i].nome,value:usuario.unidadesCurricular[i].id}
+      );
+    }
+    return lista;
+  }
+
+
   bloquearAcessoNaoAutorizado(){
     if(localStorage.getItem('usuarioLogado') == null){
       this.router.navigateByUrl('/login')

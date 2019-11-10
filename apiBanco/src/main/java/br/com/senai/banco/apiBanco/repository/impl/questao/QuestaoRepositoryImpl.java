@@ -40,11 +40,11 @@ public class QuestaoRepositoryImpl implements QuestaoRepositoryQuery {
 	private Predicate[] gerarRestricoes(QuestaoFilter filter,CriteriaBuilder builder,Root<Questao> root) {
 		List<Predicate> predicates = new ArrayList<>();
 		
-		if(!StringUtils.isEmpty(filter.getUnidadeCurricular())) {
-			predicates.add(builder.equal(root.join("unidadeCurricular").<String>get("nome"),filter.getUnidadeCurricular()));
+		if(filter.getUnidadeCurricular()>0) {
+			predicates.add(builder.equal(root.join("unidadeCurricular").<String>get("id"),filter.getUnidadeCurricular()));
 		}
-		if(!StringUtils.isEmpty(filter.getCurso())) {
-			predicates.add(builder.equal(root.join("unidadeCurricular").join("Curso").<String>get("nome"), filter.getCurso()));
+		if(filter.getCurso()>0) {
+			predicates.add(builder.equal(root.join("unidadeCurricular").join("curso").<String>get("id"), filter.getCurso()));
 		}
 		if(!StringUtils.isEmpty(filter.getNivelDificuldade())) {
 			predicates.add(builder.equal(root.get(Questao_.dificuldade), filter.getNivelDificuldade()));

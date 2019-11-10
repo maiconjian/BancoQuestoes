@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 export class ApoioService {
 
   constructor(
-    private router:Router,
-    private usuarioService:UsuarioService,
-    private cursoService:CursoService,
-    private unidadeService:UnidadeService,
-    private unidadeCurricularService:UnidadeCurricularService,
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private cursoService: CursoService,
+    private unidadeService: UnidadeService,
+    private unidadeCurricularService: UnidadeCurricularService,
 
   ) { }
 
@@ -37,114 +37,135 @@ export class ApoioService {
 
   }
 
-  carregarComboPerfil(){
-    let lista:any[]=[];
+  carregarComboPerfil() {
+    let lista: any[] = [];
     this.usuarioService.listarPerfis()
-    .then(response => {
-      for (let i = 0; i < response.length; i++) {
-        lista.push({
-          label:response[i].nome,
-          value:response[i]
-        })
-        
-      }
-    
-    })
+      .then(response => {
+        for (let i = 0; i < response.length; i++) {
+          lista.push({
+            label: response[i].nome,
+            value: response[i]
+          })
+
+        }
+
+      })
     return lista;
   }
 
-  carregarUnidade(){
-    let lista:any[]=[];
+  carregarUnidade() {
+    let lista: any[] = [];
     this.unidadeService.listar()
-    .then(response => {
-      for (let i = 0; i < response.length; i++) {
-        lista.push({
-          label:response[i].nome,
-          value:response[i].id
-        })
-        
-      }
-    
-    })
+      .then(response => {
+        for (let i = 0; i < response.length; i++) {
+          lista.push({
+            label: response[i].nome,
+            value: response[i].id
+          })
+
+        }
+
+      })
     return lista;
   }
 
-  carregarComboCursos(){
-    let lista:any[]=[];
+  carregarComboCursos() {
+    let lista: any[] = [];
     this.cursoService.listar()
-    .then(response => {
-      for (let i = 0; i < response.length; i++) {
-        lista.push({
-          label:response[i].nome,
-          value:response[i].id
-        })
-        
-      }
-    
-    })
+      .then(response => {
+        for (let i = 0; i < response.length; i++) {
+          lista.push({
+            label: response[i].nome,
+            value: response[i].id
+          })
+
+        }
+
+      })
     return lista;
   }
-  carregarComboUnidadedesCurricular(){
-    let lista:any[]=[];
+  carregarComboUnidadedesCurricular() {
+    let lista: any[] = [];
     this.unidadeCurricularService.listar()
-    .then(response => {
-      console.log(response);
-      for (let i = 0; i < response.length; i++) {
-        lista.push({
-          label:response[i].nome,
-          value:response[i]
-        })
-        
-      }
-    
-    })
+      .then(response => {
+        console.log(response);
+        for (let i = 0; i < response.length; i++) {
+          lista.push({
+            label: response[i].nome,
+            value: response[i]
+          })
+
+        }
+
+      })
     return lista;
   }
 
-  carregarComboDificuldade(){
-    let lista:any[]=[];
+  carregarComboDificuldade() {
+    let lista: any[] = [];
     lista.push(
-      {label:'Muito Fácil',value:'Muito Facil'},
-      {label:'Fácil',value:'Facil'},
-      {label:'Médio',value:'Medio'},
-      {label:'Difícil',value:'Dificil'},
-      {label:'Muito Difícil',value:'Muito Dificil'},
+      { label: 'Muito Fácil', value: 'Muito Facil' },
+      { label: 'Fácil', value: 'Facil' },
+      { label: 'Médio', value: 'Medio' },
+      { label: 'Difícil', value: 'Dificil' },
+      { label: 'Muito Difícil', value: 'Muito Dificil' },
     )
     return lista;
   }
 
-  carregarComboCapacidade(){
-    let lista:any[]=[];
+  carregarComboCapacidade() {
+    let lista: any[] = [];
     lista.push(
-      {label:'C1',value:'C1'},
-      {label:'C2',value:'C2'},
-      {label:'C3',value:'C3'},
-      {label:'C4',value:'C4'},
-      {label:'C5',value:'C5'},
-      {label:'C6',value:'C6'},
-      {label:'C7',value:'C7'},
-      {label:'C8',value:'C8'},
-      {label:'C9',value:'C9'},
-      {label:'C10',value:'C10'},
+      { label: 'C1', value: 'C1' },
+      { label: 'C2', value: 'C2' },
+      { label: 'C3', value: 'C3' },
+      { label: 'C4', value: 'C4' },
+      { label: 'C5', value: 'C5' },
+      { label: 'C6', value: 'C6' },
+      { label: 'C7', value: 'C7' },
+      { label: 'C8', value: 'C8' },
+      { label: 'C9', value: 'C9' },
+      { label: 'C10', value: 'C10' },
     );
     return lista;
   }
 
 
-  carregarComboUnidadeCurricular(){
+  carregarComboUnidadeCurricularUsuario() {
     let usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-    let lista:any[]=[];
+    let lista: any[] = [];
     for (let i = 0; i < usuario.unidadesCurricular.length; i++) {
       lista.push(
-        {label:usuario.unidadesCurricular[i].nome,value:usuario.unidadesCurricular[i].id}
+        { label: usuario.unidadesCurricular[i].nome, value: usuario.unidadesCurricular[i].id }
       );
     }
     return lista;
   }
 
+  carregarComboCursosUsuario() {
+    let usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    let lista: any[] = [];
+    let curso: any;
+    for (let i = 0; i < usuario.unidadesCurricular.length; i++) {
+      for (let j = 0; j < lista.length; j++) {
+          if (usuario.unidadesCurricular[i].curso.nome != lista[j].value) {
+            curso = usuario.unidadesCurricular[i].curso;
+          } else {
+            curso = null;
+          }
+      }
+      if(curso == null){
+        lista.push(
+          { label: usuario.unidadesCurricular[i].curso.nome, value: usuario.unidadesCurricular[i].curso.id }
+        );
+      }
+    }
+    return lista;
+  }
 
-  bloquearAcessoNaoAutorizado(){
-    if(localStorage.getItem('usuarioLogado') == null){
+
+  bloquearAcessoNaoAutorizado() {
+    if (localStorage.getItem('usuarioLogado') == null) {
       this.router.navigateByUrl('/login')
     }
   }

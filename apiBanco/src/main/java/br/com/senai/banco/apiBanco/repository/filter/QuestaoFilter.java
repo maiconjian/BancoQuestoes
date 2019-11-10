@@ -2,27 +2,28 @@ package br.com.senai.banco.apiBanco.repository.filter;
 
 public class QuestaoFilter {
 	
-	private String unidadeCurricular;
+	private long unidadeCurricular;
 	
-	private String curso;
+	private long curso;
 	
 	private String nivelDificuldade;
 	
 	private boolean publicada;
 
-	public String getUnidadeCurricular() {
+
+	public long getUnidadeCurricular() {
 		return unidadeCurricular;
 	}
 
-	public void setUnidadeCurricular(String unidadeCurricular) {
+	public void setUnidadeCurricular(long unidadeCurricular) {
 		this.unidadeCurricular = unidadeCurricular;
 	}
 
-	public String getCurso() {
+	public long getCurso() {
 		return curso;
 	}
 
-	public void setCurso(String curso) {
+	public void setCurso(long curso) {
 		this.curso = curso;
 	}
 

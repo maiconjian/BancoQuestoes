@@ -1,6 +1,6 @@
 <app-menu></app-menu>
 
-<div class="ui-g container">
+<div class="ui-g containerPesquisa">
     <app-mensagem [hidden]="!msgPrincipalAtivo" (opcao)="setOpcao($event)"></app-mensagem>
     <div class="ui-g-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
             <h1 style="text-align: center !important;">Usuario</h1>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="ui-g-9" id="tabela">
-        <p-table [value]="listaUsuario">
+        <p-table [value]="listaUsuario" [responsive]="true">
             <ng-template pTemplate="header">
                 <tr>
                     <th class="cabecalho-login">Matricula</th>
@@ -85,8 +85,6 @@
         <p-dialog [(visible)]="modalCad" [positionTop]="1" [responsive]="true" [modal]="true" [draggable]="false"
             [style]="{width: '800px'}">
             <form>
-
-
                 <div class="ui-g-6 ui-fluid">
                     <span class="ui-float-label">
                         <input name="nome" pInputText type="text" [(ngModel)]="usuario.nome">

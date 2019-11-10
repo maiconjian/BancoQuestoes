@@ -45,7 +45,7 @@ export class CadastrarQuestaoComponent implements OnInit {
    this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
    this.getIniciarInstancia();
    console.log(this.alternativaA.correta);
-   this.listaUnidadesCurricular=this.apoioService.carregarComboUnidadeCurricular();
+   this.listaUnidadesCurricular=this.apoioService.carregarComboUnidadeCurricularUsuario();
     this.questao = new Questao;
     this.listaDificuldade = this.apoioService.carregarComboDificuldade();
     this.listaCapacidade=this.apoioService.carregarComboCapacidade();

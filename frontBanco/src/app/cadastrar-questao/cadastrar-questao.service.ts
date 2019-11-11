@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UrlPadraoService } from '../util/url-padrao.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { tarefaDto } from '../negocio/dto/tarefaDto';
 
 const headers = new HttpHeaders();
 headers.append("Accept", 'application/json');
@@ -50,5 +51,19 @@ export class CadastrarQuestaoService {
     .toPromise()
     .then(response=>response)
     .catch(erro=>console.log(erro));
+  }
+
+  buscarPorId(id:any):Promise<any>{
+    return this.http.get(`${this.url.getURL()}/questao/buscarid/${id}`,{headers})
+    .toPromise()
+    .then(response=>response);
+  }
+
+  buscarFoto(caminho:any):Promise<any>{
+    let tarefa= new tarefaDto();
+    tarefa.caminho=caminho;
+    return this.http.post(`${this.url.getURL()}/questao/buscarfoto`,tarefa,{headers: headers, responseType: 'arraybuffer'})
+    .toPromise()
+    .then(response=> response)
   }
 }

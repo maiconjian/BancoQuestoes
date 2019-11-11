@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.senai.banco.apiBanco.dto.QuestaoDto;
+import br.com.senai.banco.apiBanco.dto.TarefaDto;
 import br.com.senai.banco.apiBanco.model.Questao;
 import br.com.senai.banco.apiBanco.repository.filter.QuestaoFilter;
 import br.com.senai.banco.apiBanco.resource.interfaces.IQuestaoResource;
@@ -49,23 +50,30 @@ public class QuestaoResource implements IQuestaoResource {
 	}
 
 	@Override
+	@GetMapping("/buscarid/{id}")
 	public ResponseEntity<?> buscarPorId(@PathVariable("id") long id) {
 		Questao questao = this.questaoService.buscarPorId(id);
 		return new ResponseEntity<Questao>(questao,HttpStatus.OK);
 	}
 	
-	@Override
-	@GetMapping("/buscarid/{id}")
-	public ResponseEntity<?> buscar(@PathVariable("id")long id) throws IOException {
-		QuestaoDto questaoDto = this.questaoService.buscar(id);
-		return new ResponseEntity<QuestaoDto>(questaoDto,HttpStatus.OK);
-	}
+//	@Override
+//	@GetMapping("/buscarid/{id}")
+//	public ResponseEntity<?> buscar(@PathVariable("id")long id) throws IOException {
+//		QuestaoDto questaoDto = this.questaoService.buscar(id);
+//		return new ResponseEntity<QuestaoDto>(questaoDto,HttpStatus.OK);
+//	}
 
 	@Override
 	@GetMapping("/pesquisar")
 	public ResponseEntity<?> pesquisar(QuestaoFilter entity) {
 		List<Questao> lista = this.questaoService.pesquisar(entity);
 		return new ResponseEntity<List<Questao>>(lista,HttpStatus.OK);
+	}
+
+	@Override
+	@PostMapping("/buscarfoto")
+	public byte[] buscarFoto(@RequestBody TarefaDto tarefa) throws IOException {
+		return this.questaoService.retornoImagem(tarefa);
 	}
 
 

@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.senai.banco.apiBanco.dto.QuestaoDto;
 import br.com.senai.banco.apiBanco.model.Questao;
 import br.com.senai.banco.apiBanco.repository.filter.QuestaoFilter;
 import br.com.senai.banco.apiBanco.util.IGenericService;
@@ -16,6 +15,6 @@ public interface IQuestaoService extends IGenericService<Questao, QuestaoFilter,
 	
 	public Questao incluir(MultipartFile enunciadoImg,MultipartFile suporteImg,String entity) throws FileNotFoundException, IOException;
 
-	public QuestaoDto buscar(long id) throws IOException;
+	
 
 }

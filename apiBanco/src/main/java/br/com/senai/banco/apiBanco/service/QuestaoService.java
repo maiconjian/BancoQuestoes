@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.senai.banco.apiBanco.dto.QuestaoDto;
+import br.com.senai.banco.apiBanco.dto.TarefaDto;
 import br.com.senai.banco.apiBanco.model.Questao;
 import br.com.senai.banco.apiBanco.repository.QuestaoRepository;
 import br.com.senai.banco.apiBanco.repository.filter.QuestaoFilter;
@@ -56,25 +56,25 @@ public class QuestaoService implements IQuestaoService {
 	}
 	
 
-	@Override
-	public QuestaoDto buscar(long id) throws IOException {
-		Questao questao = this.questaoRepo.findById(id).get();
-		QuestaoDto questaoRetorno = new QuestaoDto();
-		
-		if(questao != null) {
-			if(isPath(questao.getEnunciado())) {
-				questaoRetorno.setEnunciadoImg(retornoImagem(questao.getEnunciado()));
-			}
-			if(isPath(questao.getSuporte())) {
-				questaoRetorno.setSuporteImg(retornoImagem(questao.getSuporte()));
-			}
-			questaoRetorno.setQuestao(questao);
-			return questaoRetorno;
-		}
-		return questaoRetorno;
-		
-		
-	}
+//	@Override
+//	public QuestaoDto buscar(long id) throws IOException {
+//		Questao questao = this.questaoRepo.findById(id).get();
+//		QuestaoDto questaoRetorno = new QuestaoDto();
+//		
+//		if(questao != null) {
+//			if(isPath(questao.getEnunciado())) {
+//				questaoRetorno.setEnunciadoImg(retornoImagem(questao.getEnunciado()));
+//			}
+//			if(isPath(questao.getSuporte())) {
+//				questaoRetorno.setSuporteImg(retornoImagem(questao.getSuporte()));
+//			}
+//			questaoRetorno.setQuestao(questao);
+//			return questaoRetorno;
+//		}
+//		return questaoRetorno;
+//		
+//		
+//	}
 
 	@Override
 	public Questao alterar(Questao entity) {
@@ -97,17 +97,17 @@ public class QuestaoService implements IQuestaoService {
 	}
 
 	
-	private boolean isPath(String caminho) {
-		if(caminho.substring(0,2).equals("C:")) {
-			return true;
-			
-		}
-		return false;
-	}
+//	private boolean isPath(String caminho) {
+//		if(caminho.substring(0,2).equals("C:")) {
+//			return true;
+//			
+//		}
+//		return false;
+//	}
 	
-	private byte[] retornoImagem(String caminho) throws IOException {
+	public byte[] retornoImagem(TarefaDto tarefa) throws IOException {
 //		String nomeArquivo = caminho.replace("C:\\Users\\maicon\\Pictures\\repositorioFotos\\","");
-		File file = new File(caminho);
+		File file = new File(tarefa.getCaminho());
 //		byte[] bytes = new byte[(int) file.length()];
 //		FileInputStream fis = new FileInputStream(file);
 //		fis.read(bytes);

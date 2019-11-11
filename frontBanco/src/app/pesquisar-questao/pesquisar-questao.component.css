@@ -1,0 +1,49 @@
+#tabela{
+    padding-top: 2.4em;
+    
+}
+
+.pesquisa{
+    /* border-right: 1px solid black; */
+    height: 100%;
+    padding-top: 15px;
+
+}
+.cabecalho-objeto{
+    width: 18em;
+    text-align: center;
+}
+
+.cabecalho-unidade{
+    width: 18em;
+    text-align: center;
+}
+
+.cabecalho-capacidade{
+    width: 8em;
+    text-align: center;
+}
+
+.cabecalho-autor{
+    width: 20em;
+    text-align: center;
+}
+
+.coluna-objeto{
+    width: 20em;
+    text-align: left;
+}
+
+.img{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 750px;
+    margin-left: 25%;
+}
+/* 
+p-dialog .ui-dialog {
+    overflow: scroll;
+    max-height: 100%;
+} */
+

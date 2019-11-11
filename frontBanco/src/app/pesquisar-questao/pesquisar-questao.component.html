@@ -3,85 +3,189 @@
 <div class="ui-g containerPesquisa">
         <app-mensagem></app-mensagem>
         <div class="ui-g-12 ui-sm-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
-                <h1 style="text-align: center !important;">Pesquisar Questão</h1>
+                <h1 style="text-align: center !important;">{{titulo}}</h1>
+        </div>
+        <div [hidden]="previaDiv">
+                <div class="ui-g-3 ui-sm-12">
+                        <form class="pesquisa" autocomplete="off" (ngSubmit)="pesquisar()">
+                                <div class="ui-g-12 ui-fluid">
+                                        <span class="ui-float-label">
+                                                <p-dropdown [options]="listaCursosUsuario" [showClear]="true"
+                                                        name="Curso" [autoWidth]="false" [filter]="false"
+                                                        emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                                                        placeholder="Curso" [(ngModel)]="filtro.curso">
+                                                </p-dropdown>
+                                                <label class="espaco-reservado" for="float-label"
+                                                        [hidden]="filtro.curso !=null  ? false:true">Curso</label>
+                                        </span>
+                                </div>
+
+                                <div class="ui-g-12 ui-fluid">
+                                        <span class="ui-float-label">
+                                                <p-dropdown [options]="listaUnidadesCurricularUsuario"
+                                                        [showClear]="true" name="Unidade Curricular" [autoWidth]="false"
+                                                        [filter]="false" emptyFilterMessage="Nenhum registro!"
+                                                        resetFilterOnHide="true" placeholder="Unidade Curricular"
+                                                        [(ngModel)]="filtro.unidadeCurricular">
+                                                </p-dropdown>
+                                                <label class="espaco-reservado" for="float-label"
+                                                        [hidden]="filtro.unidadeCurricular !=null  ? false:true">Unidade
+                                                        Curricular</label>
+                                        </span>
+                                </div>
+
+                                <div class="ui-g-12 ui-fluid">
+                                        <span class="ui-float-label">
+                                                <p-dropdown [options]="listaDificuldade" [showClear]="true"
+                                                        name="dificuldade" [autoWidth]="false" [filter]="false"
+                                                        emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                                                        placeholder="Dificuldade" [(ngModel)]="filtro.nivelDificuldade">
+                                                </p-dropdown>
+                                                <label class="espaco-reservado" for="float-label"
+                                                        [hidden]="filtro.nivelDificuldade !=null  ? false:true">Dificuldade</label>
+                                        </span>
+                                </div>
+
+                                <div class="ui-g-12 ui-fluid">
+                                        <button class="btn-pesquisa" pButton type="submit" label="Pesquisar"></button>
+                                </div>
+                        </form>
+                </div>
+
+                <div class="ui-g-9 ui-sm-12" id="tabela">
+                        <p-table [value]="listaQuestoes" [responsive]="true">
+                                <ng-template pTemplate="header">
+                                        <tr>
+                                                <th class="cabecalho-objeto">Objeto Conhecimento</th>
+                                                <th class="cabecalho-unidade">Unidade Curricular</th>
+                                                <th class="cabecalho-capacidade">Capacidade</th>
+                                                <th class="cabecalho-autor">Autor</th>
+                                                <th class="cabecalho-opcoes"></th>
+                                        </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-questao>
+                                        <tr>
+                                                <td class="cabecalho-objeto">{{questao.objetoConhecimento}}</td>
+                                                <td class="cabecalho-unidade">{{questao.unidadeCurricular}}</td>
+                                                <td class="cabecalho-capacidade">{{questao.capacidade}}</td>
+                                                <td class="cabecalho-autor">{{questao.autor}}</td>
+
+                                                <td class="tb-coluna-opcoes">
+                                                        <button class="btn-tabela" style="border: none;" pButton
+                                                                type="button" icon="fa fa-search" pTooltip="Visualizar"
+                                                                tooltipPosition="top"
+                                                                (click)="getPreviaModal(questao.id)"></button>
+                                                </td>
+                                        </tr>
+                                </ng-template>
+                        </p-table>
+
+                </div>
         </div>
 
-        <div class="ui-g-3 ui-sm-12">
-                <form autocomplete="off" (ngSubmit)="pesquisar()">
-                        <div class="ui-g-12 ui-fluid">
-                                <span class="ui-float-label">
-                                        <p-dropdown [options]="listaCursosUsuario" [showClear]="true" name="Curso"
-                                                [autoWidth]="false" [filter]="false"
-                                                emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
-                                                placeholder="Curso" [(ngModel)]="filtro.curso">
-                                        </p-dropdown>
-                                        <label class="espaco-reservado" for="float-label"
-                                                [hidden]="filtro.curso !=null  ? false:true">Curso</label>
-                                </span>
-                        </div>
+        <div class="ui-g-12 ui-sm-12" [hidden]="!previaDiv">
+                <div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
+                        <h3 style="margin-bottom: 3%;">Enunciado</h3>
+                        <textarea pInputTextarea name="enunciado" cols="30" rows="4" [disabled]="true"
+                                [(ngModel)]="questao.enunciado" [hidden]="!previaImgEnunciado"></textarea>
+                        <img class="img" [hidden]="previaImgEnunciado" src="{{previaImgEnunciadoUrl}}" alt="">
+                </div>
+                <div class="ui-g-12 ui-fluid">
+                        <h3 style="margin-bottom: 3%;">Suporte</h3>
+                        <textarea pInputTextarea name="suporte" cols="30" rows="4" [disabled]="true"
+                                [(ngModel)]="questao.suporte" [hidden]="!previaImgSuporte"></textarea>
+                        <img class="img" src="{{previaImgSuporteUrl}}" alt="" [hidden]="previaImgSuporte">
+                </div>
 
-                        <div class="ui-g-12 ui-fluid">
-                                <span class="ui-float-label">
-                                        <p-dropdown [options]="listaUnidadesCurricularUsuario" [showClear]="true"
-                                                name="Unidade Curricular" [autoWidth]="false" [filter]="false"
-                                                emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
-                                                placeholder="Unidade Curricular" [(ngModel)]="filtro.unidadeCurricular">
-                                        </p-dropdown>
-                                        <label class="espaco-reservado" for="float-label"
-                                                [hidden]="filtro.unidadeCurricular !=null  ? false:true">Unidade
-                                                Curricular</label>
-                                </span>
-                        </div>
+                <div class="ui-g-12 ui-fluid">
+                        <h3 style="margin-bottom: 3%;">Comando</h3>
+                        <textarea pInputTextarea name="comando" cols="30" rows="4" [disabled]="true"
+                                [(ngModel)]="questao.comando"></textarea>
+                </div>
 
-                        <div class="ui-g-12 ui-fluid">
-                                <span class="ui-float-label">
-                                        <p-dropdown [options]="listaDificuldade" [showClear]="true" name="dificuldade"
-                                                [autoWidth]="false" [filter]="false"
-                                                emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
-                                                placeholder="Dificuldade" [(ngModel)]="filtro.nivelDificuldade">
-                                        </p-dropdown>
-                                        <label class="espaco-reservado" for="float-label"
-                                                [hidden]="filtro.nivelDificuldade !=null  ? false:true">Dificuldade</label>
-                                </span>
+                <div class="ui-g-12 ui-fluid">
+                        <h3 style="margin-bottom: 3%;">Alternativas</h3>
+                        <div class="ui-g-12">
+                                <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                                        <h4 [ngStyle]="{color: alternativaA.correta ? ' green':'grey'}">A</h4>
+                                </div>
+                                <div class="ui-g-11">
+                                        <textarea pInputTextarea name="alternativaA" cols="30" rows="3"
+                                                [disabled]="false" [(ngModel)]="alternativaA.descricao"
+                                                [ngStyle]="{border: alternativaA.correta ? '8px solid green':'1px solid grey'}"></textarea>
+                                </div>
                         </div>
+                        <div class="ui-g-12">
+                                <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                                        <h4  [ngStyle]="{color: alternativaB.correta ? ' green':'grey'}">B</h4>
+                                </div>
+                                <div class="ui-g-11">
+                                        <textarea pInputTextarea name="alternativaB" cols="30" rows="3"
+                                                [disabled]="false" [(ngModel)]="alternativaB.descricao"
+                                                [ngStyle]="{border: alternativaB.correta? '8px solid green':'1px solid grey'}"></textarea>
+                                </div>
+                        </div>
+                        <div class="ui-g-12">
+                                <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                                        <h4 [ngStyle]="{color: alternativaC.correta ? ' green':'grey'}">C</h4>
+                                </div>
+                                <div class="ui-g-11">
+                                        <textarea pInputTextarea name="alternativaC" cols="30" rows="3"
+                                                [disabled]="false" [(ngModel)]="alternativaC.descricao"
+                                                [ngStyle]="{border: alternativaC.correta?'8px solid green':'1px solid grey'}"></textarea>
+                                </div>
+                        </div>
+                        <div class="ui-g-12">
+                                <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                                        <h4  [ngStyle]="{color: alternativaD.correta ? ' green':'grey'}">D</h4>
+                                </div>
+                                <div class="ui-g-11">
+                                        <textarea pInputTextarea name="alternativaD" cols="30" rows="3"
+                                                [disabled]="false" [(ngModel)]="alternativaD.descricao"
+                                                [ngStyle]="{border: alternativaD.correta ? '8px solid green':'1px solid grey'}"></textarea>
+                                </div>
+                        </div>
+                        <div class="ui-g-12">
+                                <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                                        <h4  [ngStyle]="{color: alternativaE.correta ? ' green':'grey'}">E</h4>
+                                </div>
+                                <div class="ui-g-11">
+                                        <textarea pInputTextarea name="alternativaE" cols="30" rows="3"
+                                                [disabled]="false" [(ngModel)]="alternativaE.descricao"
+                                                [ngStyle]="{border: alternativaE.correta ? '8px solid green':'1px solid grey'}"></textarea>
+                                </div>
+                        </div>
+                </div>
 
-                        <div class="ui-g-12 ui-fluid">
-                                <button class="btn-pesquisa" pButton type="submit" label="Pesquisar"></button>
-                        </div>
-                </form>
+                <div class="ui-g-12">
+                        <button pButton type="button" label="Voltar" (click)="voltarPesquisa()" ></button>
+                </div>
+
         </div>
 
-        <div class="ui-g-9 ui-sm-12">
-                <p-table [value]="listaQuestoes" [responsive]="true">
-                        <ng-template pTemplate="header">
-                                <tr>
-                                        <th class="cabecalho-login">Objeto Conhecimento</th>
-                                        <th class="cabecalho-nome">Unidade Curricular</th>
-                                        <th class="cabecalho-email">Capacidade</th>
-                                        <th class="cabecalho-email">Autor</th>
-                                        <th class="cabecalho-opcoes"></th>
-                                </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-questao>
-                                <tr>
-                                        <td>{{questao.objetoConhecimento}}</td>
-                                        <td>{{questao.unidadeCurricular}}</td>
-                                        <td>{{questao.capacidade}}</td>
-                                        <td>{{questao.autor}}</td>
 
-                                        <!-- <td class="tb-coluna-opcoes">
-                                                <button class="btn-tabela" pButton type="button" icon="fa fa-edit"
-                                                        pTooltip="Editar" tooltipPosition="top"
-                                                        (click)="getEditar(usuario)"></button>
-                                                <button class="btn-tabela" pButton type="button"
-                                                        icon="{{getIconSituacao(usuario.ativo)}}"
-                                                        pTooltip="{{getToolTipSituacao(usuario.ativo)}}"
-                                                        tooltipPosition="top"
-                                                        (click)="getGerenciarSituacaoUsuario(usuario)"></button>
-                                        </td> -->
-                                </tr>
-                        </ng-template>
-                </p-table>
+        <!-- <div class="ui-g-12">
+                <p-dialog [(visible)]="previaModal" [responsive]="true" [positionTop]='1' [modal]="true" [style]="{width: '900px'}">
+                <p-dialog header="null" [(visible)]="previaModal" [responsive]="true" [modal]="true" [positionTop]='1'
+                        [style]="{'overflow': 'scroll'}">
+                        <div class="ui-g-12 ui-fluid">
+                                <textarea pInputTextarea name="enunciado" cols="30" rows="4"
+                                        [(ngModel)]="questao.enunciado" [hidden]="!previaImgEnunciado"></textarea>
+                                <img class="img" [hidden]="previaImgEnunciado" src="{{previaImgEnunciadoUrl}}" alt="">
+                        </div>
+                        <div class="ui-g-12 ui-fluid">
+                                <textarea pInputTextarea name="suporte" cols="30" rows="4" [(ngModel)]="questao.suporte"
+                                        [hidden]="!previaImgSuporte"></textarea>
+                                <img class="img" src="{{previaImgSuporteUrl}}" alt="" [hidden]="previaImgSuporte">
+                        </div>
 
-        </div>
+                        <div class="ui-g-12 ui-fluid">
+                                <textarea pInputTextarea name="suporte01" cols="30" rows="4"
+                                        [(ngModel)]="questao.suporte" [hidden]="!previaImgSuporte"></textarea>
+                                <img class="img" src="{{previaImgSuporteUrl}}" alt="" [hidden]="previaImgSuporte">
+                        </div>
+
+
+                </p-dialog>
+        </div> -->
 </div>

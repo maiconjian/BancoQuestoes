@@ -69,12 +69,13 @@ td {
 .tb-coluna-opcoes  {
   text-align: center !important; 
   padding: 0 !important; 
-  margin: 0 !important; 
+  margin: 0 !important;
+  border: 1px solid white !important;
 }
 
 .btn-tabela {
   margin: 7px !important;  
-  border: none !important;
+  border: 1px solid white !important;
 }
 /* =================================== */
 

@@ -5,6 +5,7 @@ import { QuestaoFiltro } from '../negocio/filtro/questao-filtro';
 import { CadastrarQuestaoService } from '../cadastrar-questao/cadastrar-questao.service';
 import { Questao } from '../negocio/model/questao';
 import { Alternativa } from '../negocio/model/alternativa';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pesquisar-questao',
@@ -106,20 +107,27 @@ export class PesquisarQuestaoComponent implements OnInit {
       this.alternativaD = response.alternativaD;
       this.alternativaE = response.alternativaE;
       this.previaDiv=true;
-      this.titulo= 'Vizualizar Questão';
+      this.titulo= 'Visualizar Questão';
     })
   }
 
   getImgEnunciado(caminho:string){
     this.questaoService.buscarFoto(caminho)
     .then(response =>{
-        let TYPED_ARRAY = new Uint8Array(response);
-        const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
-        let base64String = btoa(STRING_CHAR);
-        this.previaImgEnunciadoUrl = 'data:image/jpg;base64,' + base64String;
-        this.previaImgEnunciado=false;
+      console.log(response.byteLength);
+      let TYPED_ARRAY = new Uint8Array(response);
+      console.log(TYPED_ARRAY);
+      //const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+      const STRING_CHAR = TYPED_ARRAY.reduce((data, byte)=> {
+        return data + String.fromCharCode(byte);
+        }, '');
+      let base64String = btoa(STRING_CHAR);
+      this.previaImgEnunciadoUrl = 'data:image/jpg;base64,' + base64String;
+      this.previaImgEnunciado=false;
+
     })
     .catch(error=>{
+      console.log(error)
       this.previaImgEnunciado=true;
     })
   }
@@ -128,12 +136,17 @@ export class PesquisarQuestaoComponent implements OnInit {
     this.questaoService.buscarFoto(caminho)
     .then(response =>{
         let TYPED_ARRAY = new Uint8Array(response);
-        const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+        //const STRING_CHAR = String.fromCharCode.apply(null,TYPED_ARRAY);
+        const STRING_CHAR = TYPED_ARRAY.reduce((data, byte)=> {
+          return data + String.fromCharCode(byte);
+          }, '');
         let base64String = btoa(STRING_CHAR);
         this.previaImgSuporteUrl = 'data:image/jpg;base64,' + base64String;
         this.previaImgSuporte=false;
+
     })
     .catch(error=>{
+      console.log(error)
       this.previaImgSuporte=true;
     })
   }

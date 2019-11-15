@@ -55,12 +55,14 @@ export class LoginComponent implements OnInit {
     this.loginService.verificarCodigo(this.dados.login, this.codigoQR)
       .then(response => {
         if(response !=null){
+          console.log(response)
           localStorage.setItem('usuarioLogado', JSON.stringify(response));
-        
+          this.adicionarPermissoes(response);
           this.displayQRCode = false;
+         
           this.router.navigateByUrl('/home')
           
-          this.adicionarPermissoes(response);
+         
         }else{
           this.codigoQR ='';
           this.mensagemComponent.showError('Código de Acesso Inválido!')

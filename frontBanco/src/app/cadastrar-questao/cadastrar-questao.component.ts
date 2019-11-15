@@ -43,6 +43,7 @@ export class CadastrarQuestaoComponent implements OnInit {
 
   ngOnInit() {
    this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+   this.apoioService.adicionarPermissoes(this.usuario);
    this.getIniciarInstancia();
    console.log(this.alternativaA.correta);
    this.listaUnidadesCurricular=this.apoioService.carregarComboUnidadeCurricularUsuario();
@@ -58,7 +59,7 @@ export class CadastrarQuestaoComponent implements OnInit {
     ]
 
   }
-  merge(){   
+  merge(inputEnunciado:any,inputSuporte:any){   
     this.questao.alternativaA=this.alternativaA;
     this.questao.alternativaB=this.alternativaB;
     this.questao.alternativaC=this.alternativaC;
@@ -73,7 +74,7 @@ export class CadastrarQuestaoComponent implements OnInit {
       this.questaoService.incluir(this.enunciadoImge,this.suporteImg,JSON.stringify(this.questao))
       .then(response=>{
         this.mensagemComponent.showSuccess('Questão enviada para Analise!!')
-        this.resetCadastro();
+        this.resetCadastro(inputEnunciado,inputSuporte);
       })
       .catch(error =>console.log(error));
     }else{
@@ -203,7 +204,7 @@ export class CadastrarQuestaoComponent implements OnInit {
  
 
 
-  resetCadastro(){
+  resetCadastro(inputEnunciado,inputSuporte){
     // this.getIniciarInstancia();
     // this.previewEnunciado = null;
     // this.previewSuporte=null;
@@ -212,6 +213,7 @@ export class CadastrarQuestaoComponent implements OnInit {
     //this.ngOnInit();
     setTimeout(() => {
       window.location.reload();
+      
     }, 200);
    
     console.log(this.usuario);

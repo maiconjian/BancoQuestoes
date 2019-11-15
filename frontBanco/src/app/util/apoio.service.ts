@@ -6,6 +6,7 @@ import { CursoService } from '../curso/curso.service';
 import { UnidadeService } from '../unidade/unidade.service';
 import { UnidadeCurricularService } from '../unidade-curricular/unidade-curricular.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,25 @@ export class ApoioService {
 
   constructor(
     private router: Router,
+    private loginService:LoginService,
     private usuarioService: UsuarioService,
     private cursoService: CursoService,
     private unidadeService: UnidadeService,
     private unidadeCurricularService: UnidadeCurricularService,
 
   ) { }
-
+  adicionarPermissoes(usuario: any) {
+    let perfis: any[] = [];
+    for (let i = 0; i < usuario.perfis.length; i++) {
+      perfis.push(usuario.perfis[i].nome);
+    }
+    console.log(perfis)
+    let user = {
+      username: usuario.nome,
+      permissions: perfis
+    }
+    this.loginService.setUser(user);
+  }
 
 
   comboSituacao() {
@@ -148,13 +161,13 @@ export class ApoioService {
     let curso: any;
     for (let i = 0; i < usuario.unidadesCurricular.length; i++) {
       for (let j = 0; j < lista.length; j++) {
-          if (usuario.unidadesCurricular[i].curso.nome != lista[j].value) {
-            curso = usuario.unidadesCurricular[i].curso;
-          } else {
-            curso = null;
-          }
+        if (usuario.unidadesCurricular[i].curso.nome != lista[j].value) {
+          curso = usuario.unidadesCurricular[i].curso;
+        } else {
+          curso = null;
+        }
       }
-      if(curso == null){
+      if (curso == null) {
         lista.push(
           { label: usuario.unidadesCurricular[i].curso.nome, value: usuario.unidadesCurricular[i].curso.id }
         );

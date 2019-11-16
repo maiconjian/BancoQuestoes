@@ -35,6 +35,8 @@ import { MensagemComponent } from './mensagem/mensagem.component';
 import { CadastrarQuestaoComponent } from "./cadastrar-questao/cadastrar-questao.component";
 import { HasPermissionDirective } from './util/HasPermissionDirective';
 import { PesquisarQuestaoComponent } from './pesquisar-questao/pesquisar-questao.component';
+import { VisualizarQuestaoComponent } from './visualizar-questao/visualizar-questao.component';
+import { AvaliarComponent } from './avaliar/avaliar.component';
 
 
 
@@ -52,7 +54,9 @@ import { PesquisarQuestaoComponent } from './pesquisar-questao/pesquisar-questao
     MensagemComponent,
     HasPermissionDirective,
     CadastrarQuestaoComponent,
-    PesquisarQuestaoComponent
+    PesquisarQuestaoComponent,
+    VisualizarQuestaoComponent,
+    AvaliarComponent
   ],
   imports: [
     BrowserModule,

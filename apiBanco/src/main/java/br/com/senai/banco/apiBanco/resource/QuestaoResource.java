@@ -76,6 +76,20 @@ public class QuestaoResource implements IQuestaoResource {
 		return this.questaoService.retornoImagem(tarefa);
 	}
 
+	@Override
+	@GetMapping("/questoesavaliar/{idUsuario}")
+	public ResponseEntity<?> questoesParaAvaliacao(@PathVariable("idUsuario")long idUsuario) {
+		List<Questao> lista = this.questaoService.questoesParaAvaliacao(idUsuario);
+		return new ResponseEntity<List<Questao>>(lista,HttpStatus.OK);
+	}
+
+	@Override
+	@PutMapping("/publicar/{idQuestao}")
+	public void publicarQuestao(@PathVariable("idQuestao")long idQuestao) {
+		this.questaoService.publicarQuestao(idQuestao);
+		
+	}
+
 
 
 	

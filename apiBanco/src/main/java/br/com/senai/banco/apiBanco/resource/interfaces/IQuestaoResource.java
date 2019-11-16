@@ -20,4 +20,8 @@ public interface IQuestaoResource extends IGenericResource<Questao, QuestaoFilte
 //	public ResponseEntity<?> buscar(long id) throws IOException;
 	
 	public byte[] buscarFoto(TarefaDto tarefa) throws IOException;
+	
+	public ResponseEntity<?> questoesParaAvaliacao(long idUsuario);
+	
+	public void publicarQuestao(long idQuestao);
 }

@@ -1,0 +1,51 @@
+<app-menu></app-menu>
+
+<div class="ui-g">
+    <div class="container">
+        <div class="ui-g-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
+            <h1 style="text-align: center !important;">Avaliar Questões</h1>
+        </div>
+        <div class="ui-g-12" [hidden]="previaDiv">
+
+
+            <div class="ui-g-12">
+                <p-table [value]="listaQuestoes" [responsive]="true">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="cabecalho-objeto">Objeto Conhecimento</th>
+                            <th class="cabecalho-unidade">Unidade Curricular</th>
+                            <th class="cabecalho-capacidade">Capacidade</th>
+                            <th class="cabecalho-autor">Autor</th>
+                            <th class="cabecalho-opcoes"></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-questao>
+                        <tr>
+                            <td class="cabecalho-objeto">{{questao.objetoConhecimento}}</td>
+                            <td class="cabecalho-unidade">{{questao.unidadeCurricular}}</td>
+                            <td class="cabecalho-capacidade">{{questao.capacidade}}</td>
+                            <td class="cabecalho-autor">{{questao.autor}}</td>
+
+                            <td class="tb-coluna-opcoes">
+                                <button class="btn-tabela" style="border: none;" pButton type="button" icon="fa fa-eye"
+                                    pTooltip="Visualizar" tooltipPosition="top"
+                                    (click)="getPreviaModal(questao.id)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="container" [hidden]="!previaDiv">
+                <app-visualizar-questao [idSelecionado]="idSelecionado"></app-visualizar-questao>
+                <div class="ui-g-12" style="text-align: center;">
+                        <button pButton type="button" label="Publicar" (click)="publicarQuestao()" style="margin-right: 5px;" ></button>
+                        <button pButton type="button" label="Voltar" (click)="voltarPesquisa()" ></button>
+                        
+                </div>
+            </div>
+
+        </div>
+    </div>

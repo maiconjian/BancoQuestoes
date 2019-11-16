@@ -1,0 +1,72 @@
+<div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
+    <h3 style="margin-bottom: 3%;">Enunciado</h3>
+    <textarea pInputTextarea name="enunciado" cols="30" rows="4" [disabled]="true"
+            [(ngModel)]="questao.enunciado" [hidden]="!previaImgEnunciado"></textarea>
+    <img class="img" [hidden]="previaImgEnunciado" src="{{previaImgEnunciadoUrl}}" alt="">
+</div>
+<div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
+    <h3 style="margin-bottom: 3%;">Suporte</h3>
+    <textarea pInputTextarea name="suporte" cols="30" rows="4" [disabled]="true"
+            [(ngModel)]="questao.suporte" [hidden]="!previaImgSuporte"></textarea>
+    <img class="img" src="{{previaImgSuporteUrl}}" alt="" [hidden]="previaImgSuporte">
+</div>
+
+<div class="ui-g-12 ui-fluid"style="margin-bottom: 30px;">
+    <h3 style="margin-bottom: 3%;">Comando</h3>
+    <textarea pInputTextarea name="comando" cols="30" rows="4" [disabled]="true"
+            [(ngModel)]="questao.comando"></textarea>
+</div>
+
+<div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
+    <h3 style="margin-bottom: 3%;">Alternativas</h3>
+    <div class="ui-g-12">
+            <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                    <h4 [ngStyle]="{color: alternativaA.correta ? ' green':'grey'}">A</h4>
+            </div>
+            <div class="ui-g-11">
+                    <textarea pInputTextarea name="alternativaA" cols="30" rows="3"
+                            [disabled]="true" [(ngModel)]="alternativaA.descricao"
+                            [ngStyle]="{border: alternativaA.correta ? '8px solid green':'1px solid grey'}"></textarea>
+            </div>
+    </div>
+    <div class="ui-g-12">
+            <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                    <h4  [ngStyle]="{color: alternativaB.correta ? ' green':'grey'}">B</h4>
+            </div>
+            <div class="ui-g-11">
+                    <textarea pInputTextarea name="alternativaB" cols="30" rows="3"
+                            [disabled]="true" [(ngModel)]="alternativaB.descricao"
+                            [ngStyle]="{border: alternativaB.correta? '8px solid green':'1px solid grey'}"></textarea>
+            </div>
+    </div>
+    <div class="ui-g-12">
+            <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                    <h4 [ngStyle]="{color: alternativaC.correta ? ' green':'grey'}">C</h4>
+            </div>
+            <div class="ui-g-11">
+                    <textarea pInputTextarea name="alternativaC" cols="30" rows="3"
+                            [disabled]="true" [(ngModel)]="alternativaC.descricao"
+                            [ngStyle]="{border: alternativaC.correta?'8px solid green':'1px solid grey'}"></textarea>
+            </div>
+    </div>
+    <div class="ui-g-12">
+            <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                    <h4  [ngStyle]="{color: alternativaD.correta ? ' green':'grey'}">D</h4>
+            </div>
+            <div class="ui-g-11">
+                    <textarea pInputTextarea name="alternativaD" cols="30" rows="3"
+                            [disabled]="true" [(ngModel)]="alternativaD.descricao"
+                            [ngStyle]="{border: alternativaD.correta ? '8px solid green':'1px solid grey'}"></textarea>
+            </div>
+    </div>
+    <div class="ui-g-12">
+            <div class="ui-g-1" style="padding:2% 0 0 5%;">
+                    <h4  [ngStyle]="{color: alternativaE.correta ? ' green':'grey'}">E</h4>
+            </div>
+            <div class="ui-g-11">
+                    <textarea pInputTextarea name="alternativaE" cols="30" rows="3"
+                            [disabled]="true" [(ngModel)]="alternativaE.descricao"
+                            [ngStyle]="{border: alternativaE.correta ? '8px solid green':'1px solid grey'}"></textarea>
+            </div>
+    </div>
+</div>

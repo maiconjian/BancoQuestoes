@@ -69,9 +69,10 @@
                     [hidden]="getFotoEnunciado()"></textarea>
             </div>
             <div class="ui-g-12">
-                <input name="inputEnunciadpFile" #inputEnunciadpFile type="file" (change)="onSelectEnunciado($event)">
+                <input name="inputEnunciadpFile" #inputEnunciadpFile type="file" [hidden]="getFotoEnunciado()"
+                (change)="onSelectEnunciado($event,inputEnunciadpFile)">
                 <button pButton type="button" label="Texto" (click)="getTextAreaEnunciado(inputEnunciadpFile)"
-                    style="float: right;" [hidden]="!getFotoEnunciado()"></button>
+                     [hidden]="!getFotoEnunciado()"></button>
             </div>
         </div>
 
@@ -87,9 +88,10 @@
                     [hidden]="getFotoSuporte()"></textarea>
             </div>
             <div class="ui-g-12">
-                <input name="inputSuporteFile" #inputSuporteFile type="file" (change)="onSelectSuporte($event)">
+                <input name="inputSuporteFile" #inputSuporteFile type="file" [hidden]="getFotoSuporte()" 
+                (change)="onSelectSuporte($event,inputSuporteFile)">
                 <button pButton type="button" label="Texto" (click)="getTextAreaSuporte(inputSuporteFile)"
-                    style="float: right;" [hidden]="!getFotoSuporte()"></button>
+                     [hidden]="!getFotoSuporte()"></button>
             </div>
         </div>
 

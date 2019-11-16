@@ -56,7 +56,8 @@ export class CadastrarQuestaoService {
   buscarPorId(id:any):Promise<any>{
     return this.http.get(`${this.url.getURL()}/questao/buscarid/${id}`,{headers})
     .toPromise()
-    .then(response=>response);
+    .then(response=>response)
+    .catch(erro=>console.log(erro));
   }
 
   buscarFoto(caminho:any):Promise<any>{
@@ -65,5 +66,20 @@ export class CadastrarQuestaoService {
     return this.http.post(`${this.url.getURL()}/questao/buscarfoto`,tarefa,{headers: headers, responseType: 'arraybuffer'})
     .toPromise()
     .then(response=> response)
+    .catch(erro=>console.log(erro));
+  }
+
+  questoesAvaliar(idUsuario:any):Promise<any>{
+    return this.http.get(`${this.url.getURL()}/questao/questoesavaliar/${idUsuario}`,{headers})
+    .toPromise()
+    .then(response=>response)
+    .catch(erro=>console.log(erro));
+  }
+
+  publicar(id:any):Promise<any>{
+    return this.http.put(`${this.url.getURL()}/questao/publicar/${id}`,{headers})
+    .toPromise()
+    .then(response=>response)
+    .catch(erro=>console.log(erro));
   }
 }

@@ -118,6 +118,17 @@ public class QuestaoService implements IQuestaoService {
 		
 	}
 
+	@Override
+	public List<Questao> questoesParaAvaliacao(long idusuario) {
+		return this.questaoRepo.questoesParaAvaliacao(idusuario);
+	}
+
+	@Override
+	public void publicarQuestao(long idQuestao) {
+		this.questaoRepo.publicarQuestao(idQuestao);
+		
+	}
+
 	
 
 }

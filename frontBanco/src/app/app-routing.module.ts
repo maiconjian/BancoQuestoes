@@ -5,6 +5,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { HomeComponent } from './home/home.component';
 import { CadastrarQuestaoComponent } from "./cadastrar-questao/cadastrar-questao.component";
 import { PesquisarQuestaoComponent } from './pesquisar-questao/pesquisar-questao.component';
+import { AvaliarComponent } from './avaliar/avaliar.component';
 
 
 const routes: Routes = [
@@ -13,9 +14,8 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'usuario',component:UsuarioComponent},
   {path:'cadastrarQuetao',component:CadastrarQuestaoComponent},
-  {path:'pesquisarQuestao',component:PesquisarQuestaoComponent}
-  
-
+  {path:'pesquisarQuestao',component:PesquisarQuestaoComponent},
+  {path:'avaliar',component:AvaliarComponent}
 ];
 
 @NgModule({

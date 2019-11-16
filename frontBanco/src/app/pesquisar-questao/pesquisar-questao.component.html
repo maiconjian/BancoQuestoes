@@ -84,8 +84,8 @@
         </div>
 
         <div class="ui-g-12 ui-sm-12 container" [hidden]="!previaDiv">
-               
-                <div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
+                <app-visualizar-questao [idSelecionado]="idSelecionado"></app-visualizar-questao>
+                <!-- <div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
                         <h3 style="margin-bottom: 3%;">Enunciado</h3>
                         <textarea pInputTextarea name="enunciado" cols="30" rows="4" [disabled]="true"
                                 [(ngModel)]="questao.enunciado" [hidden]="!previaImgEnunciado"></textarea>
@@ -156,37 +156,11 @@
                                                 [ngStyle]="{border: alternativaE.correta ? '8px solid green':'1px solid grey'}"></textarea>
                                 </div>
                         </div>
-                </div>
+                </div> -->
 
                 <div class="ui-g-12">
                         <button pButton type="button" label="Voltar" (click)="voltarPesquisa()" ></button>
                 </div>
 
         </div>
-
-
-        <!-- <div class="ui-g-12">
-                <p-dialog [(visible)]="previaModal" [responsive]="true" [positionTop]='1' [modal]="true" [style]="{width: '900px'}">
-                <p-dialog header="null" [(visible)]="previaModal" [responsive]="true" [modal]="true" [positionTop]='1'
-                        [style]="{'overflow': 'scroll'}">
-                        <div class="ui-g-12 ui-fluid">
-                                <textarea pInputTextarea name="enunciado" cols="30" rows="4"
-                                        [(ngModel)]="questao.enunciado" [hidden]="!previaImgEnunciado"></textarea>
-                                <img class="img" [hidden]="previaImgEnunciado" src="{{previaImgEnunciadoUrl}}" alt="">
-                        </div>
-                        <div class="ui-g-12 ui-fluid">
-                                <textarea pInputTextarea name="suporte" cols="30" rows="4" [(ngModel)]="questao.suporte"
-                                        [hidden]="!previaImgSuporte"></textarea>
-                                <img class="img" src="{{previaImgSuporteUrl}}" alt="" [hidden]="previaImgSuporte">
-                        </div>
-
-                        <div class="ui-g-12 ui-fluid">
-                                <textarea pInputTextarea name="suporte01" cols="30" rows="4"
-                                        [(ngModel)]="questao.suporte" [hidden]="!previaImgSuporte"></textarea>
-                                <img class="img" src="{{previaImgSuporteUrl}}" alt="" [hidden]="previaImgSuporte">
-                        </div>
-
-
-                </p-dialog>
-        </div> -->
 </div>

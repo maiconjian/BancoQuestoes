@@ -65,7 +65,7 @@ export class CadastrarQuestaoComponent implements OnInit {
     this.questao.alternativaC=this.alternativaC;
     this.questao.alternativaD=this.alternativaD;
     this.questao.alternativaE=this.alternativaE;
-    this.questao.publicado=true;
+    this.questao.publicado=false;
     this.autor.id = this.usuario.id;
     this.questao.autor= this.autor;
     this.questao.unidadeCurricular=this.unidadeCurricular;
@@ -82,12 +82,15 @@ export class CadastrarQuestaoComponent implements OnInit {
     }
  
   }
-  onSelectEnunciado(event) {
+  onSelectEnunciado(event,inputFile: any) {
     this.previewEnunciado(event.target.files[0]);
+    inputFile.value = '';
+    
   }
 
-  onSelectSuporte(event) {
+  onSelectSuporte(event,inputFile: any) {
     this.previewSuporte(event.target.files[0]);
+    inputFile.value = '';
   }
 
   previewEnunciado(foto: any) {
@@ -97,12 +100,10 @@ export class CadastrarQuestaoComponent implements OnInit {
     }
     this.enunciadoImge = foto;
     this.questao.enunciado = this.enunciadoImge.name;
-    console.log(this.questao.enunciado);
     var reader = new FileReader();
     reader.readAsDataURL(foto);
     reader.onload = (_event) => {
-
-      this.previwEnunciadoFile = reader.result;  
+    this.previwEnunciadoFile = reader.result;  
     }
   }
 
@@ -205,18 +206,16 @@ export class CadastrarQuestaoComponent implements OnInit {
 
 
   resetCadastro(inputEnunciado,inputSuporte){
-    // this.getIniciarInstancia();
-    // this.previewEnunciado = null;
-    // this.previewSuporte=null;
-    // this.previwEnunciadoFile=null;
-    // this.previwSuporteFile=null;
+    this.getIniciarInstancia();
+    this.previewEnunciado = null;
+    this.previewSuporte=null;
+    this.previwEnunciadoFile=null;
+    this.previwSuporteFile=null;
     //this.ngOnInit();
-    setTimeout(() => {
-      window.location.reload();
+    // setTimeout(() => {
+    //   window.location.reload();
       
-    }, 200);
-   
-    console.log(this.usuario);
+    // }, 200);
   }
 
   getBlockCadastrar(){

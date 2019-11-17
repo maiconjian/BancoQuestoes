@@ -19,5 +19,7 @@ public interface IQuestaoService extends IGenericService<Questao, QuestaoFilter,
 	public List<Questao> questoesParaAvaliacao(long idusuario);
 	
 	public void publicarQuestao(long idQuestao);
+	
+	public void rejeitarQuestao(long idQuestao);
 
 }

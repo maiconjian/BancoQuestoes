@@ -13,7 +13,8 @@ create table QUESTAO (
    ID_ALTERNATIVA_C     int                  not null,
    ID_ALTERNATIVA_D     int                  not null,
    ID_ALTERNATIVA_E     int                  not null,
-   PUBLICADO                tinyint              not null,
+   PUBLICADO            tinyint              not null,
+   REJEITADO            tinyint              not null,
    constraint PK_QUESTAO primary key (ID)
 )
 go

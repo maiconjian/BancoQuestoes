@@ -14,12 +14,17 @@ import br.com.senai.banco.apiBanco.repository.impl.questao.QuestaoRepositoryQuer
 public interface QuestaoRepository extends CrudRepository<Questao, Long>,QuestaoRepositoryQuery {
 	
 	 @Transactional
-	 @Query(value="SELECT * FROM QUESTAO WHERE PUBLICADO = 0 AND ID_AUTOR != ?1",nativeQuery = true)
+	 @Query(value="SELECT * FROM QUESTAO WHERE PUBLICADO = 0 AND REJEITADO = 0 AND ID_AUTOR != ?1",nativeQuery = true)
 	 List<Questao> questoesParaAvaliacao(long idusuario);
 	 
 	 @Modifying
 	 @Transactional
 	 @Query(value="UPDATE QUESTAO SET PUBLICADO = 1 WHERE ID=?1",nativeQuery = true)
 	 public void publicarQuestao(long idQuestao);
+	 
+	 @Modifying
+	 @Transactional
+	 @Query(value="UPDATE QUESTAO SET REJEITADO = 1 WHERE ID=?1",nativeQuery = true)
+	 public void rejeitarQuestao(long idQuestao);
 
 }

@@ -61,6 +61,9 @@ public class Questao {
 	@Column(name="PUBLICADO")
 	private boolean publicado;
 	
+	@Column(name="REJEITADO")
+	private boolean rejeitado;
+	
 	@ManyToOne()
 	@JoinColumn(name = "ID_UNIDADE_CURRICULAR")
 	private UnidadeCurricular unidadeCurricular;
@@ -171,6 +174,17 @@ public class Questao {
 
 	public void setPublicado(boolean publicado) {
 		this.publicado = publicado;
+	
+	}
+	
+	
+
+	public boolean isRejeitado() {
+		return rejeitado;
+	}
+
+	public void setRejeitado(boolean rejeitado) {
+		this.rejeitado = rejeitado;
 	}
 
 	public UnidadeCurricular getUnidadeCurricular() {

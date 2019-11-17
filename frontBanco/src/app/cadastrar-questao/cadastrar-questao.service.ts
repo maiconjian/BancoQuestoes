@@ -82,4 +82,10 @@ export class CadastrarQuestaoService {
     .then(response=>response)
     .catch(erro=>console.log(erro));
   }
+  rejeitar(id:any):Promise<any>{
+    return this.http.put(`${this.url.getURL()}/questao/rejeitar/${id}`,{headers})
+    .toPromise()
+    .then(response=>response)
+    .catch(erro=>console.log(erro));
+  }
 }

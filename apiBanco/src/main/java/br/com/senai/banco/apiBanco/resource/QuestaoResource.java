@@ -90,6 +90,12 @@ public class QuestaoResource implements IQuestaoResource {
 		
 	}
 
+	@Override
+	@PutMapping("/rejeitar/{idQuestao}")
+	public void rejeitarQuestao(@PathVariable("idQuestao") long idQuestao) {
+		this.questaoService.rejeitarQuestao(idQuestao);
+	}
+
 
 
 	

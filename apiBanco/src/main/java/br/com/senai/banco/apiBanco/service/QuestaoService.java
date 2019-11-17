@@ -129,6 +129,12 @@ public class QuestaoService implements IQuestaoService {
 		
 	}
 
+	@Override
+	public void rejeitarQuestao(long idQuestao) {
+		this.questaoRepo.rejeitarQuestao(idQuestao);
+		
+	}
+
 	
 
 }

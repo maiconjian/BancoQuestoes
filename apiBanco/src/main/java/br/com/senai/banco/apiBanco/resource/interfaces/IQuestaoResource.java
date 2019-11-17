@@ -24,4 +24,6 @@ public interface IQuestaoResource extends IGenericResource<Questao, QuestaoFilte
 	public ResponseEntity<?> questoesParaAvaliacao(long idUsuario);
 	
 	public void publicarQuestao(long idQuestao);
+	
+	public void rejeitarQuestao(long idQuestao);
 }

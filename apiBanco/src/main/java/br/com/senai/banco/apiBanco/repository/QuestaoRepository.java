@@ -24,7 +24,11 @@ public interface QuestaoRepository extends CrudRepository<Questao, Long>,Questao
 	 
 	 @Modifying
 	 @Transactional
-	 @Query(value="UPDATE QUESTAO SET REJEITADO = 1 WHERE ID=?1",nativeQuery = true)
-	 public void rejeitarQuestao(long idQuestao);
+	 @Query(value="UPDATE QUESTAO SET REJEITADO = 1, OBSERVACAO = ?1 WHERE ID=?2",nativeQuery = true)
+	 public void rejeitarQuestao(String observacao,long idQuestao);
+	 
+	 @Transactional
+	 @Query(value="SELECT * FROM QUESTAO WHERE PUBLICADO = 0 AND ID_AUTOR = ?1",nativeQuery = true)
+	 public List<Questao> listarQuestoesEmEspera(long idAutor);
 
 }

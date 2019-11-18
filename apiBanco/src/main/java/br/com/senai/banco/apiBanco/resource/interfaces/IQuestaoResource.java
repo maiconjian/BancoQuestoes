@@ -7,6 +7,7 @@ import java.io.Serializable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.senai.banco.apiBanco.dto.RejeitadoDto;
 import br.com.senai.banco.apiBanco.dto.TarefaDto;
 import br.com.senai.banco.apiBanco.model.Questao;
 import br.com.senai.banco.apiBanco.repository.filter.QuestaoFilter;
@@ -25,5 +26,7 @@ public interface IQuestaoResource extends IGenericResource<Questao, QuestaoFilte
 	
 	public void publicarQuestao(long idQuestao);
 	
-	public void rejeitarQuestao(long idQuestao);
+	public void rejeitarQuestao(RejeitadoDto rejeitado);
+	
+	public ResponseEntity<?>listarQuestoesEmEspera(long idAutor);
 }

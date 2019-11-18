@@ -15,6 +15,7 @@ create table QUESTAO (
    ID_ALTERNATIVA_E     int                  not null,
    PUBLICADO            tinyint              not null,
    REJEITADO            tinyint              not null,
+   OBSERVACAO           text                 null,
    constraint PK_QUESTAO primary key (ID)
 )
 go

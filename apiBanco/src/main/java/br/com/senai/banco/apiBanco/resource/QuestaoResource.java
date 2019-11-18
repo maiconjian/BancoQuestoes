@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.senai.banco.apiBanco.dto.RejeitadoDto;
 import br.com.senai.banco.apiBanco.dto.TarefaDto;
 import br.com.senai.banco.apiBanco.model.Questao;
 import br.com.senai.banco.apiBanco.repository.filter.QuestaoFilter;
@@ -91,9 +92,16 @@ public class QuestaoResource implements IQuestaoResource {
 	}
 
 	@Override
-	@PutMapping("/rejeitar/{idQuestao}")
-	public void rejeitarQuestao(@PathVariable("idQuestao") long idQuestao) {
-		this.questaoService.rejeitarQuestao(idQuestao);
+	@PutMapping("/rejeitar")
+	public void rejeitarQuestao(@RequestBody RejeitadoDto rejeitado) {
+		this.questaoService.rejeitarQuestao(rejeitado.getObservacao(),rejeitado.getIdQuestao());
+	}
+
+	@Override
+	@GetMapping("/listarquestoesemespera/{idAutor}")
+	public ResponseEntity<?> listarQuestoesEmEspera(@PathVariable("idAutor")long idAutor) {
+		List<Questao> lista = this.questaoService.listarQuestoesEmEspera(idAutor);
+		return new ResponseEntity<List<Questao>>(lista,HttpStatus.OK);
 	}
 
 

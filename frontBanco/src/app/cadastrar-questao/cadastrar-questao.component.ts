@@ -45,7 +45,6 @@ export class CadastrarQuestaoComponent implements OnInit {
    this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
    this.apoioService.adicionarPermissoes(this.usuario);
    this.getIniciarInstancia();
-   console.log(this.alternativaA.correta);
    this.listaUnidadesCurricular=this.apoioService.carregarComboUnidadeCurricularUsuario();
     this.questao = new Questao;
     this.listaDificuldade = this.apoioService.carregarComboDificuldade();
@@ -84,13 +83,10 @@ export class CadastrarQuestaoComponent implements OnInit {
   }
   onSelectEnunciado(event,inputFile: any) {
     this.previewEnunciado(event.target.files[0]);
-    inputFile.value = '';
-    
   }
 
   onSelectSuporte(event,inputFile: any) {
     this.previewSuporte(event.target.files[0]);
-    inputFile.value = '';
   }
 
   previewEnunciado(foto: any) {
@@ -206,16 +202,20 @@ export class CadastrarQuestaoComponent implements OnInit {
 
 
   resetCadastro(inputEnunciado,inputSuporte){
-    this.getIniciarInstancia();
-    this.previewEnunciado = null;
-    this.previewSuporte=null;
-    this.previwEnunciadoFile=null;
-    this.previwSuporteFile=null;
+    // this.getIniciarInstancia();
+    // this.enunciadoImge=null;
+    // this.suporteImg=null;
+    // this.previewEnunciado = null;
+    // this.previewSuporte=null;
+    // this.previwEnunciadoFile=null;
+    // this.previwSuporteFile=null;
+    // this.getFotoEnunciado();
+    // this.getFotoSuporte();
     //this.ngOnInit();
-    // setTimeout(() => {
-    //   window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
       
-    // }, 200);
+    }, 200);
   }
 
   getBlockCadastrar(){

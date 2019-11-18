@@ -44,10 +44,27 @@
                 <div class="ui-g-12" style="text-align: center;">
                     <button pButton type="button" label="Publicar" (click)="publicarQuestao()"
                         style="margin-right: 5px;"></button>
-                    <button pButton type="button" label="Rejeitar" (click)="rejeitar()"  style="margin-right: 5px;"></button>
+                    <button pButton type="button" label="Rejeitar" (click)="modalOb = !modalOb"  style="margin-right: 5px;"></button>
                     <button pButton type="button" label="Voltar" (click)="voltarPesquisa()"></button>
                 </div>
             </div>
+        </div>
+
+        <div class="ui-g-12">
+            <p-dialog header="Observação"[(visible)]="modalOb" [responsive]="true" 
+            [modal]="true" [draggable]="true" [closable]="false">
+                <div class="ui-g-12" style="text-align: center;">
+                    <textarea name="observacao"cols="70" rows="10" [(ngModel)]="rejeitado.observacao"></textarea>
+                </div>
+                    <div class="ui-g-12" style="text-align: center;">
+                    <button pButton type="button" label="Incluir" (click)="rejeitar()" 
+                    [disabled]="block" style="margin-right: 10px;"></button>
+                    <button pButton type="button" label="Voltar" (click)="fecharModalObservacao()"
+                    [disabled]="block"></button>
+                </div>
+            </p-dialog>
 
         </div>
-    </div>
+
+       
+</div>

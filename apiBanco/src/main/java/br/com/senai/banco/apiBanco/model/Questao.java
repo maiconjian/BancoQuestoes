@@ -20,6 +20,9 @@ public class Questao {
 	@Column(name="ID")
 	private long id;
 	
+	@Column(name="OBSERVACAO")
+	private String observacao;
+	
 	@Column(name="CAPACIDADE")
 	private String capacidade;
 	
@@ -37,6 +40,7 @@ public class Questao {
 	
 	@Column(name="COMANDO")
 	private String comando;
+	
 	
 	@ManyToOne(fetch = FetchType.EAGER,  cascade=CascadeType.ALL)
 	@JoinColumn(name = "ID_ALTERNATIVA_A")
@@ -58,6 +62,8 @@ public class Questao {
 	@JoinColumn(name = "ID_ALTERNATIVA_E")
 	private Alternativa alternativaE;
 	
+	
+	
 	@Column(name="PUBLICADO")
 	private boolean publicado;
 	
@@ -78,6 +84,14 @@ public class Questao {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public String getCapacidade() {

@@ -130,9 +130,14 @@ public class QuestaoService implements IQuestaoService {
 	}
 
 	@Override
-	public void rejeitarQuestao(long idQuestao) {
-		this.questaoRepo.rejeitarQuestao(idQuestao);
+	public void rejeitarQuestao(String observacao,long idQuestao) {
+		this.questaoRepo.rejeitarQuestao(observacao,idQuestao);
 		
+	}
+
+	@Override
+	public List<Questao> listarQuestoesEmEspera(long idAutor) {
+		return this.questaoRepo.listarQuestoesEmEspera(idAutor);
 	}
 
 	

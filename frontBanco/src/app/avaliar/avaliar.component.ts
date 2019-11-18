@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CadastrarQuestaoService } from '../cadastrar-questao/cadastrar-questao.service';
 import { Usuario } from '../negocio/model/usuario';
 import { MensagemComponent } from '../mensagem/mensagem.component';
+import { RejeitadoDto } from '../negocio/dto/rejeitadoDto';
 
 @Component({
   selector: 'app-avaliar',
@@ -11,9 +12,12 @@ import { MensagemComponent } from '../mensagem/mensagem.component';
 export class AvaliarComponent implements OnInit {
 
   usuario: Usuario;
+  rejeitado:RejeitadoDto;
   listaQuestoes: any[];
 
   previaDiv: boolean;
+  modalOb:boolean;
+  block:boolean;
   idSelecionado: any;
 
 
@@ -25,6 +29,9 @@ export class AvaliarComponent implements OnInit {
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
     this.buscarQuestoesAvaliar();
+    this.rejeitado = new RejeitadoDto();
+    this.modalOb=false;
+    this.block=false;
   }
 
 
@@ -47,20 +54,27 @@ export class AvaliarComponent implements OnInit {
 
   rejeitar(){
     this.mensagemComponent.showConfirm('Rejeitar Questão ?','');
-    window.scroll(0, 0);
+    this.block=true;
+    //window.scroll(0, 0);
   }
 
   setOpcao(event:any){
     if(event == 1){
-     this.questaoService.rejeitar(this.idSelecionado)
+     this.rejeitado.idQuestao = this.idSelecionado;
+     this.questaoService.rejeitar(this.rejeitado)
     .then(response => {
       this.buscarQuestoesAvaliar();
       this.mensagemComponent.showSuccess('Questão Rejeitada!');
-      this.voltarPesquisa();
+      this.fecharModalObservacao();
+      this.previaDiv = false;
     })
     }else{
       this.mensagemComponent.showWarn('Ação Cancelada!');
+      window.scroll(0, 0);
+      this.modalOb = false; 
     }
+   
+    this.block=false;
   }
 
   getMontarGrid(lista: any) {
@@ -89,6 +103,12 @@ export class AvaliarComponent implements OnInit {
   voltarPesquisa() {
     this.previaDiv = false;
     window.scroll(0, 0);
+  }
+
+  fecharModalObservacao(){
+    this.rejeitado.observacao='';
+    this.modalOb = false;
+    
   }
 
 }

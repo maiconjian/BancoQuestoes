@@ -28,7 +28,8 @@ public interface QuestaoRepository extends CrudRepository<Questao, Long>,Questao
 	 public void rejeitarQuestao(String observacao,long idQuestao);
 	 
 	 @Transactional
-	 @Query(value="SELECT * FROM QUESTAO WHERE PUBLICADO = 0 AND ID_AUTOR = ?1",nativeQuery = true)
-	 public List<Questao> listarQuestoesEmEspera(long idAutor);
+	 @Query(value="SELECT * FROM QUESTAO WHERE PUBLICADO = ISNULL(?1,PUBLICADO) AND REJEITADO = ISNULL(?2,REJEITADO)"
+	 		+ " AND ID_AUTOR = ?3",nativeQuery = true)
+	 public List<Questao> listarQuestoesEmEspera(Integer publicado,Integer rejeitado, long idAutor);
 
 }

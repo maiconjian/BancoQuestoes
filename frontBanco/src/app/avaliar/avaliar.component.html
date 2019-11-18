@@ -9,8 +9,8 @@
         <div class="ui-g-12" [hidden]="previaDiv">
 
 
-            <div class="ui-g-12">
-                <p-table [value]="listaQuestoes" [responsive]="true">
+            <div class="ui-g-12"  id="tabela">
+                <p-table [value]="listaQuestoes" [responsive]="true" >
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="cabecalho-objeto">Objeto Conhecimento</th>
@@ -57,9 +57,9 @@
                     <textarea name="observacao"cols="70" rows="10" [(ngModel)]="rejeitado.observacao"></textarea>
                 </div>
                     <div class="ui-g-12" style="text-align: center;">
-                    <button pButton type="button" label="Incluir" (click)="rejeitar()" 
+                    <button pButton type="button" label="Continuar" (click)="rejeitar()" 
                     [disabled]="block" style="margin-right: 10px;"></button>
-                    <button pButton type="button" label="Voltar" (click)="fecharModalObservacao()"
+                    <button pButton type="button" label="Cancelar" (click)="fecharModalObservacao()"
                     [disabled]="block"></button>
                 </div>
             </p-dialog>

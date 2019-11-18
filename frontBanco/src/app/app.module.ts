@@ -37,6 +37,7 @@ import { HasPermissionDirective } from './util/HasPermissionDirective';
 import { PesquisarQuestaoComponent } from './pesquisar-questao/pesquisar-questao.component';
 import { VisualizarQuestaoComponent } from './visualizar-questao/visualizar-questao.component';
 import { AvaliarComponent } from './avaliar/avaliar.component';
+import { MinhasQuestoesComponent } from './minhas-questoes/minhas-questoes.component';
 
 
 
@@ -56,7 +57,8 @@ import { AvaliarComponent } from './avaliar/avaliar.component';
     CadastrarQuestaoComponent,
     PesquisarQuestaoComponent,
     VisualizarQuestaoComponent,
-    AvaliarComponent
+    AvaliarComponent,
+    MinhasQuestoesComponent
   ],
   imports: [
     BrowserModule,

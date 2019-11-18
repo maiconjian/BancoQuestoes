@@ -28,5 +28,5 @@ public interface IQuestaoResource extends IGenericResource<Questao, QuestaoFilte
 	
 	public void rejeitarQuestao(RejeitadoDto rejeitado);
 	
-	public ResponseEntity<?>listarQuestoesEmEspera(long idAutor);
+	public ResponseEntity<?>listarQuestoesEmEspera(Integer publicado,Integer rejeitado,long idAutor);
 }

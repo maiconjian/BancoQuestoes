@@ -6,24 +6,10 @@
       <li><a href='javascript:{}'  routerLink="/home">Home</a></li>
       <li><a href='javascript:{}'>Questão</a>
          <ul>
-            <li *hasPermission="['Docente']"><a href='javascript:{}' routerLink="/cadastrarQuetao">Cadastrar</a>
-               <!-- <ul>
-                   <li><a href='#'>Sub Product</a></li>
-                   <li><a href='#'>Sub Product</a></li>
-                </ul> -->
-            </li>
-            <li *hasPermission="['Docente']"><a href='javascript:{}' routerLink="/pesquisarQuestao">Pesquisar</a>
-               <!-- <ul>
-                   <li><a href='#'>Sub Product</a></li>
-                   <li><a href='#'>Sub Product</a></li>
-                </ul> -->
-            </li>
-            <li *hasPermission="['Docente Avaliador']"><a href='javascript:{}' routerLink="/avaliar">Enviadas</a>
-               <!-- <ul>
-                   <li><a href='#'>Sub Product</a></li>
-                   <li><a href='#'>Sub Product</a></li>
-                </ul> -->
-            </li>
+            <li *hasPermission="['Docente']"><a href='javascript:{}' routerLink="/cadastrarQuetao">Cadastrar</a></li>
+            <li *hasPermission="['Docente']"><a href='javascript:{}' routerLink="/pesquisarQuestao">Pesquisar</a></li>
+            <li *hasPermission="['Docente Avaliador']"><a href='javascript:{}' routerLink="/avaliar">Enviadas</a></li>
+            <li *hasPermission="['Docente']"><a href='javascript:{}' routerLink="/minhasQuestoes">Minhas Questões</a></li>
          </ul>
       </li>
       <li *hasPermission="['Administrador']"><a  href='javascript:{}'>Cadastros</a>

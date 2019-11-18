@@ -98,9 +98,10 @@ public class QuestaoResource implements IQuestaoResource {
 	}
 
 	@Override
-	@GetMapping("/listarquestoesemespera/{idAutor}")
-	public ResponseEntity<?> listarQuestoesEmEspera(@PathVariable("idAutor")long idAutor) {
-		List<Questao> lista = this.questaoService.listarQuestoesEmEspera(idAutor);
+	@GetMapping("/listarquestoesemespera/{publicado}/{rejeitado}/{idAutor}")
+	public ResponseEntity<?> listarQuestoesEmEspera(@PathVariable("publicado")Integer publicado,
+			@PathVariable("rejeitado")Integer rejeitado,@PathVariable("idAutor")long idAutor) {
+		List<Questao> lista = this.questaoService.listarQuestoesEmEspera(publicado,rejeitado,idAutor);
 		return new ResponseEntity<List<Questao>>(lista,HttpStatus.OK);
 	}
 

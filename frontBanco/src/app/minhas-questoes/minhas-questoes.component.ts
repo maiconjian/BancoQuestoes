@@ -14,9 +14,10 @@ export class MinhasQuestoesComponent implements OnInit {
   publicado:boolean;
   rejeitado:boolean;
   previaDiv: boolean;
+  modalObservacao:boolean;
+  observacao:string;
   idAutor:number;
   idSelecionado: any;
-
   escolhaDrop:any;
 
   listaSituacaoQuestao:any[];
@@ -34,6 +35,7 @@ export class MinhasQuestoesComponent implements OnInit {
     this.listaSituacaoQuestao = this.apoioService.comboSituacaoQuestao();
     this.usuario= this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
     this.titulo = "Minhas Questões";
+    this.modalObservacao=false;
   }
 
 
@@ -61,6 +63,12 @@ export class MinhasQuestoesComponent implements OnInit {
     }
   }
 
+  getObservacao(questao:any){
+    this.observacao = questao.observacao;
+    this.modalObservacao=true;
+    console.log(questao);
+  }
+
   getPreviaModal(id: any) {
     this.idSelecionado = id;
     this.previaDiv = true;
@@ -80,7 +88,9 @@ export class MinhasQuestoesComponent implements OnInit {
         'objetoConhecimento': lista[i].objetoConhecimento,
         'capacidade': lista[i].capacidade,
         'unidadeCurricular': lista[i].unidadeCurricular.nome,
-        'autor': lista[i].autor.nome
+        'autor': lista[i].autor.nome,
+        'rejeitado': lista[i].rejeitado,
+        'observacao': lista[i].observacao
       }
       listaNova.push(obj);
     }

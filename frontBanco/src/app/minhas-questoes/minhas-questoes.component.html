@@ -44,6 +44,8 @@
                                 <button class="btn-tabela" style="border: none;" pButton type="button" icon="fa fa-eye"
                                     pTooltip="Visualizar" tooltipPosition="top"
                                     (click)="getPreviaModal(questao.id)"></button>
+                                <button class="btn-tabela" pButton type="button"  
+                                icon="fa fa-exclamation-triangle" (click)="getObservacao(questao)"> </button>
                             </td>
                         </tr>
                     </ng-template>
@@ -58,5 +60,19 @@
                     <button pButton type="button" label="Voltar" (click)="voltarPesquisa()"></button>
                 </div>
             </div>
+        </div>
+
+        <div class="ui-g-12">
+            <p-dialog header="Observação"[(visible)]="modalObservacao" [responsive]="true" 
+            [modal]="true" [draggable]="true" [closable]="false">
+                <div class="ui-g-12" style="text-align: center;">
+                    <textarea name="observacao"cols="70" rows="10" [(ngModel)]="observacao" [disabled]="true"></textarea>
+                </div>
+                    <div class="ui-g-12" style="text-align: center;">
+                    <button pButton type="button" label="Fechar" (click)="modalObservacao = !modalObservacao"
+                    [disabled]="block"></button>
+                </div>
+            </p-dialog>
+
         </div>
     </div>

@@ -50,6 +50,22 @@ export class ApoioService {
 
   }
 
+  comboSituacaoQuestao(){
+    let lista: any[] = []
+
+    lista.push(
+      { label: 'Publicado', value: 'publicado'}
+    )
+    lista.push(
+      { label: 'Em Analise', value: 'analise'}
+    )
+    lista.push(
+      { label: 'Rejeitado', value: 'rejeitado'}
+    )
+
+    return lista;
+  }
+
   carregarComboPerfil() {
     let lista: any[] = [];
     this.usuarioService.listarPerfis()

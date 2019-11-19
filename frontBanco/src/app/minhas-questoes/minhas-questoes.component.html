@@ -4,7 +4,7 @@
     <div class="containerPesquisa">
         <app-mensagem (opcao)="setOpcao($event)"></app-mensagem>
         <div class="ui-g-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
-            <h1 style="text-align: center !important;">Minhas Questões</h1>
+            <h1 style="text-align: center !important;">{{titulo}}</h1>
         </div>
 
         <div class="ui-g-12" [hidden]="previaDiv">
@@ -12,11 +12,11 @@
             <div class="ui-g-2">
                 <div class="ui-g-12 ui-fluid" style="padding: 10px;">
                     <span class="ui-float-label">
-                        <p-dropdown [options]="listaSituacao" [showClear]="false" name="situacao" [autoWidth]="false"
+                        <p-dropdown [options]="listaSituacaoQuestao" [showClear]="false" name="situacao" [autoWidth]="false"
                             [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
-                            placeholder="Situação" ></p-dropdown>
+                            placeholder="Situação" [(ngModel)]="escolhaDrop" (onChange)="pesquisar()"></p-dropdown>
                         <label class="espaco-reservado" for="float-label"
-                            [hidden]="value !=null  ? false:true">Situação</label>
+                            [hidden]="escolhaDrop !=null  ? false:true">Situação</label>
                     </span>
 
                 </div>
@@ -49,6 +49,14 @@
                     </ng-template>
                 </p-table>
 
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="container" [hidden]="!previaDiv">
+                <app-visualizar-questao [idSelecionado]="idSelecionado"></app-visualizar-questao>
+                <div class="ui-g-12" style="text-align: center;">
+                    <button pButton type="button" label="Voltar" (click)="voltarPesquisa()"></button>
+                </div>
             </div>
         </div>
     </div>

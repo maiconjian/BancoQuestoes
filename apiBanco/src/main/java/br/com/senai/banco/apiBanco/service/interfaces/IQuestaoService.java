@@ -22,6 +22,6 @@ public interface IQuestaoService extends IGenericService<Questao, QuestaoFilter,
 	
 	public void rejeitarQuestao(String observacao,long idQuestao);
 	
-	public List<Questao> listarQuestoesEmEspera(Integer publicado,Integer rejeitado,long idAutor);
+	public List<Questao> listarQuestoesEmEspera(boolean publicado,boolean rejeitado,long idAutor);
 
 }

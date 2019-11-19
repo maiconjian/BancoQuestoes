@@ -136,7 +136,7 @@ public class QuestaoService implements IQuestaoService {
 	}
 
 	@Override
-	public List<Questao> listarQuestoesEmEspera(Integer publicado,Integer rejeitado,long idAutor) {
+	public List<Questao> listarQuestoesEmEspera(boolean publicado,boolean rejeitado,long idAutor) {
 		return this.questaoRepo.listarQuestoesEmEspera(publicado,rejeitado,idAutor);
 	}
 

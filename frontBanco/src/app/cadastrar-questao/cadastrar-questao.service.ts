@@ -88,4 +88,11 @@ export class CadastrarQuestaoService {
     .then(response=>response)
     .catch(erro=>console.log(erro));
   }
+
+  listarMinhasQuestoes(publicado:any,rejeitado:any,idAutor:any):Promise<any>{
+    return this.http.get(`${this.url.getURL()}/questao/listarquestoesemespera/${publicado}/${rejeitado}/${idAutor}`,{headers})
+    .toPromise()
+    .then(response=>response)
+    .catch(erro=>console.log(erro));
+  }
 }

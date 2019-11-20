@@ -1,6 +1,6 @@
 <!-- <p-menubar [model]="items"></p-menubar> -->
 
-<div id='cssmenu'>
+<!-- <div id='cssmenu'>
    <img src="../../assets/img/login/senai-logo.png" alt="" style="padding-left: 16px;">
    <ul>
       <li><a href='javascript:{}'  routerLink="/home">Home</a></li>
@@ -23,4 +23,45 @@
          </ul>
       </li>
    </ul>
+</div> -->
+
+<div class="ui-g">
+   <div class="ui-g-12">
+         <div class="menu-bar">
+            <img class="logo" src="../../assets/img/login/senai-web.png" alt="" />
+            <ul>
+               <li>
+                  <a href='javascript:{}' ><i class="fas fa-home"></i>Home</a>
+               </li>
+               <li>
+                  <a href='javascript:{}'><i class="fas fa-edit"></i>Questões </a><i class="fas fa-angle-right"></i>
+
+                  <div class="sub-menu-1">
+                     <ul>
+                        <li *hasPermission="['Docente']"><a  href='javascript:{}' routerLink="/cadastrarQuetao">Cadastrar</a></li>
+                        <li *hasPermission="['Docente']"><a  href='javascript:{}' routerLink="/pesquisarQuestao">Pesquisar</a></li>
+                        <li *hasPermission="['Docente Avaliador']"><a  href='javascript:{}'  routerLink="/avaliar">Avaliar</a></li>
+                        <li *hasPermission="['Docente']"><a  href='javascript:{}' routerLink="/minhasQuestoes">Proprias</a></li>
+                     </ul>
+                  </div>
+               </li>
+               <li>
+                  <a href='javascript:{}'><i class="fas fa-users"></i>Cadastro</a><i class="fas fa-angle-right"></i>
+                  <div class="sub-menu-1">
+                     <ul>
+                        <li *hasPermission="['Administrador']"><a  href='javascript:{}'routerLink="/usuario">Usuario  </a></li>
+                     </ul>
+                  </div>
+               </li>
+               <li>
+                  <a href='javascript:{}'><i class="fas fa-user"></i>{{nomeUsuario}}</a><i class="fas fa-angle-right"></i>
+                  <div class="sub-menu-1">
+                     <ul>
+                        <li><a href='javascript:{}' routerLink="/login">Sair</a></li>
+                     </ul>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </div>
 </div>

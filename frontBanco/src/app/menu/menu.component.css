@@ -1,5 +1,5 @@
 /* @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700); */
-#cssmenu,
+/* #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
 #cssmenu ul li a,
@@ -154,10 +154,7 @@
   border-bottom: 0;
 }
 
-/* #cssmenu ul ul li:hover>a,
-#cssmenu ul ul li a:hover {
-  color: #ffffff;
-} */
+
 
 #cssmenu ul ul li.has-sub>a:after {
     top: 16px;
@@ -353,4 +350,123 @@
     display: none;
   }
 
+ */
 
+ * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: sans-serif;
+}
+
+/* .container {
+  background: rgb(0, 107, 51);
+  position: relative;
+} */
+
+.logo {
+  width: 270.41px;
+  height: 54px;
+  margin-top: 13px;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.menu-bar {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1700px;
+  padding: 1px 2% 0 2%; 
+  background: rgb(0, 107, 51);
+  position: relative;
+
+}
+
+.menu-bar ul {
+  display: inline-flex;
+  text-align: center;
+  list-style: none;
+  color: #fff;
+}
+
+.menu-bar ul li {
+  width: 153px;
+  margin: 15px;
+  padding: 15px;
+  z-index: 1;
+ 
+}
+
+.menu-bar ul li:last-child {
+  margin-right: 0;
+}
+
+.menu-bar ul li a {
+  text-decoration: none;
+  color: #fff;
+ 
+}
+
+.active,
+.menu-bar ul li:hover {
+  background: #2bab0d;
+  border-radius: 6px;
+}
+
+.menu-bar .fas {
+  margin-right: 8px;
+}
+
+.sub-menu-1 {
+  display: none;
+  box-shadow: 1px 5px 5px black;
+  text-align: center;
+
+}
+
+.menu-bar ul li:hover .sub-menu-1 {
+  display: block;
+  position: absolute;
+  background: rgb(0, 107, 51);
+  margin-top: 15px;
+  margin-left: -15px;
+}
+
+.menu-bar ul li:hover .sub-menu-1:last-child {
+  border-radius: 0px 0px 15px 15px;
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul {
+  display: block;
+  border-radius: 6px;
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul li {
+  width: 127px;
+  padding: 10px;
+  border-bottom: 0px solid #fff;
+  background: transparent;
+  border-radius: 6px;
+  text-align: left;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul li a {
+  padding: 10px 60px 10px 5px;
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul li:hover {
+  background: rgb(0, 90, 50);
+  border-radius: 6px;
+}
+
+.fa-angle-right {
+  margin-left: 8px;
+}

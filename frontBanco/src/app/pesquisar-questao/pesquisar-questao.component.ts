@@ -68,6 +68,7 @@ export class PesquisarQuestaoComponent implements OnInit {
   }
 
   pesquisar() {
+    console.log(this.filtro);
     if (this.filtro.curso != null || this.filtro.unidadeCurricular != null) {
       this.questaoService.pesquisar(this.filtro)
         .then(response => {

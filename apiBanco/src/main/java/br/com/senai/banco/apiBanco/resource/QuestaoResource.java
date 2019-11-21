@@ -45,6 +45,13 @@ public class QuestaoResource implements IQuestaoResource {
 
 	@Override
 	@PutMapping("/alterar")
+	public ResponseEntity<?> alterar(MultipartFile enunciadoImg, MultipartFile suportImg, String entity)
+			throws Exception {
+		this.questaoService.alterar(enunciadoImg,suportImg, entity);
+		return null;
+	}
+	@Override
+	
 	public ResponseEntity<?> alterar(Questao entity) {
 		Questao questao = this.questaoService.alterar(entity);
 		return new ResponseEntity<Questao>(questao,HttpStatus.OK);
@@ -104,6 +111,8 @@ public class QuestaoResource implements IQuestaoResource {
 		List<Questao> lista = this.questaoService.listarQuestoesEmEspera(publicado,rejeitado,idAutor);
 		return new ResponseEntity<List<Questao>>(lista,HttpStatus.OK);
 	}
+
+
 
 
 

@@ -16,6 +16,8 @@ public interface IQuestaoService extends IGenericService<Questao, QuestaoFilter,
 	
 	public Questao incluir(MultipartFile enunciadoImg,MultipartFile suporteImg,String entity) throws FileNotFoundException, IOException;
 
+	public Questao alterar(MultipartFile enunciadoImg,MultipartFile suporteImg,String entity) throws FileNotFoundException, IOException, Exception;
+	
 	public List<Questao> questoesParaAvaliacao(long idusuario);
 	
 	public void publicarQuestao(long idQuestao);

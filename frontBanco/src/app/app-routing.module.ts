@@ -15,6 +15,7 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'usuario',component:UsuarioComponent},
   {path:'cadastrarQuetao',component:CadastrarQuestaoComponent},
+  {path:'cadastrarQuetao/:id',component:CadastrarQuestaoComponent},
   {path:'pesquisarQuestao',component:PesquisarQuestaoComponent},
   {path:'avaliar',component:AvaliarComponent},
   {path:'minhasQuestoes',component:MinhasQuestoesComponent}

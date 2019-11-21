@@ -17,6 +17,7 @@ export class Questao extends GenericModel {
     alternativaD: Alternativa;
     alternativaE: Alternativa;
     publicado: boolean;
+    rejeitado:boolean;
     unidadeCurricular: UnidadeCurricular;
     autor: Usuario;
 }

@@ -10,6 +10,13 @@
                         <form class="pesquisa" autocomplete="off" (ngSubmit)="pesquisar()">
                                 <div class="ui-g-12 ui-fluid">
                                         <span class="ui-float-label">
+                                                <input class="inputForm" name="objetoFiltro" pInputText type="text"
+                                                        [(ngModel)]="filtro.objetoConhecimento">
+                                                <label class="espaco-reservado" for="float-label">Objeto Conhecimento</label>
+                                        </span>
+                                </div>
+                                <div class="ui-g-12 ui-fluid">
+                                        <span class="ui-float-label">
                                                 <p-dropdown [options]="listaCursosUsuario" [showClear]="true"
                                                         name="Curso" [autoWidth]="false" [filter]="false"
                                                         emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
@@ -159,7 +166,7 @@
                 </div> -->
 
                 <div class="ui-g-12">
-                        <button pButton type="button" label="Voltar" (click)="voltarPesquisa()" ></button>
+                        <button pButton type="button" label="Voltar" (click)="voltarPesquisa()"></button>
                 </div>
 
         </div>

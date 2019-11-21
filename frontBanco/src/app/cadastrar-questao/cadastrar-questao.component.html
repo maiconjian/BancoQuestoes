@@ -3,7 +3,7 @@
 <div class="ui-g container">
     <app-mensagem ></app-mensagem>
     <div class="ui-g-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
-        <h1 style="text-align: center !important;">Cadastro Questão</h1>
+        <h1 style="text-align: center !important;">{{tituloComponent}}</h1>
     </div>
 
     <div class="ui-g-3  identificacao">
@@ -48,7 +48,9 @@
             </div>
 
             <div class="ui-g-12" style="text-align: center;">
-                  <button pButton type="button" label="Cadastrar" (click)="merge(inputEnunciadpFile,inputSuporteFile)"></button>  
+                  <button pButton type="button" label="{{tituloBotaoCad}}" (click)="merge()"></button> 
+                  <button style="margin-left: 5px;" [hidden]="!isEditar" pButton type="button" label="Voltar"  
+                   [routerLink]="['/minhasQuestoes']"></button>  
             </div>
         </form>
 

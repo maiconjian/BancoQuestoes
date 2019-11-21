@@ -18,6 +18,7 @@ public interface IQuestaoResource extends IGenericResource<Questao, QuestaoFilte
 	
 	public ResponseEntity<?> incluirQuestao(MultipartFile enunciadoImg,MultipartFile suportImg ,String entity) throws FileNotFoundException, IOException;
 	
+	public ResponseEntity<?> alterar(MultipartFile enunciadoImg,MultipartFile suportImg ,String entity) throws Exception;
 //	public ResponseEntity<?> buscar(long id) throws IOException;
 	
 	public byte[] buscarFoto(TarefaDto tarefa) throws IOException;

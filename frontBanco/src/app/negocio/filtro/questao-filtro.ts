@@ -3,4 +3,5 @@ export class QuestaoFiltro{
     curso:number;
     nivelDificuldade:string;
     publicada:boolean;
+    objetoConhecimento:string;
 }

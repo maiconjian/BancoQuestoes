@@ -8,6 +8,8 @@ public class QuestaoFilter {
 	
 	private String nivelDificuldade;
 	
+	private String objetoConhecimento;
+	
 	private boolean publicada;
 
 
@@ -42,6 +44,16 @@ public class QuestaoFilter {
 	public void setPublicada(boolean publicada) {
 		this.publicada = publicada;
 	}
+
+	public String getObjetoConhecimento() {
+		return objetoConhecimento;
+	}
+
+	public void setObjetoConhecimento(String objetoConhecimento) {
+		this.objetoConhecimento = objetoConhecimento;
+	}
+	
+	
 	
 	
 

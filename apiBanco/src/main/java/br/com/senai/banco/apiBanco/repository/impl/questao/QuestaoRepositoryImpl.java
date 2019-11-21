@@ -46,6 +46,12 @@ public class QuestaoRepositoryImpl implements QuestaoRepositoryQuery {
 		if(filter.getCurso()>0) {
 			predicates.add(builder.equal(root.join("unidadeCurricular").join("curso").<String>get("id"), filter.getCurso()));
 		}
+		
+		if(!StringUtils.isEmpty(filter.getObjetoConhecimento())) {
+			predicates.add(builder.like(builder.lower(root.get(Questao_.objetoConhecimento)), 
+					filter.getObjetoConhecimento()+"%"));
+		}
+		
 		if(!StringUtils.isEmpty(filter.getNivelDificuldade())) {
 			predicates.add(builder.equal(root.get(Questao_.dificuldade), filter.getNivelDificuldade()));
 		}

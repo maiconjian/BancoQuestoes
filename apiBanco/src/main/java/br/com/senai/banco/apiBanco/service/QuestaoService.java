@@ -54,6 +54,44 @@ public class QuestaoService implements IQuestaoService {
 		return this.questaoRepo.save(questao);
 		
 	}
+	@Override
+	public Questao alterar(MultipartFile enunciadoImg, MultipartFile suporteImg, String entity) throws  Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		Questao questao=null;
+		try {
+			questao = mapper.readValue(entity, Questao.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Optional<Questao> questaoEncontrada = this.questaoRepo.findById(questao.getId());
+		if(questaoEncontrada.isPresent()) {
+			if(enunciadoImg != null) {
+				String caminho = "C:\\Users\\maicon\\Pictures\\repositorioFotos\\"+enunciadoImg.getOriginalFilename();
+				File file = new File(caminho);
+				enunciadoImg.transferTo(file);
+				questao.setEnunciado(caminho);
+			}
+			
+			if(suporteImg != null) {
+				String caminho = "C:\\Users\\maicon\\Pictures\\repositorioFotos\\"+suporteImg.getOriginalFilename();
+				File file = new File(caminho);
+				suporteImg.transferTo(file);
+				questao.setSuporte(caminho);
+			}
+			if(questao.getEnunciado() == null || questao.getEnunciado().equals("")) {
+				questao.setEnunciado(questaoEncontrada.get().getEnunciado());
+			}
+			if(questao.getSuporte() == null || questao.getSuporte().equals("")) {
+				questao.setSuporte(questaoEncontrada.get().getSuporte());
+			}
+			
+			return this.questaoRepo.save(questao);
+		}
+		
+		
+		return questaoEncontrada.get();
+	}
+
 	
 
 //	@Override
@@ -139,6 +177,7 @@ public class QuestaoService implements IQuestaoService {
 	public List<Questao> listarQuestoesEmEspera(boolean publicado,boolean rejeitado,long idAutor) {
 		return this.questaoRepo.listarQuestoesEmEspera(publicado,rejeitado,idAutor);
 	}
+
 
 	
 

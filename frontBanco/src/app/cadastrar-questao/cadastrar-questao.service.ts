@@ -21,7 +21,6 @@ export class CadastrarQuestaoService {
 
   pesquisar(filtro: any): Promise<any> {
     let params = new HttpParams();
-
     if (filtro.curso) {
       params = params.append('curso', filtro.curso);
     }
@@ -31,9 +30,13 @@ export class CadastrarQuestaoService {
     if (filtro.nivelDificuldade) {
       params = params.append('nivelDificuldade', filtro.nivelDificuldade);
     }
+    if(filtro.objetoConhecimento){
+      params = params.append('objetoConhecimento', filtro.objetoConhecimento);
+    }
 
     params = params.append('publicada','1');
 
+    console.log(params);
     return this.http.get(`${this.url.getURL()}/questao/pesquisar`, { headers, params })
       .toPromise()
       .then(response => response)
@@ -48,6 +51,18 @@ export class CadastrarQuestaoService {
     formData.append('entity',questao);
 
     return this.http.post(`${this.url.getURL()}/questao/incluir`,formData,{headers})
+    .toPromise()
+    .then(response=>response)
+    .catch(erro=>console.log(erro));
+  }
+
+  alterar(enunciadoImg:any,suporteImg:any,questao:any):Promise<any>{
+    const formData = new FormData();
+    formData.append('enunciadoImg',enunciadoImg);
+    formData.append('suporteImg',suporteImg);
+    formData.append('entity',questao);
+
+    return this.http.put(`${this.url.getURL()}/questao/alterar`,formData,{headers})
     .toPromise()
     .then(response=>response)
     .catch(erro=>console.log(erro));

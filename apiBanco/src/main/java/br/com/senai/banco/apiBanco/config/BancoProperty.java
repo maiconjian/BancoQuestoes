@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("banco")
 public class BancoProperty {
 	
-	private String originPermitida = "http://localhost:4200";
+    private String originPermitida = "http://localhost:4200";
+	//private String originPermitida = "http://172.31.22.122:4200";
 
 	
 	

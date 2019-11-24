@@ -1,24 +1,21 @@
 
-
+/* 
 .menu{
     margin-top: 5em;
     margin-left: 23em;
     border: 1px solid white;
     box-shadow: 0 0 1em black !important;
-    /* box-shadow: 5px 5px 5px black !important; */
+   
     padding: 10px 0 30px 0;
     border-radius: 60px;
 }
 
 .inputForm{
-    /* border: none; */
-    /* border-bottom: 2px solid black; */
-    /* outline: none; */
-    /* background: none; */
+
     font-size: 15px !important;
     width: 40% !important;
     margin: 0 30% !important;
-    /* padding: 0 !important; */
+   
 }
 .btn{
     margin-left: 30%;
@@ -35,13 +32,103 @@
 }
 .inputCode{
     margin-top: 6%;
-    /* border: 1px solid grey; */
+    
 }
 .imgCode{
    margin-top: -5%;
    margin-left: 5%;
-   /* border: 1px solid grey; */
+  
   
    
+} */
+/* ======================css novo */
+
+.ui-g{
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: sans-serif !important;
+    background-size: cover !important;
+    position: absolute !important;
 }
+
+
+.login-box{
+    width: 50%;
+    height: 80%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    padding: 2% !important;
+    background: white;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+    border-radius: 50px;
+}
+
+form {
+    margin-top: 2%;
+}
+label {
+    margin: 0 10px 0 0;
+    padding: 0 !important;
+    
+}
+h2{
+    color: black;
+}
+
+.text-box{
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    
+}
+
+.text-box input{
+    border: none;
+    outline: none;
+    background: none;
+    color:black;
+    font-size: 18px !important;
+    border-bottom: 1px solid black;
+    /* margin: 0 10px !important;
+    padding: 0 !important; */
+    /* margin: auto 25% !important; */
+}
+
+.imgCode{
+    /* margin-top: -5%;
+    margin-left: 5%; */
+    text-align: center;
+ }
+
+ @media screen and (max-width: 1160px) {
+    .login-box{
+        width: 70%;
+        height: 80%;
+    }
+  
+    
+  }
+
+
+
+ @media screen and (max-width: 640px) {
+    .login-box{
+        width: 70%;
+        height: 100%;
+    }
+    .formQr{
+        text-align: center;
+    }
+    .inputQr{
+        margin-top: -60%;
+    }
+    
+  }
 

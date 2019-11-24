@@ -1,13 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-.container{
-  width: 1400px;
+ .container{
+  width: 980px;
   margin: 0 auto;
-  /* border: 1px solid red; */
+  
 }
+
 .containerPesquisa{
   width: 1400px;
   margin: 0 auto;
-   /* border: 1px solid red; */
+  
 
 }
 
@@ -41,7 +42,7 @@ body{
   text-align: center;
   font-size: 14px;
   border: none !important;
-  border-bottom: 1px solid grey !important;
+  /* border-bottom: 1px solid grey !important; */
 }
 
 .ui-table table th{

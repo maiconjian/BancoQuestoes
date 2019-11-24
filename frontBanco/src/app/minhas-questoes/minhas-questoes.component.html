@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 
 <div class="ui-g">
-    <div class="containerPesquisa">
+    <div class="container">
         <app-mensagem ></app-mensagem>
         <div class="ui-g-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
             <h1 style="text-align: center !important;">{{titulo}}</h1>
@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="ui-g-10" id="tabela">
+            <div class="ui-g-10 " id="tabela">
                 <p-table [value]="listaQuestoes" [responsive]="true">
                     <ng-template pTemplate="header">
                         <tr>

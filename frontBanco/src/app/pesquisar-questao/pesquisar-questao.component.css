@@ -10,7 +10,7 @@
 
 }
 .cabecalho-objeto{
-    width: 18em;
+    width: 30em;
     text-align: center;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .cabecalho-capacidade{
-    width: 8em;
+    width: 5em;
     text-align: center;
 }
 
@@ -32,6 +32,9 @@
 .coluna-objeto{
     width: 20em;
     text-align: left;
+}
+.tb-coluna-opcoes{
+    width: 5em;
 }
 
 /* .img{

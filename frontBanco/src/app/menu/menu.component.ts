@@ -17,8 +17,21 @@ export class MenuComponent implements OnInit {
 
     ngOnInit() {
         this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-        this.nomeUsuario = this.usuario.login;
+        this.getNomeUsuario();
     }
+
+
+    getNomeUsuario(){
+        let nome:any[] =[];
+        for (let i = 0; i < this.usuario.nome.length; i++) {
+                if(this.usuario.nome[i] == ' ' || i >8){
+                    this.nomeUsuario = this.usuario.nome.substring(0,i);
+                    i= this.usuario.nome.length;
+                    console.log(this.nomeUsuario);
+                }   
+        }
+    }
+
 }
 
 

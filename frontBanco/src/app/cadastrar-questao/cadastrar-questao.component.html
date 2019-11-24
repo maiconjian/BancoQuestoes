@@ -1,24 +1,210 @@
 <app-menu></app-menu>
 
-<div class="ui-g container">
+<div class="ui-g">
+    <app-mensagem></app-mensagem>
+    <div class="ui-g-12 ui-sm-12">
+        <div class="ui-g-12 ui-sm-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
+            <h1 style="text-align: center !important;">{{tituloComponent}}</h1>
+        </div>
+
+        <div class="container">
+            <div class="ui-g-12 ui-sm-12">
+                <form autocomplete="off">
+                    <div class="ui-g-3  ui-sm-12 ui-fluid">
+                        <span class="ui-float-label">
+                            <input class="inputForm" name="conhecimento" pInputText type="text"
+                                [(ngModel)]="questao.objetoConhecimento">
+                            <label class="espaco-reservado" for="float-label">Conhecimento</label>
+                        </span>
+                    </div>
+
+                    <div class="ui-g-4 ui-sm-12 ui-fluid">
+                        <span class="ui-float-label">
+                            <p-dropdown [options]="listaUnidadesCurricular" [showClear]="false"
+                                name="unidadesCurricular" [autoWidth]="false" [filter]="false"
+                                emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
+                                placeholder="Unidade Curricular" [(ngModel)]="unidadeCurricular.id"></p-dropdown>
+                            <label class="espaco-reservado" for="float-label"
+                                [hidden]="unidadeCurricular.id  ? false:true">Unidade Curricular</label>
+                        </span>
+                    </div>
+
+                    <div class="ui-g-2  ui-sm-12 ui-fluid">
+                        <span class="ui-float-label">
+                            <p-dropdown [options]="listaCapacidade" [showClear]="false" name="capacidade"
+                                [autoWidth]="false" [filter]="false" emptyFilterMessage="Nenhum registro!"
+                                resetFilterOnHide="true" placeholder="Capacidade" [(ngModel)]="questao.capacidade">
+                            </p-dropdown>
+                            <label class="espaco-reservado" for="float-label"
+                                [hidden]="questao.capacidade  ? false:true">Capacidade</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-3  ui-sm-12 ui-fluid">
+                        <span class="ui-float-label">
+                            <p-dropdown [options]="listaDificuldade" [showClear]="false" name="dificuldade"
+                                [autoWidth]="false" [filter]="false" emptyFilterMessage="Nenhum registro!"
+                                resetFilterOnHide="true" placeholder="Dificuldade" [(ngModel)]="questao.dificuldade">
+                            </p-dropdown>
+                            <label class="espaco-reservado" for="float-label"
+                                [hidden]="questao.dificuldade  ? false:true">Dificuldade</label>
+                        </span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ui-g-12 ui-sm-12">
+                <div class="ui-g-12  ui-sm-12 celula-cadastro">
+                    <div class="ui-g-1 ">
+                        <h5>Enunciado</h5>
+                    </div>
+                    <div class="ui-g-12  ui-sm-12 ui-fluid">
+                        <div class="ui-g-12 img" *ngIf="previwEnunciadoFile">
+                            <img [src]="previwEnunciadoFile" height="250" />
+                        </div>
+                        <textarea class="textArea" pInputTextarea [(ngModel)]="questao.enunciado"
+                            [hidden]="getFotoEnunciado()"></textarea>
+                    </div>
+                    <div class="ui-g-12  ui-sm-12">
+                        <input name="inputEnunciadpFile" #inputEnunciadpFile type="file" [hidden]="getFotoEnunciado()"
+                            (change)="onSelectEnunciado($event,inputEnunciadpFile)">
+                        <button pButton type="button" label="Texto" (click)="getTextAreaEnunciado(inputEnunciadpFile)"
+                            [hidden]="!getFotoEnunciado()"></button>
+                    </div>
+                </div>
+
+                <div class="ui-g-12  ui-sm-12 celula-cadastro">
+                    <div class="ui-g-1 ">
+                        <h5>Suporte</h5>
+                    </div>
+                    <div class="ui-g-12  ui-sm-12 ui-fluid">
+                        <div class="ui-g-12 img" *ngIf="previwSuporteFile">
+                            <img [src]="previwSuporteFile" height="250" />
+                        </div>
+                        <textarea class="textArea" pInputTextarea [(ngModel)]="questao.suporte"
+                            [hidden]="getFotoSuporte()"></textarea>
+                    </div>
+                    <div class="ui-g-12  ui-sm-12">
+                        <input name="inputSuporteFile" #inputSuporteFile type="file" [hidden]="getFotoSuporte()"
+                            (change)="onSelectSuporte($event,inputSuporteFile)">
+                        <button pButton type="button" label="Texto" (click)="getTextAreaSuporte(inputSuporteFile)"
+                            [hidden]="!getFotoSuporte()"></button>
+                    </div>
+                </div>
+
+                <div class="ui-g-12  ui-sm-12 celula-cadastro">
+                    <div class="ui-g-1 ">
+                        <h5>Comando</h5>
+                    </div>
+                    <div class="ui-g-12  ui-sm-12 ui-fluid">
+                        <textarea class="textArea" pInputTextarea [(ngModel)]="questao.comando"></textarea>
+                    </div>
+                </div>
+
+                <div class="ui-g-12  ui-sm-12 celula-cadastro">
+                    <div class="ui-g-12  ui-sm-12 ">
+                        <h5>Alternativas</h5>
+                    </div>
+                    <div class="ui-g-12  ui-sm-12">
+                        <div class="ui-g-1" style="margin-top: 10px;">
+                            <h6 style="text-align: center; margin-bottom: 5px;">A</h6>
+                            <p-inputSwitch name="alternativaAA" #alternativaAA
+                                (onChange)="configBotaoAlternativa(alternativaAA)" [(ngModel)]="alternativaA.correta"
+                                pTooltip="{{getTooltipAlternativa(alternativaAA)}}" tooltipPosition="top"
+                                [disabled]="listaAlternativaBlock[0].value"></p-inputSwitch>
+                        </div>
+                        <div class="ui-g-11  ui-sm-12 ui-fluid">
+                            <textarea name="alternativaAtxt" #alternativaAtxt class="textArea" pInputTextarea
+                                [(ngModel)]="alternativaA.descricao"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12  ui-sm-12">
+                        <div class="ui-g-1  ui-sm-12" style="margin-top: 10px;">
+                            <h6 style="text-align: center; margin-bottom: 5px;">B</h6>
+                            <p-inputSwitch name="alternativaBB" #alternativaBB
+                                (onChange)="configBotaoAlternativa(alternativaBB)" [(ngModel)]="alternativaB.correta"
+                                pTooltip="{{getTooltipAlternativa(alternativaBB)}}" tooltipPosition="top"
+                                [disabled]="listaAlternativaBlock[1].value"></p-inputSwitch>
+                        </div>
+                        <div class="ui-g-11  ui-sm-12 ui-fluid">
+                            <textarea name="alternativaBtxt" class="textArea" pInputTextarea
+                                [(ngModel)]="alternativaB.descricao"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12  ui-sm-12">
+                        <div class="ui-g-1" style="margin-top: 10px;">
+                            <h6 style="text-align: center; margin-bottom: 5px;">C</h6>
+                            <p-inputSwitch name="alternativaCC" #alternativaCC
+                                (onChange)="configBotaoAlternativa(alternativaCC)" [(ngModel)]="alternativaC.correta"
+                                pTooltip="{{getTooltipAlternativa(alternativaCC)}}" tooltipPosition="top"
+                                [disabled]="listaAlternativaBlock[2].value"></p-inputSwitch>
+                        </div>
+                        <div class="ui-g-11  ui-sm-12 ui-fluid">
+                            <textarea name="alternativaCtxt" class="textArea" pInputTextarea
+                                [(ngModel)]="alternativaC.descricao"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12  ui-sm-12">
+                        <div class="ui-g-1" style="margin-top: 10px;">
+                            <h6 style="text-align: center; margin-bottom: 5px;">D</h6>
+                            <p-inputSwitch name="alternativaDD" #alternativaDD
+                                (onChange)="configBotaoAlternativa(alternativaDD)" [(ngModel)]="alternativaD.correta"
+                                pTooltip="{{getTooltipAlternativa(alternativaDD)}}" tooltipPosition="top"
+                                [disabled]="listaAlternativaBlock[3].value"></p-inputSwitch>
+                        </div>
+                        <div class="ui-g-11  ui-sm-12 ui-fluid">
+                            <textarea name="alternativaDtxt" class="textArea" pInputTextarea
+                                [(ngModel)]="alternativaD.descricao"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12  ui-sm-12">
+                        <div class="ui-g-1  ui-sm-12" style="margin-top: 10px;">
+                            <h6 style="text-align: center; margin-bottom: 5px;">E</h6>
+                            <p-inputSwitch name="alternativaEE" #alternativaEE
+                                (onChange)="configBotaoAlternativa(alternativaEE)" [(ngModel)]="alternativaE.correta"
+                                pTooltip="{{getTooltipAlternativa(alternativaEE)}}" tooltipPosition="top"
+                                [disabled]="listaAlternativaBlock[4].value"></p-inputSwitch>
+                        </div>
+                        <div class="ui-g-11  ui-sm-12 ui-fluid">
+                            <textarea name="alternativaEtxt" class="textArea" pInputTextarea
+                                [(ngModel)]="alternativaE.descricao"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ui-g-12  ui-sm-12" style="text-align: center;">
+                    <button pButton type="button" label="{{tituloBotaoCad}}" (click)="merge()"></button>
+                    <button style="margin-left: 5px;" [hidden]="!isEditar" pButton type="button" label="Voltar"
+                        [routerLink]="['/minhasQuestoes']"></button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="ui-g">
     <app-mensagem ></app-mensagem>
     <div class="ui-g-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
         <h1 style="text-align: center !important;">{{tituloComponent}}</h1>
     </div>
 
-    <div class="ui-g-3  identificacao">
-        <form autocomplete="off">
-            <div class="ui-g-12">
+    <div class="ui-g-3 ui-sm-12">
+        <form  autocomplete="off">
+            <div class="ui-g-12  ui-sm-12">
                 <h3 style="text-align: center !important;">Identificação</h3>
             </div>
-            <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-12  ui-sm-12 ui-fluid">
                 <span class="ui-float-label">
                     <input class="inputForm" name="conhecimento" pInputText type="text" [(ngModel)]="questao.objetoConhecimento">
                     <label class="espaco-reservado" for="float-label">Conhecimento</label>
                 </span>
             </div>
 
-            <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-12  ui-sm-12 ui-fluid">
                 <span class="ui-float-label">
                     <p-dropdown [options]="listaUnidadesCurricular" [showClear]="false" name="unidadesCurricular" [autoWidth]="false"
                         [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
@@ -28,7 +214,7 @@
                 </span>
             </div>
 
-            <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-12  ui-sm-12 ui-fluid">
                 <span class="ui-float-label">
                     <p-dropdown [options]="listaCapacidade" [showClear]="false" name="capacidade" [autoWidth]="false"
                         [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
@@ -37,7 +223,7 @@
                         [hidden]="questao.capacidade  ? false:true">Capacidade</label>
                 </span>
             </div>
-            <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-12  ui-sm-12 ui-fluid">
                 <span class="ui-float-label">
                     <p-dropdown [options]="listaDificuldade" [showClear]="false" name="dificuldade" [autoWidth]="false"
                         [filter]="false" emptyFilterMessage="Nenhum registro!" resetFilterOnHide="true"
@@ -47,7 +233,7 @@
                 </span>
             </div>
 
-            <div class="ui-g-12" style="text-align: center;">
+            <div class="ui-g-12  ui-sm-12" style="text-align: center;">
                   <button pButton type="button" label="{{tituloBotaoCad}}" (click)="merge()"></button> 
                   <button style="margin-left: 5px;" [hidden]="!isEditar" pButton type="button" label="Voltar"  
                    [routerLink]="['/minhasQuestoes']"></button>  
@@ -56,19 +242,19 @@
 
     </div>
 
-    <div class="ui-g-9 div-questao">
-        <div class="ui-g-12 celula-cadastro">
+    <div class="ui-g-9  ui-sm-12 div-questao">
+        <div class="ui-g-12  ui-sm-12 celula-cadastro">
             <div class="ui-g-1 ">
                 <h5>Enunciado</h5>
             </div>
-            <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-12  ui-sm-12 ui-fluid">
                 <div class="ui-g-12 img" *ngIf="previwEnunciadoFile">
                     <img [src]="previwEnunciadoFile" height="250" />
                 </div>
                 <textarea class="textArea" pInputTextarea [(ngModel)]="questao.enunciado"
                     [hidden]="getFotoEnunciado()"></textarea>
             </div>
-            <div class="ui-g-12">
+            <div class="ui-g-12  ui-sm-12">
                 <input name="inputEnunciadpFile" #inputEnunciadpFile type="file" [hidden]="getFotoEnunciado()"
                 (change)="onSelectEnunciado($event,inputEnunciadpFile)">
                 <button pButton type="button" label="Texto" (click)="getTextAreaEnunciado(inputEnunciadpFile)"
@@ -76,18 +262,18 @@
             </div>
         </div>
 
-        <div class="ui-g-12 celula-cadastro">
+        <div class="ui-g-12  ui-sm-12 celula-cadastro">
             <div class="ui-g-1 ">
                 <h5>Suporte</h5>
             </div>
-            <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-12  ui-sm-12 ui-fluid">
                 <div class="ui-g-12 img" *ngIf="previwSuporteFile">
                     <img [src]="previwSuporteFile" height="250" />
                 </div>
                 <textarea class="textArea" pInputTextarea [(ngModel)]="questao.suporte"
                     [hidden]="getFotoSuporte()"></textarea>
             </div>
-            <div class="ui-g-12">
+            <div class="ui-g-12  ui-sm-12">
                 <input name="inputSuporteFile" #inputSuporteFile type="file" [hidden]="getFotoSuporte()" 
                 (change)="onSelectSuporte($event,inputSuporteFile)">
                 <button pButton type="button" label="Texto" (click)="getTextAreaSuporte(inputSuporteFile)"
@@ -95,75 +281,75 @@
             </div>
         </div>
 
-        <div class="ui-g-12 celula-cadastro">
+        <div class="ui-g-12  ui-sm-12 celula-cadastro">
             <div class="ui-g-1 ">
                 <h5>Comando</h5>
             </div>
-            <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-12  ui-sm-12 ui-fluid">
                 <textarea class="textArea" pInputTextarea [(ngModel)]="questao.comando"></textarea>
             </div>
         </div>
 
-        <div class="ui-g-12 celula-cadastro">
-            <div class="ui-g-12 ">
+        <div class="ui-g-12  ui-sm-12 celula-cadastro">
+            <div class="ui-g-12  ui-sm-12 ">
                 <h5>Alternativas</h5>
             </div>
-            <div class="ui-g-12">
+            <div class="ui-g-12  ui-sm-12">
                 <div class="ui-g-1" style="margin-top: 10px;">
                     <h6 style="text-align: center; margin-bottom: 5px;">A</h6>
                     <p-inputSwitch name="alternativaAA" #alternativaAA (onChange)="configBotaoAlternativa(alternativaAA)"
                         [(ngModel)]="alternativaA.correta" pTooltip="{{getTooltipAlternativa(alternativaAA)}}"
                         tooltipPosition="top" [disabled]="listaAlternativaBlock[0].value"></p-inputSwitch>
                 </div>
-                <div class="ui-g-11 ui-fluid">
+                <div class="ui-g-11  ui-sm-12 ui-fluid">
                     <textarea name="alternativaAtxt" #alternativaAtxt class="textArea" pInputTextarea [(ngModel)]="alternativaA.descricao"></textarea>
                 </div>
             </div>
 
-            <div class="ui-g-12">
-                <div class="ui-g-1" style="margin-top: 10px;">
+            <div class="ui-g-12  ui-sm-12">
+                <div class="ui-g-1  ui-sm-12" style="margin-top: 10px;">
                     <h6 style="text-align: center; margin-bottom: 5px;">B</h6>
                     <p-inputSwitch name="alternativaBB" #alternativaBB (onChange)="configBotaoAlternativa(alternativaBB)"
                         [(ngModel)]="alternativaB.correta" pTooltip="{{getTooltipAlternativa(alternativaBB)}}"
                         tooltipPosition="top" [disabled]="listaAlternativaBlock[1].value"></p-inputSwitch>
                 </div>
-                <div class="ui-g-11 ui-fluid">
+                <div class="ui-g-11  ui-sm-12 ui-fluid">
                     <textarea name="alternativaBtxt" class="textArea" pInputTextarea [(ngModel)]="alternativaB.descricao"></textarea>
                 </div>
             </div>
 
-            <div class="ui-g-12">
+            <div class="ui-g-12  ui-sm-12">
                 <div class="ui-g-1" style="margin-top: 10px;">
                     <h6 style="text-align: center; margin-bottom: 5px;">C</h6>
                     <p-inputSwitch name="alternativaCC" #alternativaCC (onChange)="configBotaoAlternativa(alternativaCC)"
                         [(ngModel)]="alternativaC.correta" pTooltip="{{getTooltipAlternativa(alternativaCC)}}"
                         tooltipPosition="top" [disabled]="listaAlternativaBlock[2].value"></p-inputSwitch>
                 </div>
-                <div class="ui-g-11 ui-fluid">
+                <div class="ui-g-11  ui-sm-12 ui-fluid">
                     <textarea name="alternativaCtxt"  class="textArea" pInputTextarea [(ngModel)]="alternativaC.descricao"></textarea>
                 </div>
             </div>
 
-            <div class="ui-g-12">
+            <div class="ui-g-12  ui-sm-12">
                 <div class="ui-g-1" style="margin-top: 10px;">
                     <h6 style="text-align: center; margin-bottom: 5px;">D</h6>
                     <p-inputSwitch name="alternativaDD" #alternativaDD (onChange)="configBotaoAlternativa(alternativaDD)"
                         [(ngModel)]="alternativaD.correta" pTooltip="{{getTooltipAlternativa(alternativaDD)}}"
                         tooltipPosition="top" [disabled]="listaAlternativaBlock[3].value"></p-inputSwitch>
                 </div>
-                <div class="ui-g-11 ui-fluid">
+                <div class="ui-g-11  ui-sm-12 ui-fluid">
                     <textarea name="alternativaDtxt" class="textArea" pInputTextarea [(ngModel)]="alternativaD.descricao"></textarea>
                 </div>
             </div>
 
-            <div class="ui-g-12">
-                <div class="ui-g-1" style="margin-top: 10px;">
+            <div class="ui-g-12  ui-sm-12">
+                <div class="ui-g-1  ui-sm-12" style="margin-top: 10px;">
                     <h6 style="text-align: center; margin-bottom: 5px;">E</h6>
                     <p-inputSwitch name="alternativaEE" #alternativaEE (onChange)="configBotaoAlternativa(alternativaEE)"
                         [(ngModel)]="alternativaE.correta" pTooltip="{{getTooltipAlternativa(alternativaEE)}}"
                         tooltipPosition="top" [disabled]="listaAlternativaBlock[4].value"></p-inputSwitch>
                 </div>
-                <div class="ui-g-11 ui-fluid">
+                <div class="ui-g-11  ui-sm-12 ui-fluid">
                     <textarea name="alternativaEtxt" class="textArea" pInputTextarea [(ngModel)]="alternativaE.descricao"></textarea>
                 </div>
             </div>
@@ -171,4 +357,4 @@
         </div>
     </div>
 
-</div>
+</div> -->

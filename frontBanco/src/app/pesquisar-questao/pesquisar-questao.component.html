@@ -4,7 +4,7 @@
         <div class="ui-g-12 ui-sm-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
                 <h1 style="text-align: center !important;">{{titulo}}</h1>
         </div>
-        <div [hidden]="previaDiv">
+        <div [hidden]="previaDiv" >
                 <div class="ui-g-3 ui-sm-12 ">
 
                         <form class="pesquisa" autocomplete="off" (ngSubmit)="pesquisar()">
@@ -68,7 +68,7 @@
                                                 <th class="cabecalho-unidade">Unidade Curricular</th>
                                                 <th class="cabecalho-capacidade">Capacidade</th>
                                                 <th class="cabecalho-autor">Autor</th>
-                                                <th class="cabecalho-opcoes">opcao</th>
+                                                <th class="cabecalho-opcoes"></th>
                                         </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-questao>

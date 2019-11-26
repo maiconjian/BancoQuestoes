@@ -18,6 +18,7 @@ export class UsuarioComponent implements OnInit {
 
   filtro:UsuarioFiltro;
   usuario:Usuario;
+  usuarioLogado:Usuario;
   curso:Curso;
   unidade:Unidade;
   unidadeCurricular:UnidadeCurricular;
@@ -47,6 +48,8 @@ export class UsuarioComponent implements OnInit {
   
   ngOnInit() {
     //this.apoioService.bloquearAcessoNaoAutorizado();
+    this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    this.apoioService.adicionarPermissoes(this.usuarioLogado);
     this.filtro = new UsuarioFiltro;
     this.getNovaInstancia();
     this.filtro.ativo=true;

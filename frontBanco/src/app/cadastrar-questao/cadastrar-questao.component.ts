@@ -74,7 +74,7 @@ export class CadastrarQuestaoComponent implements OnInit {
   editar(){
     if (this.idQuestao) {
       this.getEditar(this.idQuestao);
-      this.tituloBotaoCad = 'Editar';
+      this.tituloBotaoCad = 'Confirmar';
       this.tituloComponent='Editar Questão';
       this.isEditar=true;
     }

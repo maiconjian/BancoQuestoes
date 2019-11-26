@@ -39,6 +39,7 @@ import { PesquisarQuestaoComponent } from './pesquisar-questao/pesquisar-questao
 import { VisualizarQuestaoComponent } from './visualizar-questao/visualizar-questao.component';
 import { AvaliarComponent } from './avaliar/avaliar.component';
 import { MinhasQuestoesComponent } from './minhas-questoes/minhas-questoes.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 
@@ -84,6 +85,7 @@ import { MinhasQuestoesComponent } from './minhas-questoes/minhas-questoes.compo
    
   ],
   providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },// incluir serquilha para manter a referencia da pagina 
     UrlPadraoService,
     MessageService,
     MensagemComponent,

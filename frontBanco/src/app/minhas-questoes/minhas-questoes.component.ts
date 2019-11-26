@@ -34,8 +34,11 @@ export class MinhasQuestoesComponent implements OnInit {
   ngOnInit() {
     this.listaSituacaoQuestao = this.apoioService.comboSituacaoQuestao();
     this.usuario= this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    this.apoioService.adicionarPermissoes(this.usuario);
     this.titulo = "Minhas Questões";
     this.modalObservacao=false;
+    this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    this.apoioService.adicionarPermissoes(this.usuario);
   }
 
 

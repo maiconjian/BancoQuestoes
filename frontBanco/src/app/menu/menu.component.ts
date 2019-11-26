@@ -23,11 +23,16 @@ export class MenuComponent implements OnInit {
 
     getNomeUsuario(){
         let nome:any[] =[];
+        console.log(this.usuario.nome.length);
         for (let i = 0; i < this.usuario.nome.length; i++) {
-                if(this.usuario.nome[i] == ' ' || i >8){
-                    this.nomeUsuario = this.usuario.nome.substring(0,i);
-                    i= this.usuario.nome.length;
-                    console.log(this.nomeUsuario);
+                if(this.usuario.nome[i] != ' '){
+                    if(i<=8){
+                        this.nomeUsuario = this.usuario.nome.substring(0,i+1);
+                        console.log(this.nomeUsuario);
+                    }
+                   
+                }else{
+                    i =this.usuario.nome.length;
                 }   
         }
     }

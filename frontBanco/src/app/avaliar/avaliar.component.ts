@@ -3,6 +3,7 @@ import { CadastrarQuestaoService } from '../cadastrar-questao/cadastrar-questao.
 import { Usuario } from '../negocio/model/usuario';
 import { MensagemComponent } from '../mensagem/mensagem.component';
 import { RejeitadoDto } from '../negocio/dto/rejeitadoDto';
+import { ApoioService } from '../util/apoio.service';
 
 @Component({
   selector: 'app-avaliar',
@@ -23,11 +24,13 @@ export class AvaliarComponent implements OnInit {
 
   constructor(
     private questaoService: CadastrarQuestaoService,
-    private mensagemComponent: MensagemComponent
+    private mensagemComponent: MensagemComponent,
+    private apoioService:ApoioService
   ) { }
 
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    this.apoioService.adicionarPermissoes(this.usuario);
     this.buscarQuestoesAvaliar();
     this.rejeitado = new RejeitadoDto();
     this.modalOb=false;

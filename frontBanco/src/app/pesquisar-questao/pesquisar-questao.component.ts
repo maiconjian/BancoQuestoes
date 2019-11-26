@@ -6,6 +6,7 @@ import { CadastrarQuestaoService } from '../cadastrar-questao/cadastrar-questao.
 import { Questao } from '../negocio/model/questao';
 import { Alternativa } from '../negocio/model/alternativa';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Usuario } from '../negocio/model/usuario';
 
 @Component({
   selector: 'app-pesquisar-questao',
@@ -15,6 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class PesquisarQuestaoComponent implements OnInit {
 
   filtro: QuestaoFiltro;
+  usuario:Usuario;
   // alternativaA: Alternativa;
   // alternativaB: Alternativa;
   // alternativaC: Alternativa;
@@ -47,6 +49,8 @@ export class PesquisarQuestaoComponent implements OnInit {
 
   ngOnInit() {
     this.filtro = new QuestaoFiltro();
+    this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    this.apoioService.adicionarPermissoes(this.usuario);
     // this.questao = new Questao();
     // this.alternativaA = new Alternativa();
     // this.alternativaA.correta=false;

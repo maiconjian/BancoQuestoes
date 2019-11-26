@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   codigoQR: any;
 
   isLogin:boolean;
+  displaySpinner: boolean;
 
   
 
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
     this.msgPrincipalAtivo=true;
     localStorage.clear();
     this.isLogin=false;
+    this.displaySpinner = false;
   }
 
   button() {
@@ -52,6 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   confirmCodigoAcesso() {
+    this.displaySpinner = true;
     this.loginService.verificarCodigo(this.dados.login, this.codigoQR)
       .then(response => {
         if(response !=null){
@@ -59,13 +62,15 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('usuarioLogado', JSON.stringify(response));
           this.adicionarPermissoes(response);
           this.displayQRCode = false;
-         
+          this.displaySpinner = false;
           this.router.navigateByUrl('/home')
           
          
         }else{
+          this.displaySpinner = false;
           this.codigoQR ='';
-          this.mensagemComponent.showError('Código de Acesso Inválido!')
+          this.mensagemComponent.showError('Código de Acesso Inválido!');
+
         }
         
       })
@@ -86,6 +91,7 @@ export class LoginComponent implements OnInit {
 
 
   autenticar(dadosLogin: any) {
+    this.displaySpinner = true;
     this.loginService.autenticar(dadosLogin)
       .then(response => {
         if(response.byteLength>0){
@@ -95,8 +101,11 @@ export class LoginComponent implements OnInit {
           this.imageurl = 'data:image/jpg;base64,' + base64String;
           this.displayQRCode = true;
           this.isLogin=true;
+          this.displaySpinner = false;
         }else{
+          this.displaySpinner = false;
           this.mensagemComponent.showError('Login ou senha Inválidos!')
+          
         }
       })     
   }

@@ -36,6 +36,7 @@ export class UsuarioComponent implements OnInit {
 
   modalCad:boolean;
   msgPrincipalAtivo:boolean;
+  displaySpinner:boolean;
 
   
 
@@ -60,13 +61,16 @@ export class UsuarioComponent implements OnInit {
     this.listaUnidadesCurriculares = this.apoioService.carregarComboUnidadedesCurricular();
     this.modalCad=false;
     this.msgPrincipalAtivo=true;
+    this.displaySpinner=false;
 
   }
 
   pesquisar(){
+    this.displaySpinner=true;
     this.usuarioService.pesquisar(this.filtro)
     .then(response=>{
       this.listaUsuario = response;
+      this.displaySpinner=false;
     })
   }
 
@@ -102,6 +106,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   merge(){
+    this.displaySpinner=true;
     this.usuario.unidade = this.unidade;
     this.usuario.perfis = this.listaPerfisSelecionados;
     this.usuario.unidadesCurricular = this.listaUnidadesCurricularSelecionados;
@@ -111,6 +116,7 @@ export class UsuarioComponent implements OnInit {
         this.mensagemComponent.showSuccess('Cadastro Realizado com Sucesso!');
         this.pesquisar();
         this.getGerenciaModal();
+        this.displaySpinner=false;
       });
     }else{
       this.usuarioService.alterar(this.usuario)
@@ -118,6 +124,7 @@ export class UsuarioComponent implements OnInit {
         this.mensagemComponent.showSuccess('Alteração realizada com Sucesso!');
         this.pesquisar();
         this.getGerenciaModal();
+        this.displaySpinner=false;
       })
     }
   }
@@ -134,6 +141,7 @@ export class UsuarioComponent implements OnInit {
 
   setOpcao(event: any) {
     if (event == 1) {
+      this.displaySpinner=true;
       let msg:string;
       if(this.usuario.ativo){
         this.usuario.ativo = false;
@@ -145,6 +153,7 @@ export class UsuarioComponent implements OnInit {
 
       this.usuarioService.alterar(this.usuario)
       .then(response=>{
+        this.displaySpinner=false;
         this.mensagemComponent.showSuccess(msg);
         this.pesquisar();
       })
@@ -184,5 +193,16 @@ export class UsuarioComponent implements OnInit {
     } else {
       return 'fas fa-check';
     }
+  }
+
+  getblockButton(){
+    if(this.usuario.nome == null || this.usuario.nome=='' || this.usuario.email == null || this.usuario.email ==''||
+      this.usuario.matricula ==null  || this.usuario.login == null || this.usuario.login==''||
+      this.listaPerfisSelecionados.length ==0 || this.listaUnidadesCurricularSelecionados.length==0 || this.unidade == null){
+        return true;
+      }
+      else{
+        return false;
+      }
   }
 }

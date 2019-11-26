@@ -38,6 +38,7 @@ export class CadastrarQuestaoComponent implements OnInit {
   listaUnidadesCurricular: any[];
   idQuestao: number;
   isEditar:boolean;
+  displaySpinner:boolean;
 
   constructor(
     private apoioService: ApoioService,
@@ -67,7 +68,7 @@ export class CadastrarQuestaoComponent implements OnInit {
     this.questao = new Questao;
     this.listaDificuldade = this.apoioService.carregarComboDificuldade();
     this.listaCapacidade = this.apoioService.carregarComboCapacidade();
-
+    this.displaySpinner = false;
 
   }
 
@@ -82,6 +83,7 @@ export class CadastrarQuestaoComponent implements OnInit {
 
 
   merge() {
+    this.displaySpinner = true;
     if (!this.idQuestao) {
       this.questao.alternativaA = this.alternativaA;
       this.questao.alternativaB = this.alternativaB;
@@ -98,8 +100,12 @@ export class CadastrarQuestaoComponent implements OnInit {
             this.mensagemComponent.showSuccess('Questão enviada para Analise!!')
             this.resetCadastro();
           })
-          .catch(error => console.log(error));
+          .catch(error => {
+            this.displaySpinner = false;
+            console.log(error)
+          });
       } else {
+        this.displaySpinner = false;
         this.mensagemComponent.showWarn('Todos os campos são obrigatorios!');
       }
     }else{
@@ -108,6 +114,7 @@ export class CadastrarQuestaoComponent implements OnInit {
       .then(response=>{
         this.mensagemComponent.showSuccess('Alterada com Sucesso!');
         setTimeout(() => {
+          this.displaySpinner = false;
           this.router.navigateByUrl('/minhasQuestoes')
         }, 200);
       })
@@ -282,8 +289,8 @@ export class CadastrarQuestaoComponent implements OnInit {
     // this.getFotoSuporte();
     //this.ngOnInit();
     setTimeout(() => {
+      this.displaySpinner = false;
       window.location.reload();
-
     }, 200);
   }
 

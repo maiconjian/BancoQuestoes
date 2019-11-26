@@ -20,6 +20,7 @@ export class AvaliarComponent implements OnInit {
   modalOb:boolean;
   block:boolean;
   idSelecionado: any;
+  displaySpinner:boolean;
 
 
   constructor(
@@ -35,6 +36,7 @@ export class AvaliarComponent implements OnInit {
     this.rejeitado = new RejeitadoDto();
     this.modalOb=false;
     this.block=false;
+    this.displaySpinner=false;
   }
 
 
@@ -43,12 +45,15 @@ export class AvaliarComponent implements OnInit {
       .then(response => {
         this.listaQuestoes = this.getMontarGrid(response);
       })
+      .catch(error =>{
+      })
   }
 
   publicarQuestao() {
+    this.displaySpinner=true;
     this.questaoService.publicar(this.idSelecionado)
       .then(response => {
-        console.log('publicou');
+        this.displaySpinner=false;
         this.buscarQuestoesAvaliar();
         this.mensagemComponent.showSuccess('Questão Publicada!');
         this.voltarPesquisa();
@@ -63,13 +68,18 @@ export class AvaliarComponent implements OnInit {
 
   setOpcao(event:any){
     if(event == 1){
+      this.displaySpinner=true;
      this.rejeitado.idQuestao = this.idSelecionado;
      this.questaoService.rejeitar(this.rejeitado)
     .then(response => {
+      this.displaySpinner=true;
       this.buscarQuestoesAvaliar();
       this.mensagemComponent.showSuccess('Questão Rejeitada!');
       this.fecharModalObservacao();
       this.previaDiv = false;
+    })
+    .catch(error=>{
+      this.displaySpinner=false;
     })
     }else{
       this.mensagemComponent.showWarn('Ação Cancelada!');
@@ -96,9 +106,14 @@ export class AvaliarComponent implements OnInit {
   }
 
   getPreviaModal(id: any) {
+    
+    this.displaySpinner=true;
     this.idSelecionado = id;
-    this.previaDiv = true;
-    window.scroll(0, 0);
+    setTimeout(() => {
+      this.displaySpinner=false;
+      window.scroll(0, 0);
+      this.previaDiv = true;
+    }, 1000);
   }
 
  

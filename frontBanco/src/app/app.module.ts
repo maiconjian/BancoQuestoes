@@ -24,8 +24,10 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import { KeyFilterModule } from 'primeng/keyfilter';
-
 import { MessageService } from 'primeng/components/common/messageservice';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+
+
 import { UsuarioComponent } from './usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
@@ -40,6 +42,8 @@ import { VisualizarQuestaoComponent } from './visualizar-questao/visualizar-ques
 import { AvaliarComponent } from './avaliar/avaliar.component';
 import { MinhasQuestoesComponent } from './minhas-questoes/minhas-questoes.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { SpinnerComponent } from './spinner/spinner.component';
+
 
 
 
@@ -60,7 +64,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     PesquisarQuestaoComponent,
     VisualizarQuestaoComponent,
     AvaliarComponent,
-    MinhasQuestoesComponent
+    MinhasQuestoesComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +86,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     InputTextareaModule,
     FileUploadModule,
     InputSwitchModule,
-    KeyFilterModule
+    KeyFilterModule,
+    ProgressSpinnerModule
    
   ],
   providers: [

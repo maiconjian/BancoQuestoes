@@ -24,6 +24,7 @@ export class MinhasQuestoesComponent implements OnInit {
   listaQuestoes:any[];
 
   titulo:string;
+  displaySpinner: boolean;
 
 
   constructor(
@@ -39,13 +40,16 @@ export class MinhasQuestoesComponent implements OnInit {
     this.modalObservacao=false;
     this.usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
     this.apoioService.adicionarPermissoes(this.usuario);
+    this.displaySpinner=false;
   }
 
 
   pesquisar(){
+    this.displaySpinner=true;
     this.definirFiltro();
     this.questaoService.listarMinhasQuestoes(this.publicado,this.rejeitado,this.usuario.id)
     .then(response =>{
+      this.displaySpinner=false;
       this.listaQuestoes = this.getMontarGrid(response);
     })
   }
@@ -73,9 +77,13 @@ export class MinhasQuestoesComponent implements OnInit {
   }
 
   getPreviaModal(id: any) {
+    this.displaySpinner=true;
     this.idSelecionado = id;
-    this.previaDiv = true;
-    window.scroll(0, 0);
+    setTimeout(() => {
+      this.displaySpinner=false;
+      window.scroll(0, 0);
+      this.previaDiv = true;
+    }, 1000);
   }
 
   voltarPesquisa() {

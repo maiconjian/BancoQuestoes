@@ -1,19 +1,19 @@
 <div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
     <h3 style="margin-bottom: 3%;">Enunciado</h3>
-    <textarea pInputTextarea name="enunciado" cols="30" rows="4" [disabled]="true"
+    <textarea pInputTextarea name="enunciado" cols="30" rows="8" [disabled]="true"
             [(ngModel)]="questao.enunciado" [hidden]="!previaImgEnunciado"></textarea>
     <img class="img" [hidden]="previaImgEnunciado" src="{{previaImgEnunciadoUrl}}" alt="">
 </div>
 <div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
     <h3 style="margin-bottom: 3%;">Suporte</h3>
-    <textarea pInputTextarea name="suporte" cols="30" rows="4" [disabled]="true"
+    <textarea pInputTextarea name="suporte" cols="30" rows="8" [disabled]="true"
             [(ngModel)]="questao.suporte" [hidden]="!previaImgSuporte"></textarea>
     <img class="img" src="{{previaImgSuporteUrl}}" alt="" [hidden]="previaImgSuporte">
 </div>
 
 <div class="ui-g-12 ui-fluid"style="margin-bottom: 30px;">
     <h3 style="margin-bottom: 3%;">Comando</h3>
-    <textarea pInputTextarea name="comando" cols="30" rows="4" [disabled]="true"
+    <textarea pInputTextarea name="comando" cols="30" rows="8" [disabled]="true"
             [(ngModel)]="questao.comando"></textarea>
 </div>
 

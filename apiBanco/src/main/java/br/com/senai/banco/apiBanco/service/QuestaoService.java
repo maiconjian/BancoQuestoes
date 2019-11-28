@@ -40,16 +40,16 @@ public class QuestaoService implements IQuestaoService {
 		Questao questao=null;
 		questao = mapper.readValue(entity, Questao.class);
 		if(enunciadoImg != null) {
-//			String caminho = "C:\\Users\\maicon\\Pictures\\repositorioFotos\\"+enunciadoImg.getOriginalFilename();
-			String caminho = caminhoL +enunciadoImg.getOriginalFilename();
+			String caminho = "C:\\Users\\maicon\\Pictures\\repositorioFotos\\"+enunciadoImg.getOriginalFilename();
+//			String caminho = caminhoL +enunciadoImg.getOriginalFilename();
 			File file = new File(caminho);
 			enunciadoImg.transferTo(file);
 			questao.setEnunciado(caminho);
 		}
 		
 		if(suporteImg != null) {
-//			String caminho = "C:\\Users\\maicon\\Pictures\\repositorioFotos\\"+suporteImg.getOriginalFilename();
-			String caminho = caminhoL +suporteImg.getOriginalFilename();
+			String caminho = "C:\\Users\\maicon\\Pictures\\repositorioFotos\\"+suporteImg.getOriginalFilename();
+//			String caminho = caminhoL +suporteImg.getOriginalFilename();
 			File file = new File(caminho);
 			suporteImg.transferTo(file);
 			questao.setSuporte(caminho);

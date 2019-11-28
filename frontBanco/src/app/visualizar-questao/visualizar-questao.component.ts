@@ -32,18 +32,6 @@ export class VisualizarQuestaoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-  }
-  ngOnChanges(changes: SimpleChanges) {
-    //console.log(changes['idSelecionado'].currentValue);
-    if (this.idSelecionado > 0) {
-      this.getPreviaModal(this.idSelecionado);
-    }
-  }
-
-
-  getPreviaModal(id: any) {
-    //this.questao = new Questao();
     this.questao = new Questao();
     this.alternativaA = new Alternativa();
     this.alternativaA.correta = false;
@@ -57,6 +45,19 @@ export class VisualizarQuestaoComponent implements OnInit {
     this.alternativaE.correta = false;
     this.previaImgEnunciado = false;
     this.previaImgSuporte = false;
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    //console.log(changes['idSelecionado'].currentValue);
+    if (this.idSelecionado > 0) {
+      this.getPreviaModal(this.idSelecionado);
+    }
+  }
+
+
+  getPreviaModal(id: any) {
+    //this.questao = new Questao();
+    this.questao = new Questao();
+  
     this.questaoService.buscarPorId(id)
       .then(response => {
         this.questao = response;

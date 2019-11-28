@@ -72,7 +72,7 @@ export class AvaliarComponent implements OnInit {
      this.rejeitado.idQuestao = this.idSelecionado;
      this.questaoService.rejeitar(this.rejeitado)
     .then(response => {
-      this.displaySpinner=true;
+      this.displaySpinner=false;
       this.buscarQuestoesAvaliar();
       this.mensagemComponent.showSuccess('Questão Rejeitada!');
       this.fecharModalObservacao();

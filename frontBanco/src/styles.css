@@ -80,6 +80,13 @@ td {
 }
 /* =================================== */
 
+.ui-dialog-titlebar{
+  background-color: rgba(0, 107, 51) !important;
+  color: white !important;
+}
+
+
+
 .espaco-reservado {
   color: #3d3d3d !important;
 }

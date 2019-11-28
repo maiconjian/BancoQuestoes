@@ -30,6 +30,8 @@ export class UsuarioComponent implements OnInit {
   listaUnidadesCurriculares:any[];
   listaUnidades:any[];
 
+  tituloModal:string;
+
 
   listaPerfisSelecionados:any[];
   listaUnidadesCurricularSelecionados:any[];
@@ -48,7 +50,6 @@ export class UsuarioComponent implements OnInit {
 
   
   ngOnInit() {
-    //this.apoioService.bloquearAcessoNaoAutorizado();
     this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     this.apoioService.adicionarPermissoes(this.usuarioLogado);
     this.filtro = new UsuarioFiltro;
@@ -82,11 +83,12 @@ export class UsuarioComponent implements OnInit {
   getNovo(){
     this.getNovaInstancia();
     this.getGerenciaModal();
+    this.tituloModal = 'Incluir Usuário'
   }
 
   getEditar(usuario:any){
     this.getNovaInstancia();
-   
+    this.tituloModal = 'Alterar Usuário'
     console.log(usuario);
     this.usuario.id = usuario.id;
     this.usuario.matricula=usuario.matricula;

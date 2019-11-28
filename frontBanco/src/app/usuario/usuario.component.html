@@ -4,7 +4,7 @@
     <app-mensagem [hidden]="!msgPrincipalAtivo" (opcao)="setOpcao($event)"></app-mensagem>
     <app-spinner [displaySpinner]="displaySpinner"></app-spinner>
     <div class="ui-g-12 ui-sm-12" style="margin: 2em 0 0 0; border-bottom: 1px solid black;">
-        <h1 style="text-align: center !important;">Usuario</h1>
+        <h1 style="text-align: center !important;">Usuário</h1>
     </div>
 
     <div class="ui-g-3 ui-sm-12 ">
@@ -82,7 +82,7 @@
     </div>
 
     <div class="ui-g-12">
-        <p-dialog [(visible)]="modalCad" [positionTop]="1" [responsive]="true" [modal]="true" [draggable]="false"
+        <p-dialog header="{{tituloModal}}" [(visible)]="modalCad" [closable]="false" [responsive]="true" [modal]="true" [draggable]="false"
             [style]="{width: '800px'}">
             <form>
                 <div class="ui-g-6 ui-sm-12 ui-fluid">

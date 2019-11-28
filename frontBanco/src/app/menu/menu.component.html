@@ -31,9 +31,9 @@
             <img class="logo" src="../../assets/img/login/senai-web.png" alt="" />
             <ul>
                <li>
-                  <a href='javascript:{}' ><i class="fas fa-home"></i>Home</a>
+                  <a href='javascript:{}' routerLink="/home"><i class="fas fa-home"></i>Home</a>
                </li>
-               <li>
+               <li *hasPermission="['Docente','Docente Avaliador']; op 'OR'">
                   <a href='javascript:{}'><i class="fas fa-edit"></i>Questões </a><i class="fas fa-angle-right"></i>
 
                   <div class="sub-menu-1">
@@ -45,11 +45,11 @@
                      </ul>
                   </div>
                </li>
-               <li>
+               <li *hasPermission="['Administrador']">
                   <a href='javascript:{}'><i class="fas fa-users"></i>Cadastro</a><i class="fas fa-angle-right"></i>
                   <div class="sub-menu-1">
                      <ul>
-                        <li *hasPermission="['Administrador']"><a  href='javascript:{}'routerLink="/usuario">Usuario  </a></li>
+                        <li ><a  href='javascript:{}'routerLink="/usuario">Usuário  </a></li>
                      </ul>
                   </div>
                </li>

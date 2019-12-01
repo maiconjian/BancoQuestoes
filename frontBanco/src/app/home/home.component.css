@@ -1,0 +1,25 @@
+.ui-g{
+    width: 100% !important;
+    height: 87.7% !important;
+    max-height: auto;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: sans-serif !important;
+    /* background: url(../../assets/img/professor3.jpg)  no-repeat  !important; */
+    background: url(../../assets/img/professor4.png)  no-repeat  !important;
+    /* background-size: cover  !important; */
+    position: absolute !important;
+    /* top: 12.1%; */
+    /* left: -1%; */
+    /* z-index: -1 !important; */
+    background-size: 100% 100%!important;
+}
+
+@media screen and (max-width: 1240px) {
+   .ui-g{
+    width: 100% !important;
+    height: 100% !important;
+   }
+    
+  }
+

@@ -15,7 +15,7 @@ export class ApoioService {
 
   constructor(
     private router: Router,
-    private loginService:LoginService,
+    private loginService: LoginService,
     private usuarioService: UsuarioService,
     private cursoService: CursoService,
     private unidadeService: UnidadeService,
@@ -50,17 +50,17 @@ export class ApoioService {
 
   }
 
-  comboSituacaoQuestao(){
+  comboSituacaoQuestao() {
     let lista: any[] = []
 
     lista.push(
-      { label: 'Publicado', value: 'publicado'}
+      { label: 'Publicado', value: 'publicado' }
     )
     lista.push(
-      { label: 'Em Analise', value: 'analise'}
+      { label: 'Em Analise', value: 'analise' }
     )
     lista.push(
-      { label: 'Rejeitado', value: 'rejeitado'}
+      { label: 'Rejeitado', value: 'rejeitado' }
     )
 
     return lista;
@@ -163,32 +163,69 @@ export class ApoioService {
   carregarComboUnidadeCurricularUsuario() {
     let usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
     let lista: any[] = [];
-    for (let i = 0; i < usuario.unidadesCurricular.length; i++) {
-      lista.push(
-        { label: usuario.unidadesCurricular[i].nome, value: usuario.unidadesCurricular[i].id }
-      );
-    }
+    this.usuarioService.buscarPorId(usuario.id)
+      .then(response => {
+        for (let i = 0; i < response.unidadesCurricular.length; i++) {
+          lista.push(
+            { label: response.unidadesCurricular[i].nome, value: response.unidadesCurricular[i].id }
+          );
+        }
+        return lista;
+      })
     return lista;
   }
 
   carregarComboCursosUsuario() {
     let usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
     let lista: any[] = [];
+    let listaCursos: any[] = [];
     let curso: any;
-    for (let i = 0; i < usuario.unidadesCurricular.length; i++) {
-      for (let j = 0; j < lista.length; j++) {
-        if (usuario.unidadesCurricular[i].curso.nome != lista[j].value) {
-          curso = usuario.unidadesCurricular[i].curso;
-        } else {
-          curso = null;
+    this.usuarioService.buscarPorId(usuario.id)
+      .then(response => {
+        let obj: any;
+        for (let i = 0; i < response.unidadesCurricular.length; i++) {
+          if (listaCursos.length < 1) {
+            listaCursos.push(response.unidadesCurricular[i].curso);
+          } else {
+            for (let j = 0; j < listaCursos.length; j++) {
+              if (response.unidadesCurricular[i].curso.id == listaCursos[j].id ) {
+                  j++;
+                  i++;
+              }else{
+                console.log(response.unidadesCurricular[i].curso.nome);
+                listaCursos.push(response.unidadesCurricular[i].curso);
+              }
+
+            }
+          }
+
         }
-      }
-      if (curso == null) {
-        lista.push(
-          { label: usuario.unidadesCurricular[i].curso.nome, value: usuario.unidadesCurricular[i].curso.id }
-        );
-      }
-    }
+
+        for (let i = 0; i < listaCursos.length; i++) {
+          lista.push(
+                  { label:  listaCursos[i].nome, value:  listaCursos[i].id }
+          );
+          
+        }
+
+        
+
+        // for (let i = 0; i < response.unidadesCurricular.length; i++) {
+        //   for (let j = 0; j < lista.length; j++) {
+        //     if (response.unidadesCurricular[i].curso.nome != lista[j].value) {
+        //       curso = response.unidadesCurricular[i].curso;
+        //     } else {
+        //       curso = null;
+        //     }
+        //   }
+        //   if (curso == null) {
+        //     lista.push(
+        //       { label: response.unidadesCurricular[i].curso.nome, value: response.unidadesCurricular[i].curso.id }
+        //     );
+        //   }
+        // }
+        // return lista;
+      });
     return lista;
   }
 

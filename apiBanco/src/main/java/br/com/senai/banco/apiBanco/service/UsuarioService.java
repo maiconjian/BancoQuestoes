@@ -153,7 +153,7 @@ public class UsuarioService implements IUsuarioService {
 	@Override
 	public byte[] autenticarUsuario(LoginDto login) throws Exception {
 		Optional<Usuario> usuario = this.usuarioRepository.findByLogin(login.getLogin());
-		if (usuario.isPresent()) {
+		if (usuario.isPresent()&& usuario.get().isAtivo()) {
 			if (encoder.matches(login.getSenha(), usuario.get().getSenha())) {
 				String codigo = GerarSenhaAleatoria.gerarSenha(6);
 				System.out.println(codigo);

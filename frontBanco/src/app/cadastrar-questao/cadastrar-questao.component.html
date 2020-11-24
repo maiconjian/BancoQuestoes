@@ -62,8 +62,8 @@
                         <div class="ui-g-12 img" *ngIf="previwEnunciadoFile">
                             <img [src]="previwEnunciadoFile" height="250" />
                         </div>
-                        <textarea class="textArea" pInputTextarea [(ngModel)]="questao.enunciado"
-                            [hidden]="getFotoEnunciado()"></textarea>
+                        <textarea class="textArea" pInputTextarea  cols="30" rows="3" [(ngModel)]="questao.enunciado"
+                            [hidden]="getFotoEnunciado()" ></textarea>
                     </div>
                     <div class="ui-g-12  ui-sm-12">
                         <input name="inputEnunciadpFile" #inputEnunciadpFile type="file" [hidden]="getFotoEnunciado()"
@@ -82,7 +82,7 @@
                             <img [src]="previwSuporteFile" height="250" />
                         </div>
                         <textarea class="textArea" pInputTextarea [(ngModel)]="questao.suporte"
-                            [hidden]="getFotoSuporte()"></textarea>
+                            [hidden]="getFotoSuporte()"  cols="30" rows="3"></textarea>
                     </div>
                     <div class="ui-g-12  ui-sm-12">
                         <input name="inputSuporteFile" #inputSuporteFile type="file" [hidden]="getFotoSuporte()"
@@ -97,7 +97,8 @@
                         <h5>Comando</h5>
                     </div>
                     <div class="ui-g-12  ui-sm-12 ui-fluid">
-                        <textarea class="textArea" pInputTextarea [(ngModel)]="questao.comando"></textarea>
+                        <textarea class="textArea" pInputTextarea [(ngModel)]="questao.comando"
+                        cols="30" rows="3"></textarea>
                     </div>
                 </div>
 

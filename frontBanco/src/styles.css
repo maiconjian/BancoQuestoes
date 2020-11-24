@@ -13,8 +13,8 @@
 }
 
 body{
-  background-color:rgb(222, 215, 209);
-  /* background-color: rgb(245,245,245); */
+  /* background-color:rgb(222, 215, 209); */
+  background-color: #f5f3f4;
 }
 
 .ui-inputswitch-slider{

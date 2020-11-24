@@ -1,17 +1,15 @@
-.ui-g{
+/* .ui-g{
     width: 100% !important;
     height: 87.7% !important;
     max-height: auto;
     margin: 0 !important;
     padding: 0 !important;
     font-family: sans-serif !important;
-    /* background: url(../../assets/img/professor3.jpg)  no-repeat  !important; */
+   
     background: url(../../assets/img/professor4.png)  no-repeat  !important;
-    /* background-size: cover  !important; */
+  
     position: absolute !important;
-    /* top: 12.1%; */
-    /* left: -1%; */
-    /* z-index: -1 !important; */
+ 
     background-size: 100% 100%!important;
 }
 
@@ -21,5 +19,71 @@
     height: 100% !important;
    }
     
+  } */
+
+  #showcase {
+    background: #333 url('../../assets/img/prof.jpg') no-repeat center center/cover;
+    height: 100vh;
+    margin-top: -5.6%;
+  }
+  
+  #showcase .showcase-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 2rem;
+    /* Overlay */
+    position: relative;
+    top: 0;
+  
+  }
+  
+  #showcase .titulo {
+    color: #fff;
+    font-size: 80px;
+    font-weight: 700;
+    margin-top: 100px;
+  
+    text-shadow: 0px 8px 6px #00000029;
+  }
+  
+  .logo-meio {
+    background: transparent url('../../assets/img/logo-meio.png') 0% 0% no-repeat padding-box;
+    opacity: 0.5;
+    margin-top: 400px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+  }
+  
+  #showcase .quotation .frase {
+    text-align: center;
+    height: 80px;
+    font: Bold Italic 24px/30px IBM Plex Sans;
+    letter-spacing: 0;
+    color: #000000;
+    color: rgb(0, 107, 51);
+    opacity: 6;
+    width: 420px;
+    margin-left: 30px;
+  
+    text-shadow: 0px 3px 4px #00000029;
+  
+  }
+  
+  #showcase .name {
+    text-align: center;
+    /* height: 120px; */
+    font: Bold 20px/26px IBM Plex Sans;
+    letter-spacing: 0;
+    color: rgb(0, 107, 51);
+    text-transform: uppercase;
+    opacity: 2;
+    margin-bottom: 160px;
+    margin-left: 300px;
+    text-shadow: 0px 2px 4px #00000029;
   }
 

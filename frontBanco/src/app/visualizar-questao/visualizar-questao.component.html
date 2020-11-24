@@ -1,19 +1,19 @@
 <div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
     <h3 style="margin-bottom: 3%;">Enunciado</h3>
-    <textarea pInputTextarea name="enunciado" cols="30" rows="8" [disabled]="true"
+    <textarea pInputTextarea name="enunciado" cols="30" rows="8" readonly="readonly"
             [(ngModel)]="questao.enunciado" [hidden]="!previaImgEnunciado"></textarea>
     <img class="img" [hidden]="previaImgEnunciado" src="{{previaImgEnunciadoUrl}}" alt="">
 </div>
 <div class="ui-g-12 ui-fluid" style="margin-bottom: 30px;">
     <h3 style="margin-bottom: 3%;">Suporte</h3>
-    <textarea pInputTextarea name="suporte" cols="30" rows="8" [disabled]="true"
+    <textarea pInputTextarea name="suporte" cols="30" rows="8" readonly="readonly"
             [(ngModel)]="questao.suporte" [hidden]="!previaImgSuporte"></textarea>
     <img class="img" src="{{previaImgSuporteUrl}}" alt="" [hidden]="previaImgSuporte">
 </div>
 
 <div class="ui-g-12 ui-fluid"style="margin-bottom: 30px;">
     <h3 style="margin-bottom: 3%;">Comando</h3>
-    <textarea pInputTextarea name="comando" cols="30" rows="8" [disabled]="true"
+    <textarea pInputTextarea name="comando" cols="30" rows="8" readonly="readonly"
             [(ngModel)]="questao.comando"></textarea>
 </div>
 
@@ -25,7 +25,7 @@
             </div>
             <div class="ui-g-11">
                     <textarea pInputTextarea name="alternativaA" cols="30" rows="3"
-                            [disabled]="true" [(ngModel)]="alternativaA.descricao"
+                    readonly="readonly" [(ngModel)]="alternativaA.descricao"
                             [ngStyle]="{border: alternativaA.correta ? '8px solid green':'1px solid grey'}"></textarea>
             </div>
     </div>
@@ -35,7 +35,7 @@
             </div>
             <div class="ui-g-11">
                     <textarea pInputTextarea name="alternativaB" cols="30" rows="3"
-                            [disabled]="true" [(ngModel)]="alternativaB.descricao"
+                    readonly="readonly" [(ngModel)]="alternativaB.descricao"
                             [ngStyle]="{border: alternativaB.correta? '8px solid green':'1px solid grey'}"></textarea>
             </div>
     </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="ui-g-11">
                     <textarea pInputTextarea name="alternativaC" cols="30" rows="3"
-                            [disabled]="true" [(ngModel)]="alternativaC.descricao"
+                    readonly="readonly" [(ngModel)]="alternativaC.descricao"
                             [ngStyle]="{border: alternativaC.correta?'8px solid green':'1px solid grey'}"></textarea>
             </div>
     </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="ui-g-11">
                     <textarea pInputTextarea name="alternativaD" cols="30" rows="3"
-                            [disabled]="true" [(ngModel)]="alternativaD.descricao"
+                    readonly="readonly" [(ngModel)]="alternativaD.descricao"
                             [ngStyle]="{border: alternativaD.correta ? '8px solid green':'1px solid grey'}"></textarea>
             </div>
     </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="ui-g-11">
                     <textarea pInputTextarea name="alternativaE" cols="30" rows="3"
-                            [disabled]="true" [(ngModel)]="alternativaE.descricao"
+                    readonly="readonly" [(ngModel)]="alternativaE.descricao"
                             [ngStyle]="{border: alternativaE.correta ? '8px solid green':'1px solid grey'}"></textarea>
             </div>
     </div>

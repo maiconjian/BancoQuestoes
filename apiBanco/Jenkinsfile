@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'artifact_path', defaultValue: '/var/lib/jenkins/workspace/pipe/target/*.war')
+		string(name: 'certificate_path', defaultValue: '/var/lib/jenkins/certificate/awsAula.pem', description: 'Certificate Path')
+        string(name: 'tomcat_dev', defaultValue: 'ec2-54-90-120-198.compute-1.amazonaws.com', description: 'Dev Server')
+    }
+
+    triggers {
+        pollSCM('* * * * *')
+     }
+
+stages{
+        stage('Build'){
+            steps {
+                sh "mvn clean package"
+            }
+            post {
+                success {
+                    echo "Now Archiving..."
+                    archiveArtifacts artifacts: "target/*.war"
+                }
+            }
+        }
+
+        stage ('Deployments'){
+            parallel{
+                stage ("Deploy to Dev"){
+                    steps {
+                        sh "scp -i ${params.certificate_path} ${params.artifact_path} ubuntu@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+
+                    }
+                }
+
+            }
+        }
+    }
+}
